@@ -2,6 +2,7 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import LogoutButton from './auth/LogoutButton';
+import Landing from './Landing/Landing';
 
 const NavBar = () => {
   return (

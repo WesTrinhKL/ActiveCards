@@ -11,6 +11,13 @@ class User(db.Model, UserMixin):
     email = db.Column(db.String(255), nullable=False, unique=True)
     hashed_password = db.Column(db.String(255), nullable=False)
 
+    quiz_template_relation = db.relationship(
+        'QuizTemplate', back_populates='user_relation', cascade="all, delete-orphan")
+    workspace_relation = db.relationship(
+        'Workspace', back_populates='user_relation', cascade="all, delete-orphan")
+    directory_relation = db.relationship(
+        'QuizDirectory', back_populates='user_relation', cascade="all, delete-orphan")
+
     @property
     def password(self):
         return self.hashed_password
