@@ -22,7 +22,7 @@ class QuizCard(db.Model):
     active_recall_relation = db.relationship(
         'ActiveRecallUtility', back_populates='quiz_card_relation', cascade="all, delete-orphan")
     user_active_recall_answer_relation = db.relationship(
-        'UserActiveRecallAnswer', back_populates='quiz_card_relation')
+        'UserActiveRecallAnswer', back_populates='quiz_card_relation', cascade="all, delete-orphan")
 
     def to_dict(self):
         return {

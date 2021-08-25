@@ -28,3 +28,13 @@ class QuizTemplate(db.Model):
             'description': self.description,
             'user_relation': self.user_relation.to_dict(),
         }
+
+    def get_quiz_cards_with_all_relationship(self):
+        return {
+            'id': self.id,
+            'title': self.title,
+            # 'quiz_card_relation': sorted([card.to_dict() for card in self.quiz_card_relation], key=lambda i: i['id']),
+            # example of sorting a diction by the key of age ---> sorted(lis, key = lambda i: i['age'])
+            # 'user_active_recall_answer_relation': sorted([utility.to_dict() for utility in self.user_active_recall_answer_relation], key=lambda i: i['steps']),
+            'user_id': self.user_id,
+        }
