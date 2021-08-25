@@ -17,7 +17,7 @@ class QuizDirectory(db.Model):
         'Workspace', back_populates='directory_relation')
 
     quiz_template_relation = db.relationship(
-        'QuizTemplates', back_populates='directory_relation')
+        'QuizTemplate', back_populates='directory_relation', cascade="all, delete-orphan")
 
     def to_dict(self):
         return {

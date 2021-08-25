@@ -18,6 +18,9 @@ class QuizTemplate(db.Model):
     directory_relation = db.relationship(
         'QuizDirectory', back_populates='quiz_template_relation')
 
+    quiz_card_relation = db.relationship(
+        'QuizCard', back_populates='quiz_template_relation', cascade="all, delete-orphan")
+
     def to_dict(self):
         return {
             'id': self.id,

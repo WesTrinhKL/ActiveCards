@@ -17,6 +17,12 @@ class User(db.Model, UserMixin):
         'Workspace', back_populates='user_relation', cascade="all, delete-orphan")
     directory_relation = db.relationship(
         'QuizDirectory', back_populates='user_relation', cascade="all, delete-orphan")
+    quiz_card_relation = db.relationship(
+        'QuizCard', back_populates='user_relation', cascade="all, delete-orphan")
+    active_recall_relation = db.relationship(
+        'ActiveRecallUtility', back_populates='user_relation', cascade="all, delete-orphan")
+    user_active_recall_answer_relation = db.relationship(
+        'UserActiveRecallAnswer', back_populates='user_relation', cascade="all, delete-orphan")
 
     @property
     def password(self):
