@@ -30,7 +30,7 @@ class ListField(Field):
 BooleanField.false_values = {False, 'false', ''}
 
 
-class QuizTemplateForm(FlaskForm):
+class QuizCardForm(FlaskForm):
     title = StringField(validators=[DataRequired(), Length(max=255)])
     description = StringField()
 

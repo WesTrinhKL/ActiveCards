@@ -29,6 +29,7 @@ class QuizTemplate(db.Model):
             'description': self.description,
             'is_private': self.is_private,
             'user_relation': self.user_relation.to_dict(),
+            'directory_relation': self.directory_relation.to_dict_without_user(),
         }
 
     def get_quiz_cards_with_all_relationship(self):

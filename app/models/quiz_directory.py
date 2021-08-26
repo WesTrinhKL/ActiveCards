@@ -25,3 +25,9 @@ class QuizDirectory(db.Model):
             'name': self.name,
             'user_relation': self.user_relation.to_dict(),
         }
+
+    def to_dict_without_user(self):
+        return {
+            'id': self.id,
+            'name': self.name,
+        }
