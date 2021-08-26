@@ -1,24 +1,22 @@
 from flask_wtf import FlaskForm
 from wtforms import IntegerField, StringField, Field, BooleanField
 from wtforms.validators import DataRequired, ValidationError, Length
-from app.models import QuizTemplate, QuizDirectory
+from app.models import QuizTemplate, QuizDirectory, QuizCard
 from flask_login import current_user
+from app.forms.quiz_template_form import user_id_belongs_to_user
 
 
-# validate that directory input belongs to the user
-def directory_belongs_to_user_and_exists(form, field):
-    directory = QuizDirectory.query.filter_by(
-        id=field.data).first()
-
-    if (directory is not None and directory.user_id != current_user.id) or directory is None:
-        raise ValidationError(
-            "Unauthorized, please try your own directories.")
-# validate that user_id passed in belongs to the user
+def check_card_number_is_valid(form, field):
+    # validate that card number is one number above the actually one and not anything else.
+    # user_id = form.data['user_id']
+    return True
 
 
-def user_id_belongs_to_user(form, field):
-    if field.data is not current_user.id:
-        raise ValidationError("Unauthorized, please try your own user id.")
+def quiz_template_belongs_to_user(form, field):
+    quiz_template_id = field.data
+    quiz_template = QuizTemplate.query.get(quiz_template_id)
+    if not quiz_template.template_belongs_to_current_user():
+        raise ValidationError("Unauthorized, please try your own deck.")
 
 
 class ListField(Field):
@@ -27,22 +25,18 @@ class ListField(Field):
         self.data = valuelist
 
 
-BooleanField.false_values = {False, 'false', ''}
-
-
 class QuizCardForm(FlaskForm):
     title = StringField(validators=[DataRequired(), Length(max=255)])
-    description = StringField()
+    question = StringField(validators=[DataRequired(), Length(max=1000)])
 
     # ensure user_id input belongs to user
     user_id = IntegerField(
         validators=[DataRequired(), user_id_belongs_to_user])
 
-    is_private = ListField(
-        validators=[DataRequired()])
+    # ensure quiz_template_id belongs to user
+    quiz_template_id = IntegerField(
+        validators=[DataRequired(), quiz_template_belongs_to_user])
 
-    # ensure directory belongs to user
-    quiz_directory_id = IntegerField(
-        validators=[DataRequired(), directory_belongs_to_user_and_exists])
-
-    # add categories in the future
+    # ensure card_number is valid, call static
+    card_number = IntegerField(
+        validators=[DataRequired(), check_card_number_is_valid])

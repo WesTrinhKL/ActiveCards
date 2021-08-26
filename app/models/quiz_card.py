@@ -1,5 +1,5 @@
 from .db import db
-from flask_login import current_user, login_required
+from flask_login import current_user
 
 
 class QuizCard(db.Model):

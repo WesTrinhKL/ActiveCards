@@ -1,4 +1,7 @@
+import flask_login
+from app.forms.quiz_template_form import user_id_belongs_to_user
 from .db import db
+from flask_login import current_user
 
 
 class QuizTemplate(db.Model):
@@ -21,6 +24,11 @@ class QuizTemplate(db.Model):
 
     quiz_card_relation = db.relationship(
         'QuizCard', back_populates='quiz_template_relation', cascade="all, delete-orphan")
+
+    def template_belongs_to_current_user(self):
+        if current_user.is_authenticated:
+            return current_user.id == self.user_id
+        return False
 
     def to_dict(self):
         return {

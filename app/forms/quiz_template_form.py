@@ -27,9 +27,6 @@ class ListField(Field):
         self.data = valuelist
 
 
-BooleanField.false_values = {False, 'false', ''}
-
-
 class QuizTemplateForm(FlaskForm):
     title = StringField(validators=[DataRequired(), Length(max=255)])
     description = StringField()

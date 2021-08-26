@@ -136,65 +136,53 @@ def create_quiz_template_edit_delete(id):
 
 
 # ---------------QuizCards CRUD Routes-----------------
-@ quizzes_routes.route('/', methods=['POST'])
+@ quizzes_routes.route('cards/', methods=['POST'])
 @ login_required
-def create_card_template():
+def create_quiz_card():
     form = QuizCardForm()
     form['csrf_token'].data = request.cookies['csrf_token']
     # categories in future
     if form.validate_on_submit():
-        create_quiz_template = QuizTemplate()
-        create_quiz_template.user_id = form.user_id.data
-        create_quiz_template.title = form.title.data
-        create_quiz_template.description = form.description.data
-        create_quiz_template.quiz_directory_id = form.quiz_directory_id.data
-
-        if str(form.is_private.data[0]).lower() == 'false':
-            create_quiz_template.is_private = False
-        elif str(form.is_private.data[0]).lower() == 'true':
-            create_quiz_template.is_private = True
-        else:
-            return {'errors': f'{form.is_private.data[0]} is not a valid boolean value. Try true or false'}, 401
-
-        db.session.add(create_quiz_template)
+        create_quiz_card = QuizCard()
+        create_quiz_card.user_id = form.user_id.data
+        create_quiz_card.title = form.title.data
+        create_quiz_card.question = form.question.data
+        create_quiz_card.quiz_template_id = form.quiz_template_id.data
+        create_quiz_card.card_number = form.card_number.data
+        db.session.add(create_quiz_card)
         db.session.commit()
-        return create_quiz_template.to_dict()
+        return create_quiz_card.to_dict()
 
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
 
-@ quizzes_routes.route('/<int:id>', methods=['PUT', 'DELETE'])
+@ quizzes_routes.route('cards/<int:id>', methods=['PUT', 'DELETE'])
 @ login_required
-def create_quiz_card_edit_delete(id):
+def update_quiz_card_edit_delete(id):
     form = QuizCardForm()
     form['csrf_token'].data = request.cookies['csrf_token']
     if request.method == 'PUT':
         if form.validate_on_submit():
             # ensure that id belongs to the user (done by form validation)
-            quiz_by_id = QuizTemplate.query.get(id)
+            quiz_by_id = QuizCard.query.get(id)
             if quiz_by_id and (quiz_by_id.user_id == current_user.id):
                 quiz_by_id.title = form.title.data
-                quiz_by_id.description = form.description.data
-                quiz_by_id.quiz_directory_id = form.quiz_directory_id.data
+                quiz_by_id.question = form.question.data
+                quiz_by_id.card_number = form.card_number.data
+                quiz_by_id.quiz_template_id = form.quiz_template_id.data
 
-                if str(form.is_private.data[0]).lower() == 'false':
-                    quiz_by_id.is_private = False
-                elif str(form.is_private.data[0]).lower() == 'true':
-                    quiz_by_id.is_private = True
-                else:
-                    return {'errors': f'{form.is_private.data[0]} is not a valid boolean value. Try true or false'}, 401
                 db.session.add(quiz_by_id)
                 db.session.commit()
                 return quiz_by_id.to_dict()
 
     elif request.method == 'DELETE':
-        template_to_delete = QuizTemplate.query.get(id)
-        if template_to_delete and (template_to_delete.user_id == current_user.id):
-            db.session.delete(template_to_delete)
+        card_to_delete = QuizCard.query.get(id)
+        if card_to_delete and (card_to_delete.user_id == current_user.id):
+            db.session.delete(card_to_delete)
             db.session.commit()
-            return {'message': 'Quiz Deleted'}
+            return {'message': 'Quiz Card Deleted Successfully'}
         return authorization_errors_to_error_messages("Unauthorized access.")
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
 
-# ---------------QuizCards CRUD Routes-----------------
+# ---------------Bonus CRUD Routes-----------------
