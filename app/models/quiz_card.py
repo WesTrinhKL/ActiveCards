@@ -1,5 +1,5 @@
 from .db import db
-from flask_login import current_user
+from flask_login import current_user, login_required
 
 
 class QuizCard(db.Model):
@@ -26,10 +26,13 @@ class QuizCard(db.Model):
         'UserActiveRecallAnswer', back_populates='quiz_card_relation', cascade="all, delete-orphan")
 
     def card_is_public(self):
-        return self.quiz_template_relation.is_private
+        return not self.quiz_template_relation.is_private
 
+    # @login_required
     def user_owns_card(self):
-        return current_user.id == self.user_id
+        if current_user.is_authenticated:
+            return current_user.id == self.user_id
+        return False
 
     def to_dict(self):
         return {
