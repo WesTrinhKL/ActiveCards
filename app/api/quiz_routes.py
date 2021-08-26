@@ -1,7 +1,8 @@
-from flask import Blueprint, jsonify
+from flask import Blueprint, request
 from flask_login import login_required, current_user
-from app.models import User, QuizTemplate
+from app.models import db, User, QuizTemplate
 from app.api.util.error_handlers import validation_errors_to_error_messages, authorization_errors_to_error_messages
+from app.forms.quiz_template_form import QuizTemplateForm
 
 
 quizzes_routes = Blueprint('quizzes', __name__)
@@ -65,28 +66,26 @@ def get_single_quiz(id):
 @quizzes_routes.route('/', methods=['POST'])
 @login_required
 def create_quiz_template():
-    form = RecipeCreateForm()
+    form = QuizTemplateForm()
     form['csrf_token'].data = request.cookies['csrf_token']
-
+    # categories in future
     if form.validate_on_submit():
-        if current_user_matches_client_user(form.user_id.data):
-            # print("categories", form['categories_relations'].data)
-            create_recipe = Recipe()
-            create_recipe.user_id = form.user_id.data
-            create_recipe.name = form.name.data
-            create_recipe.thumbnail_url = form.thumbnail_url.data
+        create_quiz_template = QuizTemplate()
+        create_quiz_template.user_id = form.user_id.data
+        create_quiz_template.title = form.title.data
+        create_quiz_template.description = form.description.data
+        create_quiz_template.quiz_directory_id = form.quiz_directory_id.data
 
-            for category in form['categories_relations'].data:
-                print("this", type(category))
-                print("this", category)
-                print("this", category)
-                categoryInstance = Category.query.filter_by(
-                    name=category).one()
-                create_recipe.categories_relations.append(categoryInstance)
-            db.session.add(create_recipe)
-            db.session.commit()
-            return create_recipe.to_dict()
-        return authorization_errors_to_error_messages("Please try to post as yourself! Unauthorized Access.")
+        if str(form.is_private.data[0]).lower() == 'false':
+            create_quiz_template.is_private = False
+        elif str(form.is_private.data[0]).lower() == 'true':
+            create_quiz_template.is_private = True
+        else:
+            return {'errors': f'{form.is_private.data[0]} is not a valid boolean value. Try true or false'}, 401
+
+        db.session.add(create_quiz_template)
+        db.session.commit()
+        return create_quiz_template.to_dict()
 
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 

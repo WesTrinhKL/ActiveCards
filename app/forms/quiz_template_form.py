@@ -8,12 +8,17 @@ from flask_login import current_user
 # validate that directory input belongs to the user
 def directory_belongs_to_user_and_exists(form, field):
     directory = QuizDirectory.query.filter_by(
-        id=field.data).first() is not None
-    if directory:
-        # make sure directory belongs to user.
-        if not directory.user_id == current_user.id:
-            raise ValidationError(
-                "Unauthorized, please try your own directories.")
+        id=field.data).first()
+
+    if (directory is not None and directory.user_id != current_user.id) or directory is None:
+        raise ValidationError(
+            "Unauthorized, please try your own directories.")
+# validate that user_id passed in belongs to the user
+
+
+def user_id_belongs_to_user(form, field):
+    if field.data is not current_user.id:
+        raise ValidationError("Unauthorized, please try your own user id.")
 
 
 class ListField(Field):
@@ -22,11 +27,18 @@ class ListField(Field):
         self.data = valuelist
 
 
+BooleanField.false_values = {False, 'false', ''}
+
+
 class QuizTemplateForm(FlaskForm):
     title = StringField(validators=[DataRequired(), Length(max=255)])
     description = StringField()
-    user_id = IntegerField(validators=[DataRequired()])
-    is_private = BooleanField(validators=[DataRequired()])
+    user_id = IntegerField(
+        validators=[DataRequired(), user_id_belongs_to_user])
+
+    is_private = ListField(
+        validators=[DataRequired()])
+
     quiz_directory_id = IntegerField(
         validators=[DataRequired(), directory_belongs_to_user_and_exists])
 
