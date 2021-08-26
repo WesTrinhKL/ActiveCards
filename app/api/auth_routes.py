@@ -3,7 +3,7 @@ from app.models import User, db
 from app.forms import LoginForm
 from app.forms import SignUpForm
 from flask_login import current_user, login_user, logout_user, login_required
-
+from app.models import QuizDirectory, Workspace
 auth_routes = Blueprint('auth', __name__)
 
 
@@ -67,7 +67,14 @@ def sign_up():
             email=form.data['email'],
             password=form.data['password']
         )
+        intial_workspace = Workspace(
+            name="Home", user_relation=user
+        )
+        initial_home_directory = QuizDirectory(
+            name="Frontend", user_relation=user, workspace_relation=intial_workspace)
+
         db.session.add(user)
+
         db.session.commit()
         login_user(user)
         return user.to_dict()
