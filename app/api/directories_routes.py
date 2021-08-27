@@ -12,4 +12,4 @@ directories_routes = Blueprint('directories', __name__)
 @ directories_routes.route('/first', methods=['GET'])
 # get the first available directory for the user
 def get_first_available_directory_for_user():
-    return {'quiz_template_only': QuizDirectory.get_first_available_directory_for(current_user.id)}
+    return {'first_directory': QuizDirectory.get_first_available_directory_for(current_user.id)}

@@ -1,9 +1,13 @@
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
-import session from './session'
+import session from './session';
+import quiz_deck from './quiz_deck';
+import directory from './directory';
 
 const rootReducer = combineReducers({
   session,
+  quiz_deck,
+  directory
 });
 
 

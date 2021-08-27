@@ -2,6 +2,8 @@ import React , { useState, useEffect}from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import './QuizDeckForm.css';
 import { useHistory } from 'react-router';
+import { getUserFirstDirectory } from '../../store/directory';
+import { setFormQuizDeckTemp } from '../../store/quiz_deck';
 
 
 
@@ -10,6 +12,7 @@ export const QuizDeckForm = () => {
   const dispatch = useDispatch();
   const history = useHistory();
   const user_id = useSelector((state) => state.session.user?.id);
+  const user_first_directory_id = useSelector(state => state.directory.userFirstDirectory?.first_directory?.id)
 
 
   const [title, setTitle] = useState('');
@@ -22,20 +25,42 @@ export const QuizDeckForm = () => {
   const setPrivateE = (e) => {
     console.log(isPrivate);
     return setIsPrivate(e.target.value);
-
   }
 
+  useEffect(() => {
+    dispatch(getUserFirstDirectory())
+
+  }, [dispatch])
+
   const onFormSubmit = (e)=>{
+    // required data in payload besides form:
+    // user_id
+
     e.preventDefault();
       const payload = {
         title,
         description,
+        is_private: isPrivate,
+        quiz_directory_id: user_first_directory_id,
+        user_id,
       }
+      setErrors([]);
+      dispatch(setFormQuizDeckTemp(payload)).then( (data)=>{
+        if(data && data.id){
+
+          console.log("time to reload", data)
+          history.push(`/edit/quizzes/${data.id}`);
+
+          window.location.reload();
+        }
+
+      }).catch(async (res) =>{
+        console.log("error hit")
+        const data = res
+        if(data && data.errors) setErrors(data.errors);
+      })
 
 
-      // required data in payload besides form:
-    // user_id
-    //
 
       // TODO FORM
     // title
