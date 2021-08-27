@@ -8,6 +8,7 @@ const EditQuiz = () => {
   const dispatch = useDispatch();
   let {quiz_id} = useParams();
   const single_deck_and_cards = useSelector(state=> state.quiz_deck.single_deck_with_cards?.quiz)
+  const single_deck_and_cards_errors= useSelector(state=> state.quiz_deck.single_deck_with_cards?.errors)
 
   useEffect(() => {
     dispatch(getSingleDeckWithCardsByIdThunk(quiz_id))
@@ -20,6 +21,11 @@ const EditQuiz = () => {
 
   return (
     <>
+      {
+        single_deck_and_cards_errors && <div>
+          404 error, sorry unavailable
+        </div>
+      }
       {single_deck_and_cards && <div>
         <div>
           Edit Quiz Page for id: {quiz_id}
@@ -29,6 +35,9 @@ const EditQuiz = () => {
         </div>
         <div>
           Current Visibility: {single_deck_and_cards.is_private? 'private': 'public'}
+        </div>
+        <div>
+          Description: {single_deck_and_cards.description? single_deck_and_cards.description: "None"}
         </div>
         <div>
 
