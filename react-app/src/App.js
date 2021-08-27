@@ -10,6 +10,7 @@ import User from './components/User';
 import { authenticate } from './store/session';
 import Landing from './components/Landing/Landing';
 import EditQuiz from './components/EditQuiz/EditQuiz';
+import QuizViewSinglePage from './components/QuizViewSinglePage/QuizViewSinglePage';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -35,6 +36,9 @@ function App() {
         </Route>
         <Route path='/sign-up' exact={true}>
           <SignUpForm />
+        </Route>
+        <Route path='/view/quizzes/:quiz_id' exact={true}>
+          <QuizViewSinglePage />
         </Route>
         <ProtectedRoute path='/users' exact={true} >
           <UsersList/>

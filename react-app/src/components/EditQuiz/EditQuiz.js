@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 const EditQuiz = () => {
   const dispatch = useDispatch();
-  let {quiz_id} = useParams();
+  const {quiz_id} = useParams();
   const single_deck_and_cards = useSelector(state=> state.quiz_deck.single_deck_with_cards?.quiz)
   const single_deck_and_cards_errors= useSelector(state=> state.quiz_deck.single_deck_with_cards?.errors)
 
