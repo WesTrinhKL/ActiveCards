@@ -1,0 +1,196 @@
+.navbar-container{
+  position: fixed;
+  width: 100%;
+  top: 0;
+  height: 55px;
+  background-color: white;
+  z-index: 20;
+  /* box-shadow: 0 2px 4px 0 rgba(0,0,0,.2); */
+}
+
+.nc__unordered-list{
+  list-style-type: none;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+  padding-inline-start: 0px;
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+  height: 100%;
+  align-items: center;
+  padding-left: 50px;
+  padding-right: 50px;
+  width: 100%;
+  /* color: white; */
+}
+
+.nc-l-logo__name{
+  color: black;
+  /* text-decoration: none; */
+}
+
+.nc-l__middle{
+  /* padding: 20px; */
+  /* margin-right: 50%; */
+  max-height: initial;
+  position: absolute;
+  right: 325px;
+  width: 250px;
+}
+  .nc-lm__search-container{
+    position: relative;
+    border: 1px solid rgb(204, 204, 204);
+    border-radius: 4px;
+    max-height: initial;
+    display: flex;
+    background-color: white;
+  }
+    .navbar-search-input{
+      width: 100%;
+      padding: 4px;
+      padding-right: 5px;
+      border: none;
+      outline: none;
+      margin: 2px;
+    }
+    .navbar-search-icon{
+      /* position: absolute;
+      right: 5% */
+      padding-right: 3px;
+      padding-left: 8px;
+      color: rgb(206, 206, 206);
+      padding-top: 6.5px;
+    }
+
+.nc-l__user-utilities{
+  display: flex;
+  justify-content: space-between;
+  /* position: absolute;
+  right: 0; */
+  /* margin-right: 50px; */
+  padding: 20px;
+
+}
+
+  .nc-l-uu__login{
+    /* margin-top: 10px; */
+    text-align: center;
+    color: black;
+    padding-right: 10px;
+    border-right: 1px solid rgb(177, 177, 177);
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+  }
+  .nc-l-uu__login:hover{
+    /* margin-top: 10px; */
+    /* border-bottom: 1px solid black; */
+    /* border-right: none; */
+    color: #C3AED6;
+  }
+    .nc-l-uu-login__text{
+      font-family: -apple-system, 'Open Sans',  BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif;
+    }
+
+  .demo-button{
+    padding: 10px;
+    /* width: 40%; */
+    background-color: #BEAEE2;
+    border-style: none;
+    border-radius: 4px;
+
+    color: white;
+    font-size: 12px;
+    font-weight: bold;
+    min-width: 70px;
+    text-align: center;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.24);
+    transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+  }
+
+  .demo-button:hover{
+    box-shadow: 0 4px 8px rgba(0,0,0,0.22);
+    cursor: pointer;
+    background-color: #ccbcf1;
+  }
+
+
+  .sign-up-button{
+    padding: 10px;
+    /* width: 40%; */
+
+    background-color: #BEDCFA;
+    border-style: none;
+    border-radius: 4px;
+
+    color: white;
+    font-size: 12px;
+    font-weight: bold;
+    min-width: 70px;
+    text-align: center;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.24);
+    transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+    margin-right: 15px;
+    margin-left: 15px;
+  }
+
+  .sign-up-button:hover{
+    box-shadow: 0 4px 8px rgba(0,0,0,0.22);
+    cursor: pointer;
+    background-color: #c9e1f8;
+  }
+
+
+/* container - hover*/
+.user-navbar-container:hover .dropdown-content-container{
+  display: block;
+}
+  /* link */
+  .avatar-image{
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+  }
+  /* dropdown content */
+  .dropdown-content-container{
+    display: none;
+    background-color: rgb(243, 245, 246);
+    position: relative;
+    /* width: 200px; */
+    height: fit-content;
+    /* background-color: white; */
+  }
+    .triangle-container{
+      width: 100px;
+      height: 100px;
+      /* color: red; */
+      position: absolute;
+    }
+      .dropdown-triangle-arrow-up {
+        width: 0;
+        height: 0;
+        border-left: 7px solid transparent;
+        border-right: 7px solid transparent;
+        border-bottom: 7px solid rgb(255, 0, 0);
+        position: absolute;
+        top: 8px;
+        left: 14px;
+      }
+
+
+    .user-navbar-content{
+      /* background-color: rgb(243, 245, 246); */
+      background-color: white;
+      width: 200px;
+      height: fit-content;
+      position: absolute;
+      top: 30px;
+    }
+
+
+    .user-navbar-logout{
+
+    }

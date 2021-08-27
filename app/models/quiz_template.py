@@ -1,5 +1,4 @@
 import flask_login
-from app.forms.quiz_template_form import user_id_belongs_to_user
 from .db import db
 from flask_login import current_user
 

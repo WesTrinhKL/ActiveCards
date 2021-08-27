@@ -35,7 +35,7 @@ def get_all_templates():
 
 
 @ quizzes_routes.route('/', methods=['GET'])
-# get all quizzes that are not private
+# get all quizzes (deck+cards)
 def get_all_quizzes():
     all_quizzes = QuizTemplate.query.filter_by(is_private=False).limit(
         30).all()
@@ -43,7 +43,7 @@ def get_all_quizzes():
 
 
 @ quizzes_routes.route('/page/<int:page>', methods=['GET'])
-# get all quizzes paginated
+# get all quizzes (deck+cards) paginated
 def get_paginated_quizzes(page):
     per_page = 30
     paged_quizzes = QuizTemplate.query.paginate(
