@@ -14,10 +14,12 @@ export const QuizDeckForm = () => {
 
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
+  const [isPrivate, setIsPrivate] = useState('false');
   const [errors, setErrors] = useState([]);
 
   const setTitleE = (e) => setTitle(e.target.value);
   const setDescriptionE = (e) => setDescription(e.target.value);
+  const setPrivateE = (e) => setIsPrivate(e.target.value);
 
   const onFormSubmit = (e)=>{
     e.preventDefault();
@@ -45,7 +47,7 @@ export const QuizDeckForm = () => {
     <div className="quiz-deck-form-container">
       <form onSubmit={onFormSubmit}>
 
-        <div className=""> Create Your Deck</div>
+        <div className="qdfc__header"> Create Your Deck</div>
           <ul className="error-group">
               {errors.map((error, idx) => <li key={idx}>*{error}</li>)}
           </ul>
@@ -77,12 +79,28 @@ export const QuizDeckForm = () => {
                   value={description}
                   onChange={setDescriptionE}
                   type="text" />
+              </div>
             </div>
+
+
+            {/* private or public */}
+            <div className="privacy-input-container">
+              <label className="pic_switch">
+                Is Private:
+              </label>
+              <div class="quiz-deck-form-toggle-private">
+                <input type="radio" id="radio-one" name="switch-one" value={isPrivate} onChange={setPrivateE}  checked/>
+                <label for="radio-one">Yes</label>
+                <input type="radio" id="radio-two" name="switch-one" value={isPrivate} onChange={setPrivateE} />
+                <label for="radio-two">No</label>
+              </div>
+
             </div>
+
 
           </div>
 
-          <div className="">
+          <div className="create-deck-button-container">
             <button className="create-deck-form-button" type="submit">Start Deck <i class="fas fa-long-arrow-alt-right start-deck-arrow"></i></button>
           </div>
 

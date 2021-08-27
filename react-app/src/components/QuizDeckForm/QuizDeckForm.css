@@ -1,6 +1,10 @@
 /*----- FORM LABELS, TITLES, ETC -----*/
+.qdfc__header{
+  font-size: 24px;
+}
+
 .title-input-container, .description-input-container{
-  margin: 20px 0px;
+  margin: 15px 0px;
 }
 
 /*----- FORM INPUT FIELDS -----*/
@@ -18,11 +22,11 @@
   border-left: 2px solid #e6b8c47e;
   /* margin-left: 20px; */
   margin-top: 3px;
+  transition: all 0.1s ease-in-out;
 }
-.quiz-deck-form-title:focus{
+.quiz-deck-form-title:focus, .quiz-deck-form-title:hover{
   border-left: 2px solid #CD5D7D;
 }
-
 
 .quiz-deck-form-text-area {
   margin: 0;
@@ -34,16 +38,62 @@
   margin-top: 3px;
   border: none;
   border-left: 2px solid #e6b8c47e;
-
-
+  transition: all 0.1s ease-in-out;
 }
-.quiz-deck-form-text-area:focus{
+.quiz-deck-form-text-area:focus, .quiz-deck-form-text-area:hover{
+  border-left:2px solid #CD5D7D;
+}
+
+.quiz-deck-form-toggle-private{
+  border-left: 2px solid #e6b8c47e;
+  padding-left: 9px;
+  display: flex;
+	margin-bottom: 20px;
+	overflow: hidden;
+  transition: all 0.1s ease-in-out;
+}
+
+.quiz-deck-form-toggle-private:hover{
   border-left:2px solid #CD5D7D;
 }
 
 
+.quiz-deck-form-toggle-private input {
+	position: absolute !important;
+	height: 1px;
+	width: 1px;
+	border: 0;
+}
+
+.quiz-deck-form-toggle-private label{
+	background-color: #eeeeee;
+	color: rgba(0, 0, 0, 0.637);
+	font-size: 14px;
+	line-height: 1;
+	text-align: center;
+	padding: 8px 16px;
+	border: 1px solid rgba(0, 0, 0, 0.2);
+	transition: all 0.1s ease-in-out;
+  /* border-radius: 4px; */
+  border: none;
+}
+
+.quiz-deck-form-toggle-private label:hover {
+	cursor: pointer;
+}
+
+.quiz-deck-form-toggle-private input:checked + label {
+	background-color: #BEDCFA;
+	box-shadow: none;
+}
+
 
 /*----- button to create form -----*/
+.create-deck-button-container{
+  /* position: relative; */
+}
+
+
 .create-deck-form-button{
   padding: 9px 20px;
   /* width: 40%; */
@@ -61,6 +111,9 @@
   display: flex;
   margin-top: 5px;
   margin-right: 25px;
+  position: absolute;
+  right:20px;
+  bottom: 40px;
 }
 
 .create-deck-form-button:hover{
