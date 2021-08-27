@@ -1,0 +1,75 @@
+/*----- FORM LABELS, TITLES, ETC -----*/
+.title-input-container, .description-input-container{
+  margin: 20px 0px;
+}
+
+/*----- FORM INPUT FIELDS -----*/
+.quiz-deck-form-container{
+  min-width: 50vh;
+  min-height: 50vh;
+  padding: 50px;
+  /* background-color: white; */
+}
+.quiz-deck-form-title{
+  outline: none;
+  padding: 4px;
+  width: 90%;
+  border: none;
+  border-left: 2px solid #e6b8c47e;
+  /* margin-left: 20px; */
+  margin-top: 3px;
+}
+.quiz-deck-form-title:focus{
+  border-left: 2px solid #CD5D7D;
+}
+
+
+.quiz-deck-form-text-area {
+  margin: 0;
+  min-height: 120px;
+  resize: none;
+  width: 90%;
+  padding: 8px;
+  outline: none;
+  margin-top: 3px;
+  border: none;
+  border-left: 2px solid #e6b8c47e;
+
+
+}
+.quiz-deck-form-text-area:focus{
+  border-left:2px solid #CD5D7D;
+}
+
+
+
+/*----- button to create form -----*/
+.create-deck-form-button{
+  padding: 9px 20px;
+  /* width: 40%; */
+  background-color: #8fa0e4;
+  border-style: none;
+  border-radius: 15px;
+
+  color: white;
+  font-size: 12px;
+  font-weight: bold;
+  min-width: 70px;
+  text-align: center;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.24);
+  transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+  display: flex;
+  margin-top: 5px;
+  margin-right: 25px;
+}
+
+.create-deck-form-button:hover{
+  box-shadow: 0 4px 8px rgba(0,0,0,0.22);
+  cursor: pointer;
+  background-color: #98ACF8;
+}
+
+.start-deck-arrow{
+  margin-top: 3px;
+  margin-left: 6px;
+}
