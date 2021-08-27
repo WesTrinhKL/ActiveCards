@@ -11,11 +11,11 @@ const QuizDeckFormModal = () => {
   const [verifyClose, setVerifyClose] = useState(false);
   return (
     <>
-      <button className="create-deck-buttonn" onClick={() => setShowModal(true)}> <i className="editicon fas fa-pen "></i> <div className=" add-recipe-base-text">Create</div>  </button>
+      <button className="create-deck-button" onClick={() => setShowModal(true)}> <i class="fas fa-plus create-icon"></i><div className=" add-recipe-base-text">Create</div>  </button>
 
       {verifyClose && (
         <ModalVerify  offVerify={() => setVerifyClose(false)} onClose={() => setShowModal(false)}>
-          <div className="close-modal">Are you sure you want to close?</div>
+          <div className="close-modal">Are you sure you want to close? All unsaved data will be loss</div>
         </ModalVerify>
       )}
       {showModal && (

@@ -31,11 +31,16 @@
 .modal-verify{
   border-radius: 5px;
   font-weight: bold;
+  padding-top: 25px;
+  padding-bottom: 30px;
 }
 
 /* Buttons modal */
 .display-buttons{
   display: flex;
+  width: 40%;
+  margin: auto;
+  justify-content: space-between;
 
 }
 
@@ -64,6 +69,6 @@
   cursor: pointer;
 }
 
-.button-style-stay{
+.button-style-exit{
   background-color: rgb(255, 105, 105);
 }

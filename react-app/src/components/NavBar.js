@@ -6,7 +6,7 @@ import './NavBar.css'
 import { useSelector, useDispatch } from 'react-redux';
 import { login } from '../store/session';
 import defaultavatar from '../images/defaultavatar.jpg'
-
+import QuizDeckFormModal from './QuizDeckForm';
 
 
 const NavBar = () => {
@@ -67,8 +67,9 @@ const NavBar = () => {
           {!user && <li className="nc-l-uu__demo">
             <div className="demo-button" onClick={demo}> Demo </div>
           </li>}
+
           {user && <li className="nc-l-uu__create-deck-modal">
-            <div className="demo-button" onClick={demo}> Demo </div>
+            <QuizDeckFormModal/>
           </li>}
           {/* profile dropdown: workspace, settings, logout */}
           {user && <li className="nc-l-uu__profile">
