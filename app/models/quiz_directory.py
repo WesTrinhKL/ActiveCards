@@ -1,4 +1,5 @@
 from .db import db
+from flask_login import current_user
 
 
 class QuizDirectory(db.Model):
@@ -31,3 +32,12 @@ class QuizDirectory(db.Model):
             'id': self.id,
             'name': self.name,
         }
+
+    @staticmethod
+    def get_first_available_directory_for(userId):
+        if current_user.is_authenticated:
+            if userId == current_user.id:
+                first_directory = QuizDirectory.query.filter_by(
+                    user_id=userId).first()
+                return first_directory.to_dict()
+        return "Unavailable. Please try a different directory"

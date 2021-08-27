@@ -51,6 +51,8 @@
 	margin-bottom: 20px;
 	overflow: hidden;
   transition: all 0.1s ease-in-out;
+  padding-top: 5px;
+  padding-bottom: 5px;
 }
 
 .quiz-deck-form-toggle-private:hover{

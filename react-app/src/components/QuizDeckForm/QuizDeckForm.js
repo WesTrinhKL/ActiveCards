@@ -19,7 +19,11 @@ export const QuizDeckForm = () => {
 
   const setTitleE = (e) => setTitle(e.target.value);
   const setDescriptionE = (e) => setDescription(e.target.value);
-  const setPrivateE = (e) => setIsPrivate(e.target.value);
+  const setPrivateE = (e) => {
+    console.log(isPrivate);
+    return setIsPrivate(e.target.value);
+
+  }
 
   const onFormSubmit = (e)=>{
     e.preventDefault();
@@ -89,9 +93,9 @@ export const QuizDeckForm = () => {
                 Is Private:
               </label>
               <div class="quiz-deck-form-toggle-private">
-                <input type="radio" id="radio-one" name="switch-one" value={isPrivate} onChange={setPrivateE}  checked/>
+                <input type="radio" id="radio-one" name="switch-one" value='true' onChange={setPrivateE}  checked={isPrivate==='true'}/>
                 <label for="radio-one">Yes</label>
-                <input type="radio" id="radio-two" name="switch-one" value={isPrivate} onChange={setPrivateE} />
+                <input type="radio" id="radio-two" name="switch-one" value='false' onChange={setPrivateE} checked={isPrivate==='false'} />
                 <label for="radio-two">No</label>
               </div>
 
