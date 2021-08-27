@@ -33,7 +33,7 @@
   /* margin-right: 50%; */
   max-height: initial;
   position: absolute;
-  right: 150px;
+  right: 350px;
   width: 250px;
 }
 .nc-l__middle{
@@ -149,10 +149,15 @@
     background-color: #c9e1f8;
   }
 
+.user-navbar-container{
+  width: 100%;
+  padding-left: 15px;
+}
 
 /*dropdown: container - hover*/
 .user-navbar-container:hover .dropdown-content-container{
   display: block;
+
 
 }
   /* link */
@@ -175,7 +180,7 @@
       height: 100px;
       /* color: red; */
       position: absolute;
-      /* right: 5px; */
+      right: 5px;
     }
       .dropdown-triangle-arrow-up {
         width: 0;
@@ -185,7 +190,7 @@
         border-bottom: 7px solid rgb(255, 255, 255);
         position: absolute;
         top: 8px;
-        left: 14px;
+        right: 10px;
         z-index: 100;
       }
 
@@ -227,5 +232,20 @@
 
 .nc-l-uu__profile{
   border-left: 1px solid rgb(177, 177, 177);
-  padding-left: 15px;
+
+}
+
+
+/* dropdown utilities like icons */
+.settings-icon, .home-icon, .logout-icon{
+  color: rgb(134, 134, 134);
+  margin-right: 5px;
+}
+
+.logout-icon{
+  padding-top: 5px;
+}
+
+.user-navbar-logout{
+  display: flex;
 }

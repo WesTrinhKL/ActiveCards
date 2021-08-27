@@ -27,6 +27,8 @@ const NavBar = () => {
 
   return (
     <nav className="navbar-container">
+
+      {/* Logo */}
       <ul className="nc__unordered-list">
         <div className="nc-l__logo">
           <li className="nc-l-logo__name">
@@ -36,14 +38,13 @@ const NavBar = () => {
           </li>
         </div>
 
+        {/* search + all buttons and their state */}
         <div className={user ?  "nc-l__middle--loggedin": "nc-l__middle"}>
           <div className="nc-lm__search-container">
             <i class="fas fa-search navbar-search-icon"></i>
             <input className="navbar-search-input"type="text" placeholder="Search " />
           </div>
         </div>
-
-
 
         <div className="nc-l__user-utilities" >
           {!user && <li>
@@ -66,7 +67,10 @@ const NavBar = () => {
           {!user && <li className="nc-l-uu__demo">
             <div className="demo-button" onClick={demo}> Demo </div>
           </li>}
-
+          {user && <li className="nc-l-uu__create-deck-modal">
+            <div className="demo-button" onClick={demo}> Demo </div>
+          </li>}
+          {/* profile dropdown: workspace, settings, logout */}
           {user && <li className="nc-l-uu__profile">
               <div className="user-navbar-container">
                 <NavLink to='/users' exact={true} activeClassName='active'>
@@ -78,12 +82,12 @@ const NavBar = () => {
                   </div>
 
                   <div className="user-navbar-content">
-                    <div className="unc__item">Workspace</div>
-                    <div className="unc__item">Settings</div>
+                    <div className="unc__item"><i class="fas fa-home home-icon"></i>Workspace</div>
+                    <div className="unc__item"><i class="fas fa-cog settings-icon"></i>Settings</div>
                     <div className="unc_hr-container">
                       <hr className="unc_hr" />
                     </div>
-                    {user && <div className="user-navbar-logout unc__item "> <LogoutButton /> </div>}
+                    {user && <div className="user-navbar-logout unc__item "> <i class="fas fa-sign-out-alt logout-icon"></i><LogoutButton /> </div>}
                   </div>
                 </div>
               </div>
