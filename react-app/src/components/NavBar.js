@@ -36,13 +36,14 @@ const NavBar = () => {
           </li>
         </div>
 
-        <div className="nc-l__middle">
+        <div className={user ?  "nc-l__middle--loggedin": "nc-l__middle"}>
           <div className="nc-lm__search-container">
             <i class="fas fa-search navbar-search-icon"></i>
             <input className="navbar-search-input"type="text" placeholder="Search " />
-
           </div>
         </div>
+
+
 
         <div className="nc-l__user-utilities" >
           {!user && <li>
@@ -66,7 +67,7 @@ const NavBar = () => {
             <div className="demo-button" onClick={demo}> Demo </div>
           </li>}
 
-          {user && <li>
+          {user && <li className="nc-l-uu__profile">
               <div className="user-navbar-container">
                 <NavLink to='/users' exact={true} activeClassName='active'>
                   <img className="avatar-image" src={defaultavatar} alt="" />

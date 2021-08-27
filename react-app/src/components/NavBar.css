@@ -28,7 +28,14 @@
   color: black;
   /* text-decoration: none; */
 }
-
+.nc-l__middle--loggedin{
+  /* padding: 20px; */
+  /* margin-right: 50%; */
+  max-height: initial;
+  position: absolute;
+  right: 150px;
+  width: 250px;
+}
 .nc-l__middle{
   /* padding: 20px; */
   /* margin-right: 50%; */
@@ -217,3 +224,8 @@
         background-color: rgb(243, 245, 246);
         width: 100%;
       }
+
+.nc-l-uu__profile{
+  border-left: 1px solid rgb(177, 177, 177);
+  padding-left: 15px;
+}
