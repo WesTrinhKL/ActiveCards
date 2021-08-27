@@ -168,6 +168,7 @@
       height: 100px;
       /* color: red; */
       position: absolute;
+      /* right: 5px; */
     }
       .dropdown-triangle-arrow-up {
         width: 0;
@@ -192,7 +193,27 @@
       box-shadow: 0 1px 2px rgba(0,0,0,0.24);
       border-radius: 4px;
     }
+
+      .unc_hr-container{
+        margin-top: 5px;
+        margin-bottom: 5px;
+      }
+      .unc_hr{
+        border-top: none;
+        border-right: none;
+        border-left: none;
+        color: rgb(243, 245, 246);
+
+        /* margin-top: 2px;
+        margin-bottom: 2px; */
+      }
+      .unc__item{
+        padding: 5px;
+        padding-top: 7px;
+        padding-bottom: 7px;
+      }
       .unc__item:hover{
         cursor: pointer;
         background-color: rgb(243, 245, 246);
+        width: 100%;
       }

@@ -77,17 +77,14 @@ const NavBar = () => {
                   </div>
 
                   <div className="user-navbar-content">
-                    <div className="unc__item">one</div>
-                    <div className="unc__item">two</div>
-                    {user && <div className="user-navbar-logout unc__item ">
-                      <LogoutButton />
-                    </div>}
+                    <div className="unc__item">Workspace</div>
+                    <div className="unc__item">Settings</div>
+                    <div className="unc_hr-container">
+                      <hr className="unc_hr" />
+                    </div>
+                    {user && <div className="user-navbar-logout unc__item "> <LogoutButton /> </div>}
                   </div>
                 </div>
-
-              </div>
-              <div>
-
               </div>
           </li>}
         </div>
