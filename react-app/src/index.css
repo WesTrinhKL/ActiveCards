@@ -1,1 +1,19 @@
 /* TODO Add site wide styles */
+
+* {
+    font-family: -apple-system, 'Open Sans',  BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif;
+    list-style: none;
+    text-decoration: none;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    padding-top: 60px;
+    background-color: #fffcfc;
+    /* min-height: 100vh; */
+}
+
+/* .container-app{
+    min-height: 90vh;
+} */
