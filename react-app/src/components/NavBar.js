@@ -77,9 +77,9 @@ const NavBar = () => {
                   </div>
 
                   <div className="user-navbar-content">
-                    <div>one</div>
-                    <div>two</div>
-                    {user && <div className="user-navbar-logout">
+                    <div className="unc__item">one</div>
+                    <div className="unc__item">two</div>
+                    {user && <div className="user-navbar-logout unc__item ">
                       <LogoutButton />
                     </div>}
                   </div>
