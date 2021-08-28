@@ -21,24 +21,16 @@ const QuizViewSinglePage = () => {
 
   }, [dispatch])
 
+  // count logic for preview question
   const setcountE = (count_result) => {
     const total_cards = getQuizCardsArray.length - 1;
-    console.log("total cards", typeof total_cards)
-    console.log("total count", typeof count_result)
-    if (count_result > total_cards) setcount(total_cards)
-
-    else if (count_result < 0) setcount(0)
-
-    else{
-      setcount(count_result);
-    }
-
-
+    if (count_result > total_cards) setcount(0)
+    else if (count_result < 0) setcount(total_cards)
+    else setcount(count_result);
   }
 
   return (
     <div className="quiz-view-single-page-wrapper">
-
 
       {/* template header */}
       <div className="qvspw__header-wrapper">
@@ -50,26 +42,43 @@ const QuizViewSinglePage = () => {
         </div>
       </div>
 
-      {/* deck metadata + preview questions*/}
+      {/* deck metadata + preview questions grid*/}
       {single_deck_and_cards?.quiz_card_relation && <div className="qvspw__template-wrapper">
         <div className="qvspw__template-container">
           <div className="qvspw-tc__preview-questions">
             <div className="preview-questions__text">{single_deck_and_cards.quiz_card_relation[count]?.question}</div>
           </div>
-          <div className="qvspw-tc__template-data">
-            template metadata
-            <div className="">Created By
-            </div>
-            <div className="">edit, settings(...), share, duplicate(+)</div>
-          </div>
+
           <div className="qvspw-tc__preview-sliders-container">
             <div className="preview-sliders-container__elements">
               <i onClick={()=>setcountE(count-1)} class="fas fa-arrow-left psc-e__left-arrow"></i>
-              <div className="psc-e__count"> {count}/{getQuizCardsArray.length - 1}</div>
+              <div className="psc-e__count"> {count}/{getQuizCardsArray.length ? getQuizCardsArray.length - 1: 0}</div>
               <i onClick={()=>setcountE(count+1)} class="fas fa-arrow-right psc-e__right-arrow"></i>
             </div>
           </div>
-          {/* <div className="qvspw-tc__utilities">edit, settings(...), share, duplicate(+)</div> */}
+
+          {/* metadata */}
+          <div className="qvspw-tc__template-data">
+            <div className="template-data__description">
+              <div> description title </div>
+              <div> text </div>
+            </div>
+            <div className="template-data__details">
+              <div> details title </div>
+              <div> text </div>
+              <div> text </div>
+              <div> text </div>
+            </div>
+            <div className="template-data__utilities">
+              <div> Utilities title </div>
+              <div> text </div>
+              <div> text </div>
+              <div> text </div>
+            </div>
+          </div>
+
+          {/* settings and buttons */}
+          <div className="">edit, settings(...), share, duplicate(+)</div>
         </div>
       </div>}
 
