@@ -49,4 +49,5 @@ class QuizTemplate(db.Model):
             # 'user_active_recall_answer_relation': sorted([utility.to_dict() for utility in self.user_active_recall_answer_relation], key=lambda i: i['steps']),
             'user_id': self.user_id,
             'username': self.user_relation.username,
+            'description': self.description
         }
