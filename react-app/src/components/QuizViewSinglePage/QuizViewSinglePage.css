@@ -204,7 +204,7 @@
   color: rgb(138, 138, 138);
 }
 .td-u-uc__three{
-  opacity: 0;
+  /* opacity: 0; */
 }
 
 /* author created by */
@@ -253,4 +253,9 @@
   font-size: 20px;
   color: #98ACF8;
   padding-top: 5px;
+}
+
+.sai__plus:hover, .sai__share:hover, .sai__settings:hover, .sai__star:hover,
+.sai__star--selected:hover{
+  cursor: pointer;
 }

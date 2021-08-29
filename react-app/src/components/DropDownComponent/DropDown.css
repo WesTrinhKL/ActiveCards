@@ -1,0 +1,38 @@
+/* --------settings dropdown--------- */
+
+
+.ellipse-dropdown-container:hover .content-dropdown-container{
+  display: block;
+}
+
+.ellipse-triangle-container{
+  width: 100px;
+  height: 100px;
+  /* color: red; */
+  position: absolute;
+  right: 1px;
+}
+  .ellipse-dropdown-triangle-arrow-up {
+    width: 0;
+    height: 0;
+    border-left: 7px solid transparent;
+    border-right: 7px solid transparent;
+    border-bottom: 7px solid rgb(255, 255, 255);
+    position: absolute;
+    top: 8px;
+    right: 10px;
+    z-index: 100;
+  }
+
+.content-dropdown-container{
+  display: none;
+  background-color: rgb(243, 245, 246);
+  position: relative;
+  height: fit-content;
+
+}
+
+.basic-style-icon{
+  color: rgb(134, 134, 134);
+  margin-right: 5px;
+}

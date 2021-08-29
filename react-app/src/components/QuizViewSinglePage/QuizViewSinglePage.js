@@ -4,6 +4,7 @@ import './QuizViewSinglePage.css'
 import { useDispatch, useSelector } from 'react-redux';
 import { getSingleDeckWithCardsByIdThunk } from '../../store/quiz_deck';
 import Error404Page from '../Error404Page/Error404Page';
+import EditDropDown from '../DropDownComponent/EditDropDown';
 
 const QuizViewSinglePage = () => {
   const dispatch = useDispatch();
@@ -14,7 +15,8 @@ const QuizViewSinglePage = () => {
 
   const getQuizCardsArray = single_deck_and_cards?.quiz_card_relation;
   const getUserName = single_deck_and_cards?.username;
-  const quiz_length = getQuizCardsArray?.length ? getQuizCardsArray.length - 1: 0
+  const quiz_length = getQuizCardsArray?.length ? getQuizCardsArray.length - 1: 0;
+  const belongs_to_user = user_id === single_deck_and_cards?.user_id;
 
   const temp_categories = ['Datastructures', 'Algorithms', 'Python', 'Systems Design', 'Computer Science']
   const [count, setcount] = useState(0)
@@ -88,7 +90,7 @@ const QuizViewSinglePage = () => {
               <div className="td-u__utilities-container">
                 <div className="td-u-uc__one"> Active Recall </div>
                 <div className="td-u-uc__two"> Multiple Choice </div>
-                <div className="td-u-uc__three"> More </div>
+                <div className="td-u-uc__three"> Flash Cards </div>
               </div>
 
             </div>
@@ -105,9 +107,13 @@ const QuizViewSinglePage = () => {
             <div className="settings-and-icon">
               {/* <i class="far fa-star sai__star"></i> */}
               <i class="fas fa-star sai__star--selected"></i>
-              <i class="fas fa-plus sai__plus"></i>
+              {!belongs_to_user && <i class="fas fa-plus sai__plus"></i>}
               <i class="fas fa-share sai__share"></i>
-              <i class="fas fa-ellipsis-h sai__settings"></i>
+              {belongs_to_user && <div>
+                <EditDropDown/>
+              </div>}
+
+
 
             </div>
           </div>
