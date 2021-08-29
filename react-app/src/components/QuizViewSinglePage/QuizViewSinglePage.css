@@ -142,8 +142,6 @@
 .td-d__description-text-box{
   max-height: 66% ;
   overflow: auto;
-  overflow-x: hidden;
-  /* overflow-y: hidden; */
   position: absolute;
   width: 80%;
   border-left: 1px solid #CD5D7D;
@@ -153,7 +151,7 @@
 .td-d-dtb__text-description{
   font-size: 13px;
   padding-left: 10px;
-  padding-top: 10px;
+  padding-top: 5px;
   color: rgb(138, 138, 138);
 }
 
@@ -183,6 +181,22 @@
 .details-container{
   border-left: 1px solid #CD5D7D;
   padding-left: 10px;
+  padding-top: 5px;
+}
+
+/* utilities */
+.td-u__utilities-title{
+  font-size: 20px;
+}
+.td-u__utilities-container{
+  padding-left: 10px;
+  border-left: 1px solid #CD5D7D;
+  padding-top: 5px;
+  height: 60%;
+}
+.td-u-uc__one, .td-u-uc__two{
+  font-size: 13px;
+  color: rgb(138, 138, 138);
 }
 
 /* author created by */

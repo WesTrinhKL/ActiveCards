@@ -71,17 +71,20 @@ const QuizViewSinglePage = () => {
             <div className="template-data__details">
               <div className="td-d__details-title"> Details </div>
               <div className="details-container">
-                <div className="td-d__amount-answered"> you've answered: <span> 1/{quiz_length}</span> </div>
+                <div className="td-d__amount-answered"> you've answered: <span> 0/{quiz_length}</span> </div>
                 <div className="td-d__current-state"> current status: <span> {single_deck_and_cards.is_private ? "private" : "public"}</span> </div>
                 <div className="td-d__created-ago">created: <span>3 months</span> ago </div>
               </div>
 
             </div>
             <div className="template-data__utilities">
-              <div> Utilities title </div>
-              <div> text </div>
-              <div> text </div>
-              <div> text </div>
+              <div className="td-u__utilities-title"> Extensions </div>
+              <div className="td-u__utilities-container">
+                <div className="td-u-uc__one"> Active Recall </div>
+                <div className="td-u-uc__two"> Multiple Choice </div>
+                {/* <div className="td-u-uc__three"> text </div> */}
+              </div>
+
             </div>
             <div className="template-data__author">
               <div className="td-a__author-container" >
