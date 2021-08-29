@@ -14,6 +14,7 @@ const QuizViewSinglePage = () => {
 
   const getQuizCardsArray = single_deck_and_cards?.quiz_card_relation;
   const getUserName = single_deck_and_cards?.username;
+  const quiz_length = getQuizCardsArray?.length ? getQuizCardsArray.length - 1: 0
 
   const temp_categories = ['Datastructures', 'Algorithms', 'Python', 'Systems Design', 'Computer Science']
   const [count, setcount] = useState(0)
@@ -54,7 +55,7 @@ const QuizViewSinglePage = () => {
           <div className="qvspw-tc__preview-sliders-container">
             <div className="preview-sliders-container__elements">
               <i onClick={()=>setcountE(count-1)} class="fas fa-arrow-left psc-e__left-arrow"></i>
-              <div className="psc-e__count"> {count}/{getQuizCardsArray.length ? getQuizCardsArray.length - 1: 0}</div>
+              <div className="psc-e__count"> {count}/{quiz_length}</div>
               <i onClick={()=>setcountE(count+1)} class="fas fa-arrow-right psc-e__right-arrow"></i>
             </div>
           </div>
@@ -62,16 +63,19 @@ const QuizViewSinglePage = () => {
           {/* metadata */}
           <div className="qvspw-tc__template-data">
             <div className="template-data__description">
-              <div className="td-d__description-title"> description title </div>
+              <div className="td-d__description-title"> Description </div>
               <div  className="td-d__description-text-box">
                 <div className="td-d-dtb__text-description"> It is a long established fact that a reader will be distracted by th 'Content here, content here', making English.</div>
               </div>
             </div>
             <div className="template-data__details">
-              <div> details title </div>
-              <div> text </div>
-              <div> text </div>
-              <div> text </div>
+              <div className="td-d__details-title"> Details </div>
+              <div className="details-container">
+                <div className="td-d__amount-answered"> you've answered: <span> 1/{quiz_length}</span> </div>
+                <div className="td-d__current-state"> current status: <span> {single_deck_and_cards.is_private ? "private" : "public"}</span> </div>
+                <div className="td-d__created-ago">created: <span>3 months</span> ago </div>
+              </div>
+
             </div>
             <div className="template-data__utilities">
               <div> Utilities title </div>
