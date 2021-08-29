@@ -2,7 +2,8 @@ import React ,{useEffect, useState} from 'react'
 import { useParams } from 'react-router-dom'
 import './QuizViewSinglePage.css'
 import { useDispatch, useSelector } from 'react-redux';
-import { getSingleDeckWithCardsByIdThunk } from '../../store/quiz_deck'
+import { getSingleDeckWithCardsByIdThunk } from '../../store/quiz_deck';
+import defaultavatar from '../../images/defaultavatar.jpg'
 
 const QuizViewSinglePage = () => {
   const dispatch = useDispatch();
@@ -12,6 +13,7 @@ const QuizViewSinglePage = () => {
   // const single_deck_and_cards_errors= useSelector(state=> state.quiz_deck.single_deck_with_cards?.errors)
 
   const getQuizCardsArray = single_deck_and_cards?.quiz_card_relation;
+  const getUserName = single_deck_and_cards?.username;
 
   const temp_categories = ['Datastructures', 'Algorithms', 'Python', 'Systems Design', 'Computer Science']
   const [count, setcount] = useState(0)
@@ -60,8 +62,10 @@ const QuizViewSinglePage = () => {
           {/* metadata */}
           <div className="qvspw-tc__template-data">
             <div className="template-data__description">
-              <div> description title </div>
-              <div> text </div>
+              <div className="td-d__description-title"> description title </div>
+              <div  className="td-d__description-text-box">
+                <div className="td-d-dtb__text-description"> It is a long established fact that a reader will be distracted by th 'Content here, content here', making English.</div>
+              </div>
             </div>
             <div className="template-data__details">
               <div> details title </div>
@@ -74,6 +78,12 @@ const QuizViewSinglePage = () => {
               <div> text </div>
               <div> text </div>
               <div> text </div>
+            </div>
+            <div className="template-data__author">
+              <div className="td-a__author-container" >
+                <i className="fas fa-user-circle td-a-ac__profile-icon"></i>
+                <div className="td-a-ac__created-by"> created by:  <span>{getUserName}</span> </div>
+              </div>
             </div>
           </div>
 
