@@ -37,7 +37,7 @@ const QuizViewSinglePage = () => {
 
       {/* template header */}
       <div className="qvspw__header-wrapper">
-        <div className="qvspw-hw__title"> Software Interview Practice</div>
+        {single_deck_and_cards && <div className="qvspw-hw__title"> {single_deck_and_cards.title} </div>}
         <div className="qvspw-hw__categories-wrapper" >
           {temp_categories.map(category => (
               <div className="qvspw-hw__categeories"> <span>{category}</span> </div>
@@ -65,7 +65,7 @@ const QuizViewSinglePage = () => {
             <div className="template-data__description">
               <div className="td-d__description-title"> Description </div>
               <div  className="td-d__description-text-box">
-                <div className="td-d-dtb__text-description"> It is a long established fact that a reader will be distracted by th 'Content here, content here', making English.</div>
+                <div className="td-d-dtb__text-description"> It is a long established fact that a reader will be distracted by th 'Content here, content here', making English. will be distracted by th 'Content here, th 'Content here, content here', making English. It is a long established fact that a reader will be distracted by th 'Content here </div>
               </div>
             </div>
             <div className="template-data__details">
@@ -73,7 +73,7 @@ const QuizViewSinglePage = () => {
               <div className="details-container">
                 <div className="td-d__amount-answered"> you've answered: <span> 0/{quiz_length}</span> </div>
                 <div className="td-d__current-state"> current status: <span> {single_deck_and_cards.is_private ? "private" : "public"}</span> </div>
-                <div className="td-d__created-ago">created: <span>3 months</span> ago </div>
+                <div className="td-d__created-ago">created: <span>3 months ago </span> </div>
               </div>
 
             </div>
@@ -82,7 +82,7 @@ const QuizViewSinglePage = () => {
               <div className="td-u__utilities-container">
                 <div className="td-u-uc__one"> Active Recall </div>
                 <div className="td-u-uc__two"> Multiple Choice </div>
-                {/* <div className="td-u-uc__three"> text </div> */}
+                <div className="td-u-uc__three"> More </div>
               </div>
 
             </div>
@@ -95,13 +95,20 @@ const QuizViewSinglePage = () => {
           </div>
 
           {/* settings and buttons */}
-          <div className="">edit, settings(...), share, duplicate(+)</div>
+          <div className="settings-and-icon-container">
+            <div className="settings-and-icon">
+              <i class="fas fa-plus sai__plus"></i>
+              <i class="fas fa-share sai__share"></i>
+              <i class="fas fa-ellipsis-h sai__settings"></i>
+            </div>
+          </div>
+
         </div>
       </div>}
 
       {/* cards container */}
       <div className="qvspw__cards-container">
-        cards will be mapped here with QuizCardDetails component
+        {/* cards will be mapped here with QuizCardDetails component */}
       </div>
     </div>
   )

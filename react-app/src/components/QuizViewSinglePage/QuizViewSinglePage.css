@@ -9,12 +9,9 @@
 .qvspw-hw__title{
   font-size: 26px;
 }
-.qvspw-hw__author-by{
-  color: rgb(201, 201, 201);
-  font-size: 15px;
-}
+
 .qvspw-hw__categeories{
-  color: rgb(201, 201, 201);
+  color: rgb(179, 179, 179);
   font-size: 15px;
   padding: 15px 36px 5px 0;
   border-bottom: 1px solid #fffcfc;
@@ -41,16 +38,19 @@
 
 .psc-e__count{
   padding: 6px 20px;
+  color: rgb(138, 138, 138);
 }
 
 .psc-e__left-arrow, .psc-e__right-arrow{
   padding: 10px 20px;
   margin: 0px 20px;
+  color: rgb(138, 138, 138);
 }
 
 .psc-e__left-arrow:hover , .psc-e__right-arrow:hover{
   background-color: #C8D9EB;
   cursor: pointer;
+  color:#CD5D7D;
 }
 
 
@@ -99,7 +99,7 @@
   display: grid;
   grid-template-columns: repeat(2,1fr);
   gap: 10px;
-  grid-auto-rows: minmax(20px, 150px)
+  grid-auto-rows: 1fr 2fr;
 }
 
 .qvspw-tc__template-data, .qvspw-tc__preview-questions, .qvspw-tc__author-details, .qvspw-tc__utilities{
@@ -178,6 +178,11 @@
   color: rgb(138, 138, 138);
 }
 
+.td-d__created-ago span, .td-d__amount-answered span, .td-d__current-state span{
+  color: #98ACF8;
+  font-weight: bold;
+}
+
 .details-container{
   border-left: 1px solid #CD5D7D;
   padding-left: 10px;
@@ -192,11 +197,14 @@
   padding-left: 10px;
   border-left: 1px solid #CD5D7D;
   padding-top: 5px;
-  height: 60%;
+  /* height: 54%; */
 }
-.td-u-uc__one, .td-u-uc__two{
+.td-u-uc__one, .td-u-uc__two, .td-u-uc__three{
   font-size: 13px;
   color: rgb(138, 138, 138);
+}
+.td-u-uc__three{
+  opacity: 0;
 }
 
 /* author created by */
@@ -212,7 +220,7 @@
   display: flex;
   align-items: center;
   padding-bottom: 1px;
-  color: #d2d5da;
+  color: rgb(153, 153, 153);
   font-size: 14px;
 }
 
@@ -221,7 +229,22 @@
   font-size: 14px;
   margin-left: 5px;
   cursor: pointer;
+  font-weight: bold;
 }
 .td-a-ac__created-by span:hover{
   text-decoration: underline;
+}
+
+/* -------settings and icons--------- */
+.settings-and-icon{
+  display: flex;
+  justify-content: flex-end;
+  margin-right: 10px;
+}
+
+.sai__plus, .sai__share, .sai__settings{
+  padding-left: 20px;
+  font-size: 20px;
+  color: rgb(138, 138, 138);
+  padding-top: 5px;
 }
