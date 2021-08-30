@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getSingleDeckWithCardsByIdThunk } from '../../store/quiz_deck';
 import Error404Page from '../Error404Page/Error404Page';
 import EditDropDown from '../DropDownComponent/EditDropDown';
+import QuizCardsView from './QuizCardsView';
 
 const QuizViewSinglePage = () => {
   const dispatch = useDispatch();
@@ -113,19 +114,20 @@ const QuizViewSinglePage = () => {
               {belongs_to_user && <div>
                 <EditDropDown quiz_id={quiz_id}/>
               </div>}
-
-
-
             </div>
           </div>
-
         </div>
       </div>}
 
       {/* cards container */}
-      <div className="qvspw__cards-container">
-        {/* cards will be mapped here with QuizCardDetails component */}
+      <div className="qvspw__cards-wrapper">
+        <div className="qvspw-cw__cards-container">
+          {/* cards will be mapped here with QuizCardDetails component */}
+          <QuizCardsView/>
+          {/* <QuizCardsEdit/> */}
+        </div>
       </div>
+
     </div>
   )
 }

@@ -73,7 +73,7 @@ export const deleteFormQuizDeckTempThunk = (id) => async(dispatch) =>{
         await dispatch(deleteQuizDeckTemp(data));
         return data;
     } else {
-        return ['An error occurred. Please try again.'];
+        return {'error': ['An error occurred. Cannot delete, please try again later.']}
     }
 }
 export const getSingleDeckWithCardsByIdThunk = (id) => async(dispatch) =>{
