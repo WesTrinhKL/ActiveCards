@@ -261,3 +261,19 @@
 .sai__star--selected:hover{
   cursor: pointer;
 }
+
+/* -------------Quiz Cards Component----------- */
+.qvspw__cards-wrapper{
+  /* wrapper's width is 100% */
+}
+
+.qvspw-cw__cards-container{
+  width: 80%;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  /* justify-content: center; */
+  align-items: center;
+  min-height: 40vh;
+
+}

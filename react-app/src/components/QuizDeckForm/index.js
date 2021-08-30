@@ -22,12 +22,15 @@ const QuizDeckFormModal = ({editModeOn, deleteModeOn, quiz_id}) => {
   }
 
   const deleteDeckAll = async (id) => {
+    // try deleting something that's not yours.
     const data = await dispatch(deleteFormQuizDeckTempThunk(id));
+
     if (data?.error) setErrors(data.error)
     else{
       setShowModal(false);
       // or wherever they deleted the item from
       setErrors([]);
+      window.location.reload();
     }
   }
   const instantCloseHandlerDeleteErrors = () => {
