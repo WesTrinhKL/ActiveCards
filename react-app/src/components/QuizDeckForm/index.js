@@ -6,9 +6,6 @@ import './CreateDeckButton.css';
 
 
 const QuizDeckFormModal = ({editModeOn, quiz_id}) => {
-  // {edit} or {view} mode
-  // if edit ... elif view ...
-  // depending on mode: display the correct form
 
   const [showModal, setShowModal] = useState(false);
   const [verifyClose, setVerifyClose] = useState(false);
@@ -31,7 +28,7 @@ const QuizDeckFormModal = ({editModeOn, quiz_id}) => {
           <div className="close-modal">Are you sure you want to close? All unsaved data will be loss</div>
         </ModalVerify>
       )}
-      {/* if view && showModal */}
+
       {showModal && (
         // passing a callback that sets state to Modal (true or false) to open/close Modal
         <Modal onClose={() => setVerifyClose(true)} >

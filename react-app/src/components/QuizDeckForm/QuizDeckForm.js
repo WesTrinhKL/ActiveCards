@@ -19,6 +19,7 @@ export const QuizDeckForm = ({editModeOn, quiz_id}) => {
   const current_title =  editModeOn ? single_deck_and_cards?.title : '';
   const current_description =  editModeOn ? single_deck_and_cards?.description : '';
   const current_is_private =  editModeOn ? String(single_deck_and_cards?.is_private) : 'false';
+  const current_deck_id = editModeOn ? String(single_deck_and_cards?.id) : null;
 
   const [title, setTitle] = useState( current_title);
   const [description, setDescription] = useState(current_description);
@@ -50,6 +51,7 @@ export const QuizDeckForm = ({editModeOn, quiz_id}) => {
         is_private: isPrivate,
         quiz_directory_id: user_first_directory_id,
         user_id,
+        id: current_deck_id
       }
       setErrors([]);
       if (quiz_id && editModeOn) {
@@ -70,7 +72,7 @@ export const QuizDeckForm = ({editModeOn, quiz_id}) => {
           if(data && data.id){
 
             console.log("time to reload", data)
-            history.push(`/edit/quizzes/${data.id}`);
+            history.push(`/view/quizzes/${data.id}`);
 
             window.location.reload();
           }

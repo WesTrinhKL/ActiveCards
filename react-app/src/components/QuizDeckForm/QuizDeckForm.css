@@ -12,7 +12,7 @@
 /*----- FORM INPUT FIELDS -----*/
 .quiz-deck-form-container{
   min-width: 50vh;
-  min-height: 50vh;
+  min-height: 55vh;
   padding: 50px;
   /* background-color: white; */
 }
