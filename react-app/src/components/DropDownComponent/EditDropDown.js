@@ -12,7 +12,7 @@ const EditDropDown = () => {
             <div className="ellipse-dropdown-triangle-arrow-up"></div>
           </div>
 
-          <div className="user-navbar-content">
+          <div className="ellipse-navbar-content">
             <div className="unc__item"><i class="fas fa-folder basic-style-icon"></i> Change Folder</div>
             <div className="unc__item"><i className="fas fa-edit basic-style-icon"></i>Edit Banner</div>
             {/* <div className="unc_hr-container">

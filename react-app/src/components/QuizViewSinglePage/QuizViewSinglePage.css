@@ -242,14 +242,14 @@
   margin-right: 10px;
 }
 
-.sai__plus, .sai__share, .sai__settings, .sai__star{
-  padding-left: 20px;
+.sai__plus, .sai__share, .sai__star{
+  margin-left: 20px;
   font-size: 20px;
   color: rgb(138, 138, 138);
   padding-top: 5px;
 }
 .sai__star--selected{
-  padding-left: 20px;
+  margin-left: 20px;
   font-size: 20px;
   color: #98ACF8;
   padding-top: 5px;

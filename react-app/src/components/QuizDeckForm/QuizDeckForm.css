@@ -39,6 +39,7 @@
   border: none;
   border-left: 2px solid #e6b8c47e;
   transition: all 0.1s ease-in-out;
+  overflow: auto;
 }
 .quiz-deck-form-text-area:focus, .quiz-deck-form-text-area:hover{
   border-left:2px solid #CD5D7D;
