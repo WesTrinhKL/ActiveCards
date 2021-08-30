@@ -265,6 +265,7 @@
 /* -------------Quiz Cards Component----------- */
 .qvspw__cards-wrapper{
   /* wrapper's width is 100% */
+  /* background-color:rgb(249, 253, 255); */
 }
 
 .qvspw-cw__cards-container{
@@ -275,5 +276,7 @@
   /* justify-content: center; */
   align-items: center;
   min-height: 40vh;
+
+
 
 }

@@ -32,7 +32,7 @@ const QuizCardsView = () => {
         </div>
       </div>
 
-      <div className="scs__add-card-container"> Add Card</div>
+      <div className="add-card-container"> Add Card</div>
 
     </>
   )
