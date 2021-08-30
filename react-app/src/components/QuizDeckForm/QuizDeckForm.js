@@ -3,16 +3,16 @@ import { useDispatch, useSelector } from 'react-redux';
 import './QuizDeckForm.css';
 import { useHistory } from 'react-router';
 import { getUserFirstDirectory } from '../../store/directory';
-import { setFormQuizDeckTemp } from '../../store/quiz_deck';
+import { setFormQuizDeckTemp, getSingleDeckWithCardsByIdThunk } from '../../store/quiz_deck';
 
 
-
-export const QuizDeckForm = () => {
+export const QuizDeckForm = ({editModeOn, quiz_id}) => {
 
   const dispatch = useDispatch();
   const history = useHistory();
   const user_id = useSelector((state) => state.session.user?.id);
   const user_first_directory_id = useSelector(state => state.directory.userFirstDirectory?.first_directory?.id)
+
 
 
   const [title, setTitle] = useState('');
@@ -29,7 +29,9 @@ export const QuizDeckForm = () => {
 
   useEffect(() => {
     dispatch(getUserFirstDirectory())
-
+    if (editModeOn && quiz_id){
+      dispatch(getSingleDeckWithCardsByIdThunk(quiz_id))
+    }
   }, [dispatch])
 
   const onFormSubmit = (e)=>{

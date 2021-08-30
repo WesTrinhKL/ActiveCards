@@ -5,7 +5,7 @@ import { QuizDeckForm } from './QuizDeckForm';
 import './CreateDeckButton.css';
 
 
-const QuizDeckFormModal = () => {
+const QuizDeckFormModal = ({editModeOn}) => {
   // {edit} or {view} mode
   // if edit ... elif view ...
   // depending on mode: display the correct form
@@ -14,8 +14,10 @@ const QuizDeckFormModal = () => {
   const [verifyClose, setVerifyClose] = useState(false);
   return (
     <>
-      <button className="create-deck-button" onClick={() => setShowModal(true)}> <i class="fas fa-plus create-icon"></i><div className=" add-recipe-base-text">Create</div>  </button>
-      {/* {change button from 'create' to 'edit} */}
+
+      {!editModeOn && <button className="create-deck-button" onClick={() => setShowModal(true)}> <i class="fas fa-plus create-icon"></i><div className=" add-recipe-base-text">Create</div> </button>}
+
+      {editModeOn && <div className="unc__item" onClick={() => setShowModal(true)}><i className="fas fa-edit basic-style-icon"></i>Edit Banner</div>}
 
       {verifyClose && (
         <ModalVerify  offVerify={() => setVerifyClose(false)} onClose={() => setShowModal(false)}>
@@ -27,7 +29,7 @@ const QuizDeckFormModal = () => {
         // passing a callback that sets state to Modal (true or false) to open/close Modal
         <Modal onClose={() => setVerifyClose(true)} >
 
-          <QuizDeckForm />
+          <QuizDeckForm editModeOn={editModeOn}/>
         </Modal>
       )}
 

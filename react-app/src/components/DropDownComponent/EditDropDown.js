@@ -1,5 +1,6 @@
 import React from 'react'
 import './DropDown.css'
+import QuizDeckFormModal from '../QuizDeckForm';
 
 // import { NavLink } from 'react-router-dom';
 const EditDropDown = () => {
@@ -14,7 +15,7 @@ const EditDropDown = () => {
 
           <div className="ellipse-navbar-content">
             <div className="unc__item"><i class="fas fa-folder basic-style-icon"></i>Change Folder</div>
-            <div className="unc__item"><i className="fas fa-edit basic-style-icon"></i>Edit Banner</div>
+            <QuizDeckFormModal editModeOn={true}/>
             {/* move edit button to modal index later*/}
             <div className="unc_hr-container">
               <hr className="unc_hr" />
