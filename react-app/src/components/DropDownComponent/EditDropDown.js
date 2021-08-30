@@ -16,11 +16,10 @@ const EditDropDown = ({quiz_id}) => {
           <div className="ellipse-navbar-content">
             <div className="unc__item"><i class="fas fa-folder basic-style-icon"></i>Change Folder</div>
             <QuizDeckFormModal quiz_id={quiz_id} editModeOn={true}/>
-            {/* move edit button to modal index later*/}
             <div className="unc_hr-container">
               <hr className="unc_hr" />
             </div>
-            <div className="unc__item"><i class="fas fa-window-close basic-style-icon"></i>Delete All</div>
+            <QuizDeckFormModal quiz_id={quiz_id} deleteModeOn={true}/>
           </div>
         </div>
       </div>
