@@ -2,9 +2,10 @@ import React, { useEffect, useState} from 'react'
 import { useParams } from 'react-router'
 import { getSingleDeckWithCardsByIdThunk } from '../../store/quiz_deck'
 import { useDispatch, useSelector } from 'react-redux';
+import QuizCardsView from '../QuizViewSinglePage/QuizCardsView';
 
 
-const EditQuiz = () => {
+const EditQuizCardsPage = () => {
   const dispatch = useDispatch();
   const {quiz_id} = useParams();
   const single_deck_and_cards = useSelector(state=> state.quiz_deck.single_deck_with_cards?.quiz)
@@ -36,15 +37,22 @@ const EditQuiz = () => {
         <div>
           Current Visibility: {single_deck_and_cards.is_private? 'private': 'public'}
         </div>
-        <div>
+        {/* <div>
           Description: {single_deck_and_cards.description? single_deck_and_cards.description: "None"}
-        </div>
+        </div> */}
         <div>
 
         </div>
       </div>}
+
+      {/* quiz card view, for plural, get all cards, map each card to the quizcard component */}
+      <div className="edit-page-cards-view-container">
+        <QuizCardsView/>
+      </div>
+
+
     </>
   )
 }
 
-export default EditQuiz
+export default EditQuizCardsPage
