@@ -111,7 +111,7 @@ const QuizViewSinglePage = () => {
               {!belongs_to_user && <i class="fas fa-plus sai__plus"></i>}
               <i class="fas fa-share sai__share"></i>
               {belongs_to_user && <div>
-                <EditDropDown/>
+                <EditDropDown quiz_id={quiz_id}/>
               </div>}
 
 

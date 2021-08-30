@@ -3,7 +3,7 @@ import './DropDown.css'
 import QuizDeckFormModal from '../QuizDeckForm';
 
 // import { NavLink } from 'react-router-dom';
-const EditDropDown = () => {
+const EditDropDown = ({quiz_id}) => {
   return (
     <div>
       <div className="ellipse-dropdown-container">
@@ -15,7 +15,7 @@ const EditDropDown = () => {
 
           <div className="ellipse-navbar-content">
             <div className="unc__item"><i class="fas fa-folder basic-style-icon"></i>Change Folder</div>
-            <QuizDeckFormModal editModeOn={true}/>
+            <QuizDeckFormModal quiz_id={quiz_id} editModeOn={true}/>
             {/* move edit button to modal index later*/}
             <div className="unc_hr-container">
               <hr className="unc_hr" />

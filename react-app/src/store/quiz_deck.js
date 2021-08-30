@@ -55,9 +55,9 @@ export const updateFormQuizDeckTempThunk = (payload) => async(dispatch) =>{
     body: JSON.stringify(payload)
   });
     if (response.ok) {
-        const data = await response.json();
-        await dispatch(updateQuizDeckTemp(data));
-        return data;
+        const payload = await response.json();
+        await dispatch(updateQuizDeckTemp(payload));
+        return payload;
     } else {
         return ['An error occurred. Please try again.'];
     }

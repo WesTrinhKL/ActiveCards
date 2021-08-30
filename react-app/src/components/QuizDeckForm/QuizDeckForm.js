@@ -3,21 +3,26 @@ import { useDispatch, useSelector } from 'react-redux';
 import './QuizDeckForm.css';
 import { useHistory } from 'react-router';
 import { getUserFirstDirectory } from '../../store/directory';
-import { setFormQuizDeckTemp, getSingleDeckWithCardsByIdThunk } from '../../store/quiz_deck';
+import { setFormQuizDeckTemp, getSingleDeckWithCardsByIdThunk, updateFormQuizDeckTempThunk } from '../../store/quiz_deck';
 
 
 export const QuizDeckForm = ({editModeOn, quiz_id}) => {
 
   const dispatch = useDispatch();
   const history = useHistory();
+
   const user_id = useSelector((state) => state.session.user?.id);
   const user_first_directory_id = useSelector(state => state.directory.userFirstDirectory?.first_directory?.id)
+  // console.log("edit mode" , editModeOn)
+  const single_deck_and_cards = useSelector(state=> state.quiz_deck.single_deck_with_cards?.quiz);
 
+  const current_title =  editModeOn ? single_deck_and_cards?.title : '';
+  const current_description =  editModeOn ? single_deck_and_cards?.description : '';
+  const current_is_private =  editModeOn ? String(single_deck_and_cards?.is_private) : 'false';
 
-
-  const [title, setTitle] = useState('');
-  const [description, setDescription] = useState('');
-  const [isPrivate, setIsPrivate] = useState('false');
+  const [title, setTitle] = useState( current_title);
+  const [description, setDescription] = useState(current_description);
+  const [isPrivate, setIsPrivate] = useState(current_is_private);
   const [errors, setErrors] = useState([]);
 
   const setTitleE = (e) => setTitle(e.target.value);
@@ -47,30 +52,35 @@ export const QuizDeckForm = ({editModeOn, quiz_id}) => {
         user_id,
       }
       setErrors([]);
-      dispatch(setFormQuizDeckTemp(payload)).then( (data)=>{
-        if(data && data.id){
+      if (quiz_id && editModeOn) {
+        dispatch(updateFormQuizDeckTempThunk(payload)).then( (data)=>{
+          if(data && data.id){
+            console.log("time to reload", data)
+            history.push(`/view/quizzes/${data.id}`);
+            window.location.reload();
+          }
+        }).catch(async (res) =>{
+          console.log("error hit")
+          const data = res
+          if(data && data.errors) setErrors(data.errors);
+        })
+      }
+      else{
+        dispatch(setFormQuizDeckTemp(payload)).then( (data)=>{
+          if(data && data.id){
 
-          console.log("time to reload", data)
-          history.push(`/edit/quizzes/${data.id}`);
+            console.log("time to reload", data)
+            history.push(`/edit/quizzes/${data.id}`);
 
-          window.location.reload();
-        }
+            window.location.reload();
+          }
 
-      }).catch(async (res) =>{
-        console.log("error hit")
-        const data = res
-        if(data && data.errors) setErrors(data.errors);
-      })
-
-
-
-      // TODO FORM
-    // title
-    // description optional
-    // public or private button slider thing
-
-    // add to first directory, then provide option to change directory in template EditQuiz page
-
+        }).catch(async (res) =>{
+          console.log("error hit")
+          const data = res
+          if(data && data.errors) setErrors(data.errors);
+        })
+      }
   }
 
   return (
@@ -78,7 +88,7 @@ export const QuizDeckForm = ({editModeOn, quiz_id}) => {
     <div className="quiz-deck-form-container">
       <form onSubmit={onFormSubmit}>
 
-        <div className="qdfc__header"> Create Your Deck</div>
+        <div className="qdfc__header"> {editModeOn? 'Edit': 'Create'} Your Deck</div>
           <ul className="error-group">
               {errors.map((error, idx) => <li key={idx}>*{error}</li>)}
           </ul>
@@ -145,7 +155,7 @@ export const QuizDeckForm = ({editModeOn, quiz_id}) => {
           </div>
 
           <div className="create-deck-button-container">
-            <button className="create-deck-form-button" type="submit">Start Deck <i class="fas fa-long-arrow-alt-right start-deck-arrow"></i></button>
+            <button className="create-deck-form-button" type="submit">{editModeOn? 'Update Banner': 'Start Deck'} <i class="fas fa-long-arrow-alt-right start-deck-arrow"></i></button>
           </div>
 
       </form>
