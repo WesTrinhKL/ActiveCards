@@ -124,8 +124,14 @@ const QuizViewSinglePage = () => {
         <div className="qvspw-cw__cards-container">
           {/* cards will be mapped here with QuizCardDetails component */}
           <QuizCardsView allQuizCardsDataArray={getQuizCardsArray}/>
-          {/* <QuizCardsEdit/> */}
+
+          {belongs_to_user && <div className="add-card-container">
+            <button>add, edit, or remove card (sends you to edit page)</button>
+          </div>}
         </div>
+
+
+
       </div>}
 
     </div>

@@ -29,9 +29,10 @@
 }
 
 .single-card-container{
+
+  min-width: 70vh;
+  /* margin: auto; */
   margin-top: 75px;
-  min-width: 50%;
-  margin: auto;
   display: flex;
   flex-direction: column;
   align-items: center;

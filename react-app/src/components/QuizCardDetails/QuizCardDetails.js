@@ -1,9 +1,10 @@
 import React, {useState} from 'react'
 import './QuizCardDetails.css'
 
-const QuizCardDetails = () => {
+const QuizCardDetails = ({editMode=false}) => {
 
   const [tab, setTab] = useState('active-recall')
+  const [editModeSingleState, seteditModeSingleState] = useState(editMode)
   // state for allowAnswer (if active recall answered, allow answer)
 
   return (
