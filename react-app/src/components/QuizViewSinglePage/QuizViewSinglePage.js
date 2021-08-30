@@ -20,6 +20,7 @@ const QuizViewSinglePage = () => {
 
   const temp_categories = ['Datastructures', 'Algorithms', 'Python', 'Systems Design', 'Computer Science']
   const [count, setcount] = useState(0)
+  // state for: is_edit_mode
 
   useEffect(() => {
     dispatch(getSingleDeckWithCardsByIdThunk(quiz_id))

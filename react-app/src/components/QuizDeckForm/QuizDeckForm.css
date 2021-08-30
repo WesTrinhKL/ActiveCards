@@ -1,6 +1,8 @@
 /*----- FORM LABELS, TITLES, ETC -----*/
 .qdfc__header{
   font-size: 24px;
+  color: #8fa0e4;
+  font-weight: bold;
 }
 
 .title-input-container, .description-input-container{
@@ -70,7 +72,7 @@
 
 .quiz-deck-form-toggle-private label{
 	background-color: #eeeeee;
-	color: rgba(0, 0, 0, 0.637);
+	color: rgb(0, 0, 0);
 	font-size: 14px;
 	line-height: 1;
 	text-align: center;
@@ -86,9 +88,64 @@
 }
 
 .quiz-deck-form-toggle-private input:checked + label {
-	background-color: #BEDCFA;
+	background-color: #98abf875;
 	box-shadow: none;
 }
+/* select directory */
+
+.quiz-deck-form-select-directory{
+  border-left: 2px solid #e6b8c47e;
+  padding-left: 9px;
+  display: flex;
+	margin-bottom: 20px;
+	overflow: hidden;
+  transition: all 0.1s ease-in-out;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+.quiz-deck-form-select-directory:hover{
+  border-left:2px solid #CD5D7D;
+}
+.qdfsd__container{
+  /* padding: 5px; */
+  display: flex;
+  padding: 8px 12px;
+}
+
+.qdfsd__container:hover{
+  background-color: #98abf875;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.selected-directory-name{
+  /* font-weight: 660; */
+  /* text-decoration: underline; */
+  /* text-decoration-color: #e6b8c47e; */
+
+}
+.selected-workspace-name{
+  color: rgb(175, 175, 175);
+}
+
+.qdfsd__container:hover .directory-icon{
+  color: #CD5D7D;
+}
+
+.qdfsd__container:hover .selected-workspace-name{
+  color: black;
+}
+
+.directory-icon{
+  color: #e6b8c47e;
+  margin-right: 2px;
+  padding-right: 8px;
+  padding-top: 2px;
+}
+.qdfsd-c__change-directory{
+  font-size: 14px;
+}
+
 
 
 /*----- button to create form -----*/

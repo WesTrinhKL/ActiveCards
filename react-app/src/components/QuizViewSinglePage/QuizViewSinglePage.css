@@ -14,7 +14,7 @@
   color: rgb(179, 179, 179);
   font-size: 15px;
   padding: 15px 36px 5px 0;
-  border-bottom: 1px solid #fffcfc;
+
   width: fit-content;
 }
 .qvspw-hw__categeories span{
@@ -95,11 +95,11 @@
   /* background-color:white; */
   width: 80%;
   margin: auto;
-  min-height: 30vh;
+  min-height: 45vh;
   display: grid;
   grid-template-columns: repeat(2,1fr);
   gap: 10px;
-  grid-auto-rows: 1fr 2fr;
+  grid-auto-rows: 1fr 4fr;
 }
 
 .qvspw-tc__template-data, .qvspw-tc__preview-questions, .qvspw-tc__author-details, .qvspw-tc__utilities{
@@ -124,28 +124,28 @@
 .template-data__description{
   grid-column: 1/3;
   grid-row: 1;
-  padding: 15px 60px 15px 60px;
+  padding: 30px 60px 15px 60px;
   /* height: 190px; */
   position: relative;
 }
 
 .template-data__details{
-  padding: 0px 20px 15px 60px;
+  padding: 20px 20px 15px 60px;
 }
 .template-data__utilities{
-  padding: 0px 60px 0px 0px;
+  padding: 20px 60px 0px 0px;
 }
 
 .td-d__description-title{
   font-size: 20px;
 }
 .td-d__description-text-box{
-  max-height: 66% ;
+  max-height: 70% ;
   overflow: auto;
   position: absolute;
   width: 80%;
   border-left: 1px solid #CD5D7D;
-  min-height: 66%;
+  min-height: 70%;
 }
 
 .td-d-dtb__text-description{
@@ -211,8 +211,10 @@
 .td-a-ac__profile-icon{
   font-size: 30px;
   color: #d2d5da;
-  padding-top: 10px;
+  /* padding-top: 10px; */
   margin-left: 25px;
+  display: flex;
+  align-items: center;
 }
 
 .td-a-ac__created-by{

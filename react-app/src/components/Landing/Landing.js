@@ -3,7 +3,7 @@ import React from 'react'
 const Landing = () => {
   return (
     <div>
-      Houston. We Have Landed.
+      This will be only search bar here --> search results
     </div>
   )
 }

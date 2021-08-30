@@ -1,7 +1,7 @@
 import React from 'react'
 import './DropDown.css'
 
-import { NavLink } from 'react-router-dom';
+// import { NavLink } from 'react-router-dom';
 const EditDropDown = () => {
   return (
     <div>
@@ -13,11 +13,13 @@ const EditDropDown = () => {
           </div>
 
           <div className="ellipse-navbar-content">
-            <div className="unc__item"><i class="fas fa-folder basic-style-icon"></i> Change Folder</div>
+            <div className="unc__item"><i class="fas fa-folder basic-style-icon"></i>Change Folder</div>
             <div className="unc__item"><i className="fas fa-edit basic-style-icon"></i>Edit Banner</div>
-            {/* <div className="unc_hr-container">
+            {/* move edit button to modal index later*/}
+            <div className="unc_hr-container">
               <hr className="unc_hr" />
-            </div> */}
+            </div>
+            <div className="unc__item"><i class="fas fa-window-close basic-style-icon"></i>Delete All</div>
           </div>
         </div>
       </div>

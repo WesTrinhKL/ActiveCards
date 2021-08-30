@@ -123,9 +123,22 @@ export const QuizDeckForm = () => {
                 <input type="radio" id="radio-two" name="switch-one" value='false' onChange={setPrivateE} checked={isPrivate==='false'} />
                 <label for="radio-two">No</label>
               </div>
-
             </div>
 
+            {/* Select a directory */}
+            <div className="privacy-input-container">
+              <label className="pic_switch">
+                Select Directory:
+              </label>
+              <div className="quiz-deck-form-select-directory">
+                <div className="qdfsd__container">
+                  <i class="fas fa-folder directory-icon"></i>
+                  <div className="qdfsd-c__change-directory"> <span className="selected-workspace-name"> Workspace/ </span> <span className="selected-directory-name">Home</span></div>
+                </div>
+
+                {/* <div>current folder: Home(default) </div> */}
+              </div>
+            </div>
 
           </div>
 
