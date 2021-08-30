@@ -26,6 +26,7 @@
   position: absolute;
   background-color:white;
   border-radius: 8px;
+  min-width: fit-content;
 }
 
 .modal-verify{
@@ -41,6 +42,7 @@
   width: 55%;
   margin: auto;
   justify-content: space-between;
+  /* padding-top: 10px; */
 
 }
 
@@ -50,10 +52,11 @@
   background-color: #A7C5EB;
   border-style: none;
   border-radius: 2px;
-  margin-top: 15px;
-  margin-bottom: 15px;
-  margin-right: auto;
-  margin-left: auto;
+  /* margin-top: 15px;
+  margin-bottom: 15px; */
+  /* margin-right: auto;
+  margin-left: auto; */
+  margin: 15px;
   color: white;
   font-size: 12px;
   font-weight: bold;

@@ -8,25 +8,51 @@
 
 .add-card-container{
   margin-top: 75px;
+  margin-bottom: 75px;
 }
 
 
 /* individual card - can move later */
+.scs__buttons-container{
+  display: flex;
+  align-self: flex-start;
+  width: 100%;
+  background-color: #F5F5F5;
+  /* padding: 10px; */
+  padding-left: 15px;
+  border-top-left-radius: 6px;
+  border-top-right-radius: 6px;
+  min-height: fit-content;
+}
+.scs-bc__tab-button{
+  width: 25%;
+  border: none;
+  height: 50px;
+  cursor: pointer;
+  background-color: #F5F5F5;
+  color: #8F8F8F;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.scs-bc__tab-button:hover{
+  background-color: white;
+}
+.scs-bc__tab-button--active{
+  background-color: white;
+}
+
 .single-card-container{
   margin-top: 75px;
-  min-width: 40%;
+  min-width: 50%;
   margin: auto;
   display: flex;
   flex-direction: column;
   align-items: center;
-  /* justify-content: center; */
-  min-height: 30vh;
+  min-height: 40vh;
   background-color: white;
-}
-
-
-.scs__buttons-container{
-  align-self: flex-start;
-  width: 100%;
-  background-color: rgb(243, 245, 246);
+  border-bottom: 1px solid rgb(201, 201, 201);
+  border-right: 1px solid rgb(201, 201, 201);
+  border-radius: 6px;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.24);
 }
