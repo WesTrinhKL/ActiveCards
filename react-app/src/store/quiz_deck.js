@@ -55,9 +55,9 @@ export const updateFormQuizDeckTempThunk = (payload) => async(dispatch) =>{
     body: JSON.stringify(payload)
   });
     if (response.ok) {
-        const data = await response.json();
-        await dispatch(updateQuizDeckTemp(data));
-        return data;
+        const payload = await response.json();
+        await dispatch(updateQuizDeckTemp(payload));
+        return payload;
     } else {
         return ['An error occurred. Please try again.'];
     }
@@ -84,7 +84,7 @@ export const getSingleDeckWithCardsByIdThunk = (id) => async(dispatch) =>{
   const response = await fetch(`/api/quizzes/${id}`);
     if (!response.ok) {
         catchError(response);
-        await dispatch(GetQuizDeckTempById({"errors":"sorry, unavailable"}));
+        await dispatch(GetQuizDeckTempById({"errors":"not found!"}));
         return ['An server error occurred and your request could not be processed. Please try again.'];
     } else {
         const data = await response.json();

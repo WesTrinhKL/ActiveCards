@@ -7,6 +7,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { login } from '../store/session';
 import defaultavatar from '../images/defaultavatar.jpg'
 import QuizDeckFormModal from './QuizDeckForm';
+import ProfileDropDown from './DropDownComponent/ProfileDropDown';
 
 
 const NavBar = () => {
@@ -72,26 +73,9 @@ const NavBar = () => {
             <QuizDeckFormModal/>
           </li>}
           {/* profile dropdown: workspace, settings, logout */}
-          {user && <li className="nc-l-uu__profile">
-              <div className="user-navbar-container">
-                <NavLink to='/users' exact={true} activeClassName='active'>
-                  <img className="avatar-image" src={defaultavatar} alt="" />
-                </NavLink>
-                <div className="dropdown-content-container">
-                  <div className="triangle-container">
-                    <div className="dropdown-triangle-arrow-up"></div>
-                  </div>
-
-                  <div className="user-navbar-content">
-                    <div className="unc__item"><i class="fas fa-home home-icon"></i>Workspace</div>
-                    <div className="unc__item"><i class="fas fa-cog settings-icon"></i>Settings</div>
-                    <div className="unc_hr-container">
-                      <hr className="unc_hr" />
-                    </div>
-                    {user && <div className="user-navbar-logout unc__item "> <i class="fas fa-sign-out-alt logout-icon"></i><LogoutButton /> </div>}
-                  </div>
-                </div>
-              </div>
+          {user &&
+          <li className="nc-l-uu__profile">
+            <ProfileDropDown defaultavatar={defaultavatar} LogoutButton={LogoutButton} user={user}/>
           </li>}
         </div>
 

@@ -3,21 +3,27 @@ import { useDispatch, useSelector } from 'react-redux';
 import './QuizDeckForm.css';
 import { useHistory } from 'react-router';
 import { getUserFirstDirectory } from '../../store/directory';
-import { setFormQuizDeckTemp } from '../../store/quiz_deck';
+import { setFormQuizDeckTemp, getSingleDeckWithCardsByIdThunk, updateFormQuizDeckTempThunk } from '../../store/quiz_deck';
 
 
-
-export const QuizDeckForm = () => {
+export const QuizDeckForm = ({editModeOn, quiz_id}) => {
 
   const dispatch = useDispatch();
   const history = useHistory();
+
   const user_id = useSelector((state) => state.session.user?.id);
   const user_first_directory_id = useSelector(state => state.directory.userFirstDirectory?.first_directory?.id)
+  // console.log("edit mode" , editModeOn)
+  const single_deck_and_cards = useSelector(state=> state.quiz_deck.single_deck_with_cards?.quiz);
 
+  const current_title =  editModeOn ? single_deck_and_cards?.title : '';
+  const current_description =  editModeOn ? single_deck_and_cards?.description : '';
+  const current_is_private =  editModeOn ? String(single_deck_and_cards?.is_private) : 'false';
+  const current_deck_id = editModeOn ? String(single_deck_and_cards?.id) : null;
 
-  const [title, setTitle] = useState('');
-  const [description, setDescription] = useState('');
-  const [isPrivate, setIsPrivate] = useState('false');
+  const [title, setTitle] = useState( current_title);
+  const [description, setDescription] = useState(current_description);
+  const [isPrivate, setIsPrivate] = useState(current_is_private);
   const [errors, setErrors] = useState([]);
 
   const setTitleE = (e) => setTitle(e.target.value);
@@ -29,7 +35,9 @@ export const QuizDeckForm = () => {
 
   useEffect(() => {
     dispatch(getUserFirstDirectory())
-
+    if (editModeOn && quiz_id){
+      dispatch(getSingleDeckWithCardsByIdThunk(quiz_id))
+    }
   }, [dispatch])
 
   const onFormSubmit = (e)=>{
@@ -43,32 +51,38 @@ export const QuizDeckForm = () => {
         is_private: isPrivate,
         quiz_directory_id: user_first_directory_id,
         user_id,
+        id: current_deck_id
       }
       setErrors([]);
-      dispatch(setFormQuizDeckTemp(payload)).then( (data)=>{
-        if(data && data.id){
+      if (quiz_id && editModeOn) {
+        dispatch(updateFormQuizDeckTempThunk(payload)).then( (data)=>{
+          if(data && data.id){
+            console.log("time to reload", data)
+            history.push(`/view/quizzes/${data.id}`);
+            window.location.reload();
+          }
+        }).catch(async (res) =>{
+          console.log("error hit")
+          const data = res
+          if(data && data.errors) setErrors(data.errors);
+        })
+      }
+      else{
+        dispatch(setFormQuizDeckTemp(payload)).then( (data)=>{
+          if(data && data.id){
 
-          console.log("time to reload", data)
-          history.push(`/edit/quizzes/${data.id}`);
+            console.log("time to reload", data)
+            history.push(`/view/quizzes/${data.id}`);
 
-          window.location.reload();
-        }
+            window.location.reload();
+          }
 
-      }).catch(async (res) =>{
-        console.log("error hit")
-        const data = res
-        if(data && data.errors) setErrors(data.errors);
-      })
-
-
-
-      // TODO FORM
-    // title
-    // description optional
-    // public or private button slider thing
-
-    // add to first directory, then provide option to change directory in template EditQuiz page
-
+        }).catch(async (res) =>{
+          console.log("error hit")
+          const data = res
+          if(data && data.errors) setErrors(data.errors);
+        })
+      }
   }
 
   return (
@@ -76,7 +90,7 @@ export const QuizDeckForm = () => {
     <div className="quiz-deck-form-container">
       <form onSubmit={onFormSubmit}>
 
-        <div className="qdfc__header"> Create Your Deck</div>
+        <div className="qdfc__header"> {editModeOn? 'Edit': 'Create'} Your Deck</div>
           <ul className="error-group">
               {errors.map((error, idx) => <li key={idx}>*{error}</li>)}
           </ul>
@@ -123,14 +137,27 @@ export const QuizDeckForm = () => {
                 <input type="radio" id="radio-two" name="switch-one" value='false' onChange={setPrivateE} checked={isPrivate==='false'} />
                 <label for="radio-two">No</label>
               </div>
-
             </div>
 
+            {/* Select a directory */}
+            <div className="privacy-input-container">
+              <label className="pic_switch">
+                Select Directory:
+              </label>
+              <div className="quiz-deck-form-select-directory">
+                <div className="qdfsd__container">
+                  <i class="fas fa-folder directory-icon"></i>
+                  <div className="qdfsd-c__change-directory"> <span className="selected-workspace-name"> Workspace/ </span> <span className="selected-directory-name">Home</span></div>
+                </div>
+
+                {/* <div>current folder: Home(default) </div> */}
+              </div>
+            </div>
 
           </div>
 
           <div className="create-deck-button-container">
-            <button className="create-deck-form-button" type="submit">Start Deck <i class="fas fa-long-arrow-alt-right start-deck-arrow"></i></button>
+            <button className="create-deck-form-button" type="submit">{editModeOn? 'Update Banner': 'Start Deck'} <i class="fas fa-long-arrow-alt-right start-deck-arrow"></i></button>
           </div>
 
       </form>

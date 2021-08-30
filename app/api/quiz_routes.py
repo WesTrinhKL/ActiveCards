@@ -59,7 +59,7 @@ def get_single_quiz(id):
     quiz = quiz.get_quiz_cards_with_all_relationship()
     if quiz['is_private'] is False or (quiz['is_private'] is True and current_user.id == quiz['user_id']):
         return {'quiz': quiz}
-    return authorization_errors_to_error_messages("sorry, unavailable")
+    return authorization_errors_to_error_messages("Can't be found!")
     # return {'quiz': quiz.get_quiz_cards_with_all_relationship()}
 
 
@@ -69,7 +69,7 @@ def get_single_card(id):
     quizCard = QuizCard.query.get(id)
     if quizCard.card_is_public() or quizCard.user_owns_card():
         return {'quiz_card_single': quizCard.to_dict()}
-    return authorization_errors_to_error_messages("sorry, unavailable")
+    return authorization_errors_to_error_messages("Can't be found!")
 
 
 # ---------------QuizTemplate CRUD Routes-----------------
