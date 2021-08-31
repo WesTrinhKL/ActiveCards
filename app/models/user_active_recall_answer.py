@@ -32,10 +32,11 @@ class UserActiveRecallAnswer(db.Model):
                            default=datetime.datetime.now(datetime.timezone.utc))
 
     def get_difference_between_dates(self):
+        old_time = (self.created_at).replace(tzinfo=datetime.timezone.utc)
         most_recent = datetime.datetime.now(datetime.timezone.utc)
-        difference = most_recent - \
-            (self.created_at).replace(tzinfo=datetime.timezone.utc)
-        difference_in_seconds = difference.total_seconds()
+        difference = most_recent - old_time
+
+        difference_in_seconds = difference.total_seconds() - 25200
         difference_months = divmod(difference_in_seconds, 2592000)[0]
         difference_days = divmod(difference_in_seconds, 86400)[0]
         difference_minutes = divmod(difference_in_seconds, 60)[0]

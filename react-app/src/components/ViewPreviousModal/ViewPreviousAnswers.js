@@ -12,8 +12,6 @@ const ViewPreviousAnswers = ({previousAnswers}) => {
       if (difference_hours > 0) return `${difference_hours} hours ago`
       if (difference_minutes > 0) return `${difference_minutes} minutes ago`
       return `seconds ago`
-
-
   }
 
   console.log("user prev answers", previousAnswers)
@@ -27,7 +25,7 @@ const ViewPreviousAnswers = ({previousAnswers}) => {
               created: <span>{process_date( answer.date_age )}</span>
             </div>
             <div className="answer-title__item-answer-container">
-                answer: {answer.user_active_answer}
+                {answer.user_active_answer}
             </div>
           </>))}
 
