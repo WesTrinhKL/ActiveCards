@@ -1,8 +1,14 @@
 import React, {useState} from 'react'
 import './QuizCardDetails.css'
 import ViewPreviousModal from '../ViewPreviousModal'
+import { setNewActiveRecallAnswer } from '../../store/quiz_deck'
+import { useDispatch, useSelector } from 'react-redux';
+import { useHistory } from 'react-router';
+
 
 const QuizCardDetails = ({singleCardData, editMode=false}) => {
+  const history = useHistory();
+  const dispatch = useDispatch();
 
   const [tab, setTab] = useState('active-recall')
   const [editModeSingleState, seteditModeSingleState] = useState(editMode)
@@ -11,12 +17,41 @@ const QuizCardDetails = ({singleCardData, editMode=false}) => {
   // single data properties: card_number, id, question, quiz_template_relation, title, user_relation
   // console.log('single data', singleCardData)
 
-  const [question, setquestion] = useState(singleCardData.question)
-  const [answer, setAnswer] = useState('')
+  const [question, setquestion] = useState(singleCardData.question);
+  const [answer, setAnswer] = useState('');
+  const [errors, setErrors] = useState([]);
 
   const setAnswerE = (e) => {
-    setAnswer(e.target.value)
+    setAnswer(e.target.value);
     // console.log("myanswer", answer);
+  }
+
+  const onSave = ()=>{
+    const payload = {
+      user_active_answer:answer,
+      active_recall_utility_id: singleCardData.active_recall_utility_answer.active_recall_id,
+      quiz_card_id: singleCardData.id
+      // quiz_directory_id: user_first_directory_id,
+      // user_id,
+      // id: current_deck_id
+
+    }
+    setErrors([]);
+    dispatch(setNewActiveRecallAnswer(payload)).then( (data)=>{
+      if(data && data.id){
+        console.log("time to reload", data)
+        // history.push(`/view/quizzes/${data.id}`);
+        // window.location.reload();
+        alert("Saved Answer Successfully");
+        history.push('/temp');
+        history.goBack();
+        // window.location.reload();
+      }
+    }).catch(async (res) =>{
+      console.log("error hit")
+      const data = res
+      if(data && data.errors) setErrors(data.errors);
+    })
   }
 
   return (
@@ -46,7 +81,7 @@ const QuizCardDetails = ({singleCardData, editMode=false}) => {
             <textarea value={answer} onChange={(e)=>setAnswerE(e)} className="scs-cc-arc__text-area-content"></textarea>
             <div className="scs-cc-arc__save-prev-container">
               <div className="scs-cc-arc__previous-answers"> <ViewPreviousModal previousAnswers={singleCardData.current_user_answers}/> </div>
-              <div className="scs-cc-arc__save-answer"> save answer</div>
+              <div onClick={onSave} className="scs-cc-arc__save-answer"> save answer</div>
             </div>
           </div>}
 

@@ -3,10 +3,13 @@
 const GET_SINGLE_QUIZ_CARD = 'quizcard/get/singlecard'
 
 
+
+
 const getSingleCard= (payload) => ({
   type: GET_SINGLE_QUIZ_CARD,
   payload,
 });
+
 
 export const setSingleCard = (payload, card_id) => async (dispatch) => {
   const response = await fetch(`/api/cards/${card_id}`);
@@ -21,11 +24,13 @@ export const setSingleCard = (payload, card_id) => async (dispatch) => {
   }
 }
 
+
 /* ----- REDUCERS ------ */
 
 const initialState = {
 
   singleDeckData: null,
+
 };
 export default function reducer (state=initialState, action){
   let newState = {...state};
@@ -34,6 +39,7 @@ export default function reducer (state=initialState, action){
       newState.singleDeckData = action.payload;
       return newState;
     }
+
     default:
       return state;
   }

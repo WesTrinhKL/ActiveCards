@@ -79,5 +79,5 @@ class UserActiveRecallAnswer(db.Model):
                 if user_answer_instance:
                     return [user_answer.to_dict_basic() for user_answer in user_answer_instance]
                 else:
-                    return {'user_active_answer': '', 'user_previous_answer': ''}
-        return "Unavailable. Please try a different directory"
+                    return []
+        return ["Unavailable. Please try a different directory"]

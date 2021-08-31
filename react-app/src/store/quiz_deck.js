@@ -7,6 +7,8 @@ const GET_SINGLE_QUIZ_DECK_TEMPLATE_WITH_CARDS = 'quizdeck/get/single-with-all-c
 // to add: get all deck (just template) for a given user
 const GET_ALL_QUIZ_DECK_TEMPLATE_FOR_GIVEN_USER = 'quizdeck/get/all-templatesonly-for-user'
 
+const CREATE_RECALL_ANSWER_FOR_USER_ON_CARD = 'api/quizzes/active-recall/answer'
+
 const createQuizDeckTemp = (payload) => ({
   type: CREATE_QUIZ_DECK_TEMPLATE,
   payload,
@@ -28,6 +30,11 @@ const GetQuizDeckTempById = (payload) => ({
 
 const GetAllTemplatesBelongToUser = (payload) => ({
   type: GET_ALL_QUIZ_DECK_TEMPLATE_FOR_GIVEN_USER,
+  payload,
+});
+
+const createRecallAnswerForUser= (payload) => ({
+  type: CREATE_RECALL_ANSWER_FOR_USER_ON_CARD,
   payload,
 });
 
@@ -102,6 +109,24 @@ export const getAllDecksForGivenUserIdThunk = (user_id) => async(dispatch) =>{
         return ['An server error occurred and your request could not be processed. Please try again.'];
     }
 }
+
+
+export const setNewActiveRecallAnswer = (payload) => async (dispatch) => {
+  const response = await fetch(`/api/quizzes/active-recall/answer`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(payload),
+  });
+
+  if (response.ok) {
+      const payload = await response.json();
+      await dispatch(createRecallAnswerForUser(payload));
+      return payload;
+  } else {
+      return ['An error occurred. Cannot create answer. Please try again.']
+  }
+}
+
 /* ----- REDUCERS ------ */
 
 const initialState = {
@@ -109,6 +134,7 @@ const initialState = {
   newly_created_deck: null,
   single_deck_with_cards: null,
   all_templates_belong_to_user: null,
+  createdActiveRecallAnswer: null,
 };
 export default function reducer (state=initialState, action){
   let newState = {...state};
@@ -132,6 +158,10 @@ export default function reducer (state=initialState, action){
     }
     case GET_ALL_QUIZ_DECK_TEMPLATE_FOR_GIVEN_USER:{
       newState.all_templates_belong_to_user = action.payload;
+      return newState;
+    }
+    case CREATE_RECALL_ANSWER_FOR_USER_ON_CARD:{
+      newState.createdActiveRecallAnswer = action.payload;
       return newState;
     }
     default:
