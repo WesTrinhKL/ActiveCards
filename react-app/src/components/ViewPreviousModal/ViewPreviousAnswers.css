@@ -1,7 +1,15 @@
 .view-previous-container{
-  min-width: 50vh;
-  min-height: 55vh;
+  min-width: 40vw;
+  max-width: 40vw;
+  min-height: fit-content;
+  max-height: fit-content;
   padding: 50px;
+}
+
+.vpc__wrapper{
+  overflow: auto;
+  min-height: 40vh;
+  max-height: 40vh;
 }
 
 .vpc__previous-answers-content{
@@ -12,6 +20,7 @@
 
 /* comments component*/
 .vpc__all-comments-container{
+  /* max-width: 50%; */
 
 }
 
