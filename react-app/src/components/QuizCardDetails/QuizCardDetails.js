@@ -1,5 +1,6 @@
 import React, {useState} from 'react'
 import './QuizCardDetails.css'
+import ViewPreviousModal from '../ViewPreviousModal'
 
 const QuizCardDetails = ({singleCardData, editMode=false}) => {
 
@@ -39,7 +40,7 @@ const QuizCardDetails = ({singleCardData, editMode=false}) => {
             <div className="scs-cc-arc__text-area-title"> Enter Answer Here:</div>
             <textarea className="scs-cc-arc__text-area-content"></textarea>
             <div className="scs-cc-arc__save-prev-container">
-              <div className="scs-cc-arc__previous-answers"> VIEW PREVIOUS</div>
+              <div className="scs-cc-arc__previous-answers"> <ViewPreviousModal previousAnswers={singleCardData.current_user_answers}/> </div>
               <div className="scs-cc-arc__save-answer"> save answer</div>
             </div>
           </div>}
@@ -49,10 +50,10 @@ const QuizCardDetails = ({singleCardData, editMode=false}) => {
             {/* each extension will have an optional answer property that the user can add. If not added, then don't render */}
             {/* for each extension, display answer_component wrapped over answer */}
             <div className="scs-cc-ac__author-title"> Author's Answer:</div>
-            <div className="scs-cc-ac__author-answer"> </div>
+            <div className="scs-cc-ac__author-answer">{singleCardData.active_recall_utility_answer?.correct_answer}</div>
             <div className="scs-cc-ac__icons-view">
               <div className="scs-cc-ac-iv__view-others"> VIEW OTHERS</div>
-              <div className="scs-cc-ac-iv__icons-container"> icons</div>
+              {/* <div className="scs-cc-ac-iv__icons-container"> <i className="fas fa-thumbs-up thumbs-up-card-answer"></i></div> */}
             </div>
           </div>}
 

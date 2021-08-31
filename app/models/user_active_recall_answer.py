@@ -38,10 +38,15 @@ class UserActiveRecallAnswer(db.Model):
         difference_in_seconds = difference.total_seconds()
         difference_months = divmod(difference_in_seconds, 2592000)[0]
         difference_days = divmod(difference_in_seconds, 86400)[0]
-        # difference_hours = divmod(difference_in_seconds, 3600)[0]
+        difference_minutes = divmod(difference_in_seconds, 60)[0]
+        difference_hours = divmod(difference_in_seconds, 3600)[0]
+
         return {
             'difference_months': difference_months,
             'difference_days': difference_days,
+            'difference_minutes': difference_minutes,
+            'difference_seconds': difference_in_seconds,
+            'difference_hours': difference_hours,
         }
 
     def to_dict(self):

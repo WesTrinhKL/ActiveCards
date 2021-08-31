@@ -160,7 +160,7 @@
 }
 .scs-cc-ac__author-answer{
   min-height: 180px;
-  width: 96%;
+  max-width: 700px;
   padding: 8px;
   margin-top: 5px;
   border: none;
@@ -201,5 +201,8 @@
   /* padding: 15px 20px; */
   /* width: 40%; */
   margin: 4px 0;
-
+}
+.thumbs-up-card-answer{
+  font-size: 20px;
+  color: #8F8F8F;
 }

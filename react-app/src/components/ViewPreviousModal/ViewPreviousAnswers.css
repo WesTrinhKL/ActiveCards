@@ -1,0 +1,38 @@
+.view-previous-container{
+  min-width: 50vh;
+  min-height: 55vh;
+  padding: 50px;
+}
+
+.vpc__previous-answers-content{
+  font-size: 24px;
+  color: #CD5D7D;
+  font-weight: bold;
+}
+
+/* comments component*/
+.vpc__all-comments-container{
+
+}
+
+.vpc-acc__answer-title{
+  margin: 15px 0px 3px 0;
+  font-size: 13px;
+  font-style: normal;
+}
+.vpc-acc__answer-title span{
+  font-size: 15px;
+  font-style: italic;
+  color: #98ACF8;
+}
+
+.answer-title__item-answer-container{
+  /* margin-top: 3px; */
+  margin-left: 10px;
+  padding: 4px;
+  width: 90%;
+  border: none;
+  border-left: 2px solid #98ACF8;
+  transition: all 0.1s ease-in-out;
+  font-size: 13px;
+}
