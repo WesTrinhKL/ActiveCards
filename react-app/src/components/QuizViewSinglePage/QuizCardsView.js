@@ -3,7 +3,7 @@ import './QuizCardsView.css'
 import QuizCardDetails from '../QuizCardDetails/QuizCardDetails'
 
 const QuizCardsView = ({allQuizCardsDataArray, editMode=false}) => {
-  console.log("all quiz data", allQuizCardsDataArray[0])
+  // console.log("all quiz data", allQuizCardsDataArray[0])
 
   const [editModeState, seteditModeState] = useState(editMode)
 
@@ -21,7 +21,7 @@ const QuizCardsView = ({allQuizCardsDataArray, editMode=false}) => {
         <QuizCardDetails editMode={editModeState} singleCardData={singleCardData}/>
       ))}
 
-      {/* MAYBE separate to QuizCardDetails to edit component for more flexibility */}
+      {/* FOR SURE. separate to QuizCardDetails to edit component for more flexibility */}
       {/* if edit mode, go to mass edit: map for each <QuizCardEditMode */}
 
 

@@ -1,29 +1,52 @@
 import React, {useState} from 'react'
 import './QuizCardDetails.css'
 
-const QuizCardDetails = ({editMode=false}) => {
+const QuizCardDetails = ({singleCardData, editMode=false}) => {
 
   const [tab, setTab] = useState('active-recall')
   const [editModeSingleState, seteditModeSingleState] = useState(editMode)
   // state for allowAnswer (if active recall answered, allow answer)
 
+  // single data properties: card_number, id, question, quiz_template_relation, title, user_relation
+  console.log('single data', singleCardData)
+
+  const [question, setquestion] = useState(singleCardData.question)
+
+
   return (
-      <div className="single-card-container">
+    <>
+      {!editModeSingleState && singleCardData && <div className="single-card-container">
         {/* logic for tabs: button changes state 'tab' and based on tab, render that one */}
         <div className="scs__buttons-container">
           {/* for each tab, add dynamic button and setTab to a property 'name-of-tab' */}
           <div className={`${tab==='active-recall'? 'scs-bc__tab-button--active': ""} scs-bc__tab-button`} onClick={()=>setTab('active-recall')}>Active Recall</div>
+
+          {/* answer tab will always be here */}
           <div className={`${tab==='answers'? 'scs-bc__tab-button--active': ""} scs-bc__tab-button`} onClick={()=>setTab('answers')}>Answers</div>
           {/* if state of active recall not answered, do not display answers */}
         </div>
+
+
+
         <div className="scs__content-container">
+          <div className="scs-cc__question"> <span>Question: </span> {question}</div>
           {/* remember that each tab will have its own extensions. */}
-          {tab==='active-recall' && <div>
+          {tab==='active-recall' && <div className="scs-cc__active-recall-container" >
             {/* in each tab, we'll have a button to add extension. Once clicked, you can select an extension from the collapsible on the right. Adding an extension will then add the component for that extension in the list that will be mapped. for each extension in extensions, render template and pass in extension data (or make individual extension components*/}
             {/* active-recall content */}
-            <div> question</div>
-            <div> text area</div>
-            <div> answer history + save answer </div>
+
+
+
+            <div className="scs-cc-arc__text-area-title"> Enter Answer Here:</div>
+            <textarea className="scs-cc-arc__text-area-content"></textarea>
+
+
+            <div className="scs-cc-arc__save-prev-container">
+              <div className="scs-cc-arc__previous-answers"> VIEW PREVIOUS</div>
+              <div className="scs-cc-arc__save-answer"> save answer</div>
+
+            </div>
+
 
           </div>}
           {tab==='answers' && <div>
@@ -31,7 +54,13 @@ const QuizCardDetails = ({editMode=false}) => {
             answers content
           </div>}
         </div>
-      </div>
+      </div>}
+
+      {/* EDIT MODE COMPONENT */}
+      {editModeSingleState &&
+        <div> Edit Mode for single card component</div>
+      }
+    </>
   )
 }
 
