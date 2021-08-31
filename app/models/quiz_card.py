@@ -29,9 +29,9 @@ class QuizCard(db.Model):
         'UserActiveRecallAnswer', back_populates='quiz_card_relation', cascade="all, delete-orphan")
 
     created_at = db.Column(db.DateTime, nullable=False,
-                           default=datetime.datetime.now(datetime.timezone.utc))
+                           default=datetime.datetime.utcnow)
     updated_at = db.Column(db.DateTime, nullable=False,
-                           default=datetime.datetime.now(datetime.timezone.utc))
+                           default=datetime.datetime.utcnow)
 
     def card_is_public(self):
         return not self.quiz_template_relation.is_private

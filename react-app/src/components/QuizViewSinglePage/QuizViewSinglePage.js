@@ -123,6 +123,7 @@ const QuizViewSinglePage = () => {
       {getQuizCardsArray && <div className="qvspw__cards-wrapper">
         <div className="qvspw-cw__cards-container">
           {/* cards will be mapped here with QuizCardDetails component */}
+
           <QuizCardsView allQuizCardsDataArray={getQuizCardsArray}/>
 
           {belongs_to_user && <div className="add-card-container">

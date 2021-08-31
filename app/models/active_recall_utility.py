@@ -23,9 +23,9 @@ class ActiveRecallUtility(db.Model):
     user_active_recall_answer_relation = db.relationship(
         'UserActiveRecallAnswer', back_populates='active_recall_utilities_relation', cascade='all ,delete-orphan')
     created_at = db.Column(db.DateTime, nullable=False,
-                           default=datetime.datetime.now(datetime.timezone.utc))
+                           default=datetime.datetime.utcnow)
     updated_at = db.Column(db.DateTime, nullable=False,
-                           default=datetime.datetime.now(datetime.timezone.utc))
+                           default=datetime.datetime.utcnow)
 
     # active recall utility is a one to one with quiz_cards, so their id should always match
 

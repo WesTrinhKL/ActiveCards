@@ -15,9 +15,9 @@ class Workspace(db.Model):
         'QuizDirectory', back_populates='workspace_relation', cascade="all, delete-orphan")
 
     created_at = db.Column(db.DateTime, nullable=False,
-                           default=datetime.datetime.now(datetime.timezone.utc))
+                           default=datetime.datetime.utcnow)
     updated_at = db.Column(db.DateTime, nullable=False,
-                           default=datetime.datetime.now(datetime.timezone.utc))
+                           default=datetime.datetime.utcnow)
 
     def to_dict(self):
         return {

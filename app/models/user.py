@@ -26,9 +26,9 @@ class User(db.Model, UserMixin):
         'UserActiveRecallAnswer', back_populates='user_relation', cascade="all, delete-orphan")
 
     created_at = db.Column(db.DateTime, nullable=False,
-                           default=datetime.datetime.now(datetime.timezone.utc))
+                           default=datetime.datetime.utcnow)
     updated_at = db.Column(db.DateTime, nullable=False,
-                           default=datetime.datetime.now(datetime.timezone.utc))
+                           default=datetime.datetime.utcnow)
 
     @property
     def password(self):

@@ -11,7 +11,7 @@ const ViewPreviousAnswers = ({previousAnswers}) => {
       return `seconds ago`
   }
 
-  console.log("user prev answers", previousAnswers)
+  console.log("user prev answers:", previousAnswers)
   return (
     <div className="view-previous-container">
       <div className="vpc__previous-answers-content"> Your Previous Answers</div>
