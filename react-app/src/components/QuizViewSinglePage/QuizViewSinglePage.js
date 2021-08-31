@@ -16,7 +16,7 @@ const QuizViewSinglePage = () => {
 
   const getQuizCardsArray = single_deck_and_cards?.quiz_card_relation;
   const getUserName = single_deck_and_cards?.username;
-  const quiz_length = getQuizCardsArray?.length ? getQuizCardsArray.length - 1: 0;
+  const quiz_length = getQuizCardsArray?.length ? getQuizCardsArray.length: 0;
   const belongs_to_user = user_id === single_deck_and_cards?.user_id;
 
   const temp_categories = ['Datastructures', 'Algorithms', 'Python', 'Systems Design', 'Computer Science']
@@ -65,7 +65,7 @@ const QuizViewSinglePage = () => {
           <div className="qvspw-tc__preview-sliders-container">
             <div className="preview-sliders-container__elements">
               <i onClick={()=>setcountE(count-1)} class="fas fa-arrow-left psc-e__left-arrow"></i>
-              <div className="psc-e__count"> {count}/{quiz_length}</div>
+              <div className="psc-e__count"> {count+1}/{quiz_length}</div>
               <i onClick={()=>setcountE(count+1)} class="fas fa-arrow-right psc-e__right-arrow"></i>
             </div>
           </div>
@@ -120,13 +120,20 @@ const QuizViewSinglePage = () => {
       </div>}
 
       {/* cards container */}
-      <div className="qvspw__cards-wrapper">
+      {getQuizCardsArray && <div className="qvspw__cards-wrapper">
         <div className="qvspw-cw__cards-container">
           {/* cards will be mapped here with QuizCardDetails component */}
-          <QuizCardsView/>
-          {/* <QuizCardsEdit/> */}
+
+          <QuizCardsView allQuizCardsDataArray={getQuizCardsArray}/>
+
+          {belongs_to_user && <div className="add-card-container">
+            <button>add, edit, or remove card (sends you to edit page)</button>
+          </div>}
         </div>
-      </div>
+
+
+
+      </div>}
 
     </div>
   )

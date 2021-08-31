@@ -1,4 +1,5 @@
 from .db import db
+import datetime
 
 
 class Workspace(db.Model):
@@ -12,6 +13,11 @@ class Workspace(db.Model):
         'User', back_populates='workspace_relation')
     directory_relation = db.relationship(
         'QuizDirectory', back_populates='workspace_relation', cascade="all, delete-orphan")
+
+    created_at = db.Column(db.DateTime, nullable=False,
+                           default=datetime.datetime.utcnow)
+    updated_at = db.Column(db.DateTime, nullable=False,
+                           default=datetime.datetime.utcnow)
 
     def to_dict(self):
         return {

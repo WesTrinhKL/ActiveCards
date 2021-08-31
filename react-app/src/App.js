@@ -9,7 +9,7 @@ import UsersList from './components/UsersList';
 import User from './components/User';
 import { authenticate } from './store/session';
 import Landing from './components/Landing/Landing';
-import EditQuiz from './components/EditQuiz/EditQuiz';
+import EditQuizCardsPage from './components/EditQuizCardsPage/EditQuizCardsPage';
 import QuizViewSinglePage from './components/QuizViewSinglePage/QuizViewSinglePage';
 
 function App() {
@@ -44,7 +44,7 @@ function App() {
           <UsersList/>
         </ProtectedRoute>
         <ProtectedRoute path='/edit/quizzes/:quiz_id' exact={true} >
-          <EditQuiz/>
+          <EditQuizCardsPage/>
         </ProtectedRoute>
         <ProtectedRoute path='/users/:userId' exact={true} >
           <User />

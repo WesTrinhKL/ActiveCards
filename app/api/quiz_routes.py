@@ -1,12 +1,14 @@
 from flask import Blueprint, request
 from flask_login import login_required, current_user
-from app.models import db, User, QuizTemplate, QuizCard
+from app.models import db, User, QuizTemplate, QuizCard, ActiveRecallUtility, UserActiveRecallAnswer
 from app.api.util.error_handlers import validation_errors_to_error_messages, authorization_errors_to_error_messages
 from app.forms.quiz_template_form import QuizTemplateForm
 from app.forms.quiz_card_form import QuizCardForm
-
+from app.forms.active_recall_form import ActiveRecallCreateForm
 
 quizzes_routes = Blueprint('quizzes', __name__)
+
+# api/quizzes
 
 # ---------------Helpers-----------------
 
@@ -186,4 +188,24 @@ def update_quiz_card_edit_delete(id):
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
 
-# ---------------Bonus CRUD Routes-----------------
+# ---------------Create Answer Given the Utility Id-----------------
+# given the utility id, the form, we want to create an answer for current user
+@ quizzes_routes.route('/active-recall/answer', methods=['POST'])
+@ login_required
+def create_answer_for_user():
+    form = ActiveRecallCreateForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+    # categories in future
+    if form.validate_on_submit():
+        if ActiveRecallUtility.active_recall_quiz_is_public(form.active_recall_utility_id.data):
+            create_answer_for_active_recall = UserActiveRecallAnswer()
+            create_answer_for_active_recall.user_id = current_user.id
+            create_answer_for_active_recall.user_active_answer = form.user_active_answer.data
+            create_answer_for_active_recall.active_recall_utility_id = form.active_recall_utility_id.data
+            create_answer_for_active_recall.quiz_card_id = form.quiz_card_id.data
+
+            db.session.add(create_answer_for_active_recall)
+            db.session.commit()
+            return create_answer_for_active_recall.to_dict()
+        return authorization_errors_to_error_messages("Sorry, what you're looking for can't be found")
+    return {'errors': validation_errors_to_error_messages(form.errors)}, 401

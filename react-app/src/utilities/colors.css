@@ -42,6 +42,12 @@
   color: rgb(249, 253, 255);
   /* rgb(243, 245, 246); */
 
+  /* grays */
+  color: #8F8F8F;
+  color: rgb(243, 245, 246);
+  color: rgb(175, 175, 175);
+  color: #969696;
+  color: #F5F5F5;
   /* CURRENT */
   color: #fffcfc;
   color: #98ACF8;
@@ -49,10 +55,7 @@
   color: #CD5D7D;
   color: #e6b8c47e;
   color: #eeeeee;;
-  color: #969696;
+
   color: #C8D9EB;
-  color: rgb(243, 245, 246);
-  color: rgb(175, 175, 175);
-
-
+  color: #ECF2F9;
 }

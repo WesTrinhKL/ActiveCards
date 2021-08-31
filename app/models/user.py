@@ -1,6 +1,7 @@
 from .db import db
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
+import datetime
 
 
 class User(db.Model, UserMixin):
@@ -24,6 +25,11 @@ class User(db.Model, UserMixin):
     user_active_recall_answer_relation = db.relationship(
         'UserActiveRecallAnswer', back_populates='user_relation', cascade="all, delete-orphan")
 
+    created_at = db.Column(db.DateTime, nullable=False,
+                           default=datetime.datetime.utcnow)
+    updated_at = db.Column(db.DateTime, nullable=False,
+                           default=datetime.datetime.utcnow)
+
     @property
     def password(self):
         return self.hashed_password
@@ -40,4 +46,10 @@ class User(db.Model, UserMixin):
             'id': self.id,
             'username': self.username,
             'email': self.email
+        }
+
+    def to_dict_basic_user_info(self):
+        return{
+            'id': self.id,
+            'username': self.username,
         }

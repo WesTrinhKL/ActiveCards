@@ -2,12 +2,15 @@ import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
 import session from './session';
 import quiz_deck from './quiz_deck';
+import quiz_card from './quiz_card';
 import directory from './directory';
 
 const rootReducer = combineReducers({
   session,
   quiz_deck,
-  directory
+  directory,
+  quiz_card
+
 });
 
 

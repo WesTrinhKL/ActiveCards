@@ -3,30 +3,10 @@
 }
 
 .cards-content-container{
-  margin-bottom: 75px;
+  /* margin-bottom: 75px; */
 }
 
-.add-card-container{
-  margin-top: 75px;
-}
-
-
-/* individual card - can move later */
-.single-card-container{
-  margin-top: 75px;
-  min-width: 40%;
-  margin: auto;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  /* justify-content: center; */
-  min-height: 30vh;
-  background-color: white;
-}
-
-
-.scs__buttons-container{
-  align-self: flex-start;
-  width: 100%;
-  background-color: rgb(243, 245, 246);
+.chc__title{
+  font-size: 26px;
+  /* font-weight: bold; */
 }

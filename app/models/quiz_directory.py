@@ -1,5 +1,6 @@
 from .db import db
 from flask_login import current_user
+import datetime
 
 
 class QuizDirectory(db.Model):
@@ -19,6 +20,11 @@ class QuizDirectory(db.Model):
 
     quiz_template_relation = db.relationship(
         'QuizTemplate', back_populates='directory_relation', cascade="all, delete-orphan")
+
+    created_at = db.Column(db.DateTime, nullable=False,
+                           default=datetime.datetime.utcnow)
+    updated_at = db.Column(db.DateTime, nullable=False,
+                           default=datetime.datetime.utcnow)
 
     def to_dict(self):
         return {

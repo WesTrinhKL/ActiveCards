@@ -1,38 +1,33 @@
 import React, {useState} from 'react'
 import './QuizCardsView.css'
+import QuizCardDetails from '../QuizCardDetails/QuizCardDetails'
 
-const QuizCardsView = () => {
+const QuizCardsView = ({allQuizCardsDataArray, editMode=false}) => {
+  // console.log("all quiz data", allQuizCardsDataArray[0])
 
-  const [tab, setTab] = useState('active-recall')
+  const [editModeState, seteditModeState] = useState(editMode)
+
 
   return (
     <>
-      <div className="cards-header-container">reserved for header content</div>
-      <div className="cards-content-container"> Cards </div>
-
-      {/* testing single card */}
-      {/* logic for tabs: button changes state 'tab' and based on tab, render that one */}
-      <div className="single-card-container">
-        <div className="scs__buttons-container">
-          {/* for each tab, add dynamic button and setTab to a property 'name-of-tab' */}
-          <button onClick={()=>setTab('active-recall')}>Active Recall</button>
-          <button onClick={()=>setTab('answers')}>Answers</button>
-        </div>
-        <div className="scs__content-container">
-          {/* remember that each tab will have its own extensions. */}
-          {tab==='active-recall' && <div>
-            {/* in each tab, we'll have a button to add extension. Once clicked, you can select an extension from the collapsible on the right. Adding an extension will then add the component for that extension in the list that will be mapped. for each extension in extensions, render template and pass in extension data (or make individual extension components*/}
-            active-recall content
-
-          </div>}
-          {tab==='answers' && <div>
-            {/* each extension will have an optional answer property that the user can add. If not added, then don't render */}
-            answers content
-          </div>}
-        </div>
+      <div className="cards-header-container">
+        <div className="chc__title">Cards</div>
       </div>
+      {/* <div className="cards-content-container"> Cards </div> */}
+      {/* button to switch to editMode true */}
 
-      <div className="add-card-container"> Add Card</div>
+
+
+      {/* map each card data and add it to card component */}
+      {allQuizCardsDataArray && allQuizCardsDataArray.map(singleCardData => (
+        <QuizCardDetails editMode={editModeState} singleCardData={singleCardData}/>
+      ))}
+
+      {/* FOR SURE. separate to QuizCardDetails to edit component for more flexibility */}
+      {/* if edit mode, go to mass edit: map for each <QuizCardEditMode */}
+
+
+      {/* if edit mode, have button to add cards */}
 
     </>
   )

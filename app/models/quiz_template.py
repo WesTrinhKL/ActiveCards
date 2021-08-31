@@ -1,6 +1,7 @@
 import flask_login
 from .db import db
 from flask_login import current_user
+import datetime
 
 
 class QuizTemplate(db.Model):
@@ -23,6 +24,11 @@ class QuizTemplate(db.Model):
 
     quiz_card_relation = db.relationship(
         'QuizCard', back_populates='quiz_template_relation', cascade="all, delete-orphan")
+
+    created_at = db.Column(db.DateTime, nullable=False,
+                           default=datetime.datetime.now(datetime.timezone.utc))
+    updated_at = db.Column(db.DateTime, nullable=False,
+                           default=datetime.datetime.now(datetime.timezone.utc))
 
     def template_belongs_to_current_user(self):
         if current_user.is_authenticated:

@@ -21,11 +21,44 @@ def seed_quiz_cards():
         active_recall_utilities_relation=active_recall1
     )
 
+    user_1_answer_1_1 = UserActiveRecallAnswer(
+        user_active_answer="A callback is a function that is passed to a higher order function to be executed at a later time.", user_previous_answer=None,
+        user_id=1,
+        quiz_card_id=1,
+        active_recall_utilities_relation=active_recall1
+    )
+    user_1_answer_1_2 = UserActiveRecallAnswer(
+        user_active_answer="It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. ", user_previous_answer=None,
+        user_id=1,
+        quiz_card_id=1,
+        active_recall_utilities_relation=active_recall1
+    )
+    user_1_answer_1_3 = UserActiveRecallAnswer(
+        user_active_answer="The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here", user_previous_answer=None,
+        user_id=1,
+        quiz_card_id=1,
+        active_recall_utilities_relation=active_recall1
+    )
+
     active_recall2 = ActiveRecallUtility(
         correct_answer='Undeclared variables are those that do not exist in a program and are not declared. If the program tries to read the value of an undeclared variable, then a runtime error is encountered.Undefined variables are those that are declared in the program but have not been given any value. If the program tries to read the value of an undefined variable, an undefined value is returned.', user_id=1, quiz_card_relation=quiz_card2)
 
+    user_1_answer_2 = UserActiveRecallAnswer(
+        user_active_answer="A callback is a function that is passed to a higher order function to be executed at a later time.", user_previous_answer=None,
+        user_id=1,
+        quiz_card_id=2,
+        active_recall_utilities_relation=active_recall2
+    )
+
     active_recall3 = ActiveRecallUtility(
         correct_answer='Global variables are available throughout the length of the code so that it has no scope. The var keyword is used to declare a local variable or object. If the var keyword is omitted, a global variable is declared.', user_id=1, quiz_card_relation=quiz_card3)
+
+    user_1_answer_3 = UserActiveRecallAnswer(
+        user_active_answer="A callback is a function that is passed to a higher order function to be executed at a later time.", user_previous_answer=None,
+        user_id=1,
+        quiz_card_id=3,
+        active_recall_utilities_relation=active_recall3
+    )
 
     quiz_card4 = QuizCard(
         title='What are the next question who are the next questions?', question='What are global variables? How are these variable declared?', card_number=1, user_id=2, quiz_template_id=7)
