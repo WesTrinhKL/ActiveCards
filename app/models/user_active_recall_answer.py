@@ -31,11 +31,24 @@ class UserActiveRecallAnswer(db.Model):
     updated_at = db.Column(db.DateTime, nullable=False,
                            default=datetime.datetime.now(datetime.timezone.utc))
 
+    def get_difference_between_dates(self):
+        most_recent = datetime.datetime.now(datetime.timezone.utc)
+        difference = most_recent - \
+            (self.created_at).replace(tzinfo=datetime.timezone.utc)
+        difference_in_seconds = difference.total_seconds()
+        difference_months = divmod(difference_in_seconds, 2592000)[0]
+        difference_days = divmod(difference_in_seconds, 86400)[0]
+        # difference_hours = divmod(difference_in_seconds, 3600)[0]
+        return {
+            'difference_months': difference_months,
+            'difference_days': difference_days,
+        }
+
     def to_dict(self):
         return {
             'id': self.id,
             'user_active_answer': self.user_active_answer,
-            'user_previous_answer': self.user_previous_answer,
+            # 'user_previous_answer': self.user_previous_answer,
             'user_relation': self.user_relation.to_dict_basic_user_info(),
             'quiz_card_relation': self.quiz_card_relation.to_dict_basic_info(),
             'active_recall_utilities_relation': self.active_recall_utilities_relation.to_dict(),
@@ -45,9 +58,9 @@ class UserActiveRecallAnswer(db.Model):
         return {
             'id': self.id,
             'user_active_answer': self.user_active_answer,
-            'user_previous_answer': self.user_previous_answer,
             # 'user_relation': self.user_relation.to_dict_basic_user_info(),
             # 'active_recall_utilities_relation': self.active_recall_utilities_relation.to_dict()
+            'date_age': self.get_difference_between_dates()
         }
 
     @staticmethod
