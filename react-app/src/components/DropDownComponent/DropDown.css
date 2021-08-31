@@ -16,7 +16,6 @@
 .ellipse-triangle-container{
   width: 100px;
   height: 100px;
-  /* color: red; */
   position: absolute;
   right: -8px;
 }
@@ -55,4 +54,9 @@
 .basic-style-icon{
   color: rgb(134, 134, 134);
   margin-right: 7px;
+  /* padding: 5px; */
 }
+
+/* .basic-style-icon span{
+
+} */

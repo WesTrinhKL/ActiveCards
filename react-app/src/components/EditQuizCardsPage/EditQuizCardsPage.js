@@ -47,7 +47,7 @@ const EditQuizCardsPage = () => {
 
       {/* quiz card view, for plural, get all cards, map each card to the quizcard component */}
       <div className="edit-page-cards-view-container">
-        <QuizCardsView/>
+        <QuizCardsView editMode={true} />
       </div>
 
 

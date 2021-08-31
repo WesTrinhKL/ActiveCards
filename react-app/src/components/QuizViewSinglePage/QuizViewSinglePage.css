@@ -279,6 +279,39 @@
 }
 
 .add-card-container{
-  margin-top: 75px;
+  /* margin-top: 75px; */
   margin-bottom: 75px;
+}
+
+/* ---utilities bar--- */
+.qvsp-cw-cc__utilities-bar{
+  width: 58%;
+  z-index: 1;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 61px;
+  margin-bottom: 1px;
+}
+
+.utilities-bar__view-options{
+
+}
+
+.view-options__layer{
+  color: rgb(175, 175, 175);
+}
+
+.utilities-bar__settings-button{
+  display: flex;
+  justify-content: flex-end;
+  margin-right: 10px;
+}
+
+/* ---footer utilities--- */
+.qvsp-cw-cc__edit-button{
+  cursor:pointer;
+  margin-top: 75px;
+  /* margin-bottom: 75px; */
+  font-weight: bold;
 }
