@@ -71,8 +71,6 @@
 }
 
 
-
-
 .scs-cc-arc__text-area-title{
   margin-top: 5px;
   width: 30%;
@@ -149,4 +147,10 @@
   box-shadow: 0 4px 8px rgba(0,0,0,0.22);
   cursor: pointer;
   background-color: #98ACF8;
+}
+
+/*---- answers tab ----*/
+.scs-cc__active-answers-container{
+  width: 90%;
+  margin-bottom: 30px;
 }

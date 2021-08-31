@@ -1,4 +1,5 @@
 from .db import db
+from flask_login import current_user
 
 
 class UserActiveRecallAnswer(db.Model):
@@ -29,7 +30,29 @@ class UserActiveRecallAnswer(db.Model):
             'id': self.id,
             'user_active_answer': self.user_active_answer,
             'user_previous_answer': self.user_previous_answer,
-            'user_relation': self.user_relation.to_dict(),
-            'quiz_card_relation': self.quiz_card_relation.to_dict(),
+            'user_relation': self.user_relation.to_dict_basic_user_info(),
+            'quiz_card_relation': self.quiz_card_relation.to_dict_basic_info(),
             'active_recall_utilities_relation': self.active_recall_utilities_relation.to_dict(),
         }
+
+    def to_dict_basic(self):
+        return {
+            'id': self.id,
+            'user_active_answer': self.user_active_answer,
+            'user_previous_answer': self.user_previous_answer,
+            # 'user_relation': self.user_relation.to_dict_basic_user_info(),
+            # 'active_recall_utilities_relation': self.active_recall_utilities_relation.to_dict()
+        }
+
+    @staticmethod
+    # queries to see if the current user has an answer yet
+    def get_current_user_active_recall_answers(userId, quiz_card_id):
+        if current_user.is_authenticated:
+            if userId == current_user.id:
+                user_answer_instance = UserActiveRecallAnswer.query.filter_by(
+                    user_id=userId, quiz_card_id=quiz_card_id).first()
+                if user_answer_instance:
+                    return user_answer_instance.to_dict_basic()
+                else:
+                    return {'no_answers_yet': ''}
+        return "Unavailable. Please try a different directory"

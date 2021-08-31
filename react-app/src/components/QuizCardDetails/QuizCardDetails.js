@@ -30,29 +30,27 @@ const QuizCardDetails = ({singleCardData, editMode=false}) => {
 
         <div className="scs__content-container">
           <div className="scs-cc__question"> <span>Question: </span> {question}</div>
+
+
           {/* remember that each tab will have its own extensions. */}
           {tab==='active-recall' && <div className="scs-cc__active-recall-container" >
             {/* in each tab, we'll have a button to add extension. Once clicked, you can select an extension from the collapsible on the right. Adding an extension will then add the component for that extension in the list that will be mapped. for each extension in extensions, render template and pass in extension data (or make individual extension components*/}
             {/* active-recall content */}
-
-
-
             <div className="scs-cc-arc__text-area-title"> Enter Answer Here:</div>
             <textarea className="scs-cc-arc__text-area-content"></textarea>
-
-
             <div className="scs-cc-arc__save-prev-container">
               <div className="scs-cc-arc__previous-answers"> VIEW PREVIOUS</div>
               <div className="scs-cc-arc__save-answer"> save answer</div>
-
             </div>
-
-
           </div>}
-          {tab==='answers' && <div>
+
+
+          {tab==='answers' && <div className="scs-cc__active-answers-container">
             {/* each extension will have an optional answer property that the user can add. If not added, then don't render */}
-            answers content
+            {/* for each extension, display answer_component wrapped over answer */}
+            <div className="scs-cc-arc__text-area-title"> Author's Answer:</div>
           </div>}
+
         </div>
       </div>}
 

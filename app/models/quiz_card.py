@@ -1,5 +1,6 @@
 from .db import db
 from flask_login import current_user
+from app.models.user_active_recall_answer import UserActiveRecallAnswer
 
 
 class QuizCard(db.Model):
@@ -20,6 +21,7 @@ class QuizCard(db.Model):
     quiz_template_relation = db.relationship(
         'QuizTemplate', back_populates='quiz_card_relation')
 
+    # children (one card has many of these)
     active_recall_relation = db.relationship(
         'ActiveRecallUtility', back_populates='quiz_card_relation', cascade="all, delete-orphan")
     user_active_recall_answer_relation = db.relationship(
@@ -40,6 +42,15 @@ class QuizCard(db.Model):
             'title': self.title,
             'card_number': self.card_number,
             'question': self.question,
-            'user_relation': self.user_relation.to_dict(),
+            'user_relation': self.user_relation.to_dict_basic_user_info(),
             'quiz_template_relation': self.quiz_template_relation.to_dict(),
+            'active_recall_utility_answer': [active_recall.to_dict() for active_recall in self.active_recall_relation][0],
+            # we can get the current user answer from the static method, or filter child from own model
+            'current_user_answer': UserActiveRecallAnswer.get_current_user_active_recall_answers(self.user_id, self.id)
+            # 'all_users_answer':
+        }
+
+    def to_dict_basic_info(self):
+        return {
+            'id': self.id,
         }
