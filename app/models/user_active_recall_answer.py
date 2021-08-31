@@ -1,5 +1,6 @@
 from .db import db
 from flask_login import current_user
+import datetime
 
 
 class UserActiveRecallAnswer(db.Model):
@@ -24,6 +25,11 @@ class UserActiveRecallAnswer(db.Model):
         'active_recall_utilities.id'), nullable=False)
     active_recall_utilities_relation = db.relationship(
         'ActiveRecallUtility', back_populates='user_active_recall_answer_relation')
+
+    created_at = db.Column(db.DateTime, nullable=False,
+                           default=datetime.datetime.now(datetime.timezone.utc))
+    updated_at = db.Column(db.DateTime, nullable=False,
+                           default=datetime.datetime.now(datetime.timezone.utc))
 
     def to_dict(self):
         return {
@@ -50,9 +56,9 @@ class UserActiveRecallAnswer(db.Model):
         if current_user.is_authenticated:
             if userId == current_user.id:
                 user_answer_instance = UserActiveRecallAnswer.query.filter_by(
-                    user_id=userId, quiz_card_id=quiz_card_id).first()
+                    user_id=userId, quiz_card_id=quiz_card_id).all()
                 if user_answer_instance:
-                    return user_answer_instance.to_dict_basic()
+                    return [user_answer.to_dict_basic() for user_answer in user_answer_instance]
                 else:
-                    return {'no_answers_yet': ''}
+                    return {'user_active_answer': '', 'user_previous_answer': ''}
         return "Unavailable. Please try a different directory"

@@ -48,7 +48,12 @@ const QuizCardDetails = ({singleCardData, editMode=false}) => {
           {tab==='answers' && <div className="scs-cc__active-answers-container">
             {/* each extension will have an optional answer property that the user can add. If not added, then don't render */}
             {/* for each extension, display answer_component wrapped over answer */}
-            <div className="scs-cc-arc__text-area-title"> Author's Answer:</div>
+            <div className="scs-cc-ac__author-title"> Author's Answer:</div>
+            <div className="scs-cc-ac__author-answer"> </div>
+            <div className="scs-cc-ac__icons-view">
+              <div className="scs-cc-ac-iv__view-others"> VIEW OTHERS</div>
+              <div className="scs-cc-ac-iv__icons-container"> icons</div>
+            </div>
           </div>}
 
         </div>

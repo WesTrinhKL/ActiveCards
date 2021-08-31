@@ -10,8 +10,10 @@ const QuizCardsView = ({allQuizCardsDataArray, editMode=false}) => {
 
   return (
     <>
-      <div className="cards-header-container">reserved for header content</div>
-      <div className="cards-content-container"> Cards </div>
+      <div className="cards-header-container">
+        <div className="chc__title">Cards</div>
+      </div>
+      {/* <div className="cards-content-container"> Cards </div> */}
       {/* button to switch to editMode true */}
 
 

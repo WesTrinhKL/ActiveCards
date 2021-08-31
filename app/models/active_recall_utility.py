@@ -1,4 +1,5 @@
 from .db import db
+import datetime
 
 
 class ActiveRecallUtility(db.Model):
@@ -21,6 +22,10 @@ class ActiveRecallUtility(db.Model):
     # child
     user_active_recall_answer_relation = db.relationship(
         'UserActiveRecallAnswer', back_populates='active_recall_utilities_relation', cascade='all ,delete-orphan')
+    created_at = db.Column(db.DateTime, nullable=False,
+                           default=datetime.datetime.now(datetime.timezone.utc))
+    updated_at = db.Column(db.DateTime, nullable=False,
+                           default=datetime.datetime.now(datetime.timezone.utc))
 
     def to_dict(self):
         return {

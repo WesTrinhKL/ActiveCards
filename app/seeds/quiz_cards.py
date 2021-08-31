@@ -21,8 +21,20 @@ def seed_quiz_cards():
         active_recall_utilities_relation=active_recall1
     )
 
-    user_1_answer = UserActiveRecallAnswer(
+    user_1_answer_1_1 = UserActiveRecallAnswer(
         user_active_answer="A callback is a function that is passed to a higher order function to be executed at a later time.", user_previous_answer=None,
+        user_id=1,
+        quiz_card_id=1,
+        active_recall_utilities_relation=active_recall1
+    )
+    user_1_answer_1_2 = UserActiveRecallAnswer(
+        user_active_answer="It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. ", user_previous_answer=None,
+        user_id=1,
+        quiz_card_id=1,
+        active_recall_utilities_relation=active_recall1
+    )
+    user_1_answer_1_3 = UserActiveRecallAnswer(
+        user_active_answer="The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here", user_previous_answer=None,
         user_id=1,
         quiz_card_id=1,
         active_recall_utilities_relation=active_recall1

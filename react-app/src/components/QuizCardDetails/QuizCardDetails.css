@@ -81,41 +81,41 @@
 .scs-cc-arc__text-area-content{
   min-height: 180px;
   resize: none;
-  width: 90%;
+  width: 96%;
   padding: 8px;
   outline: none;
   margin-top: 5px;
-  border: none;
-  border-left: 2px solid #e6b8c47e;
+  /* border: none; */
+  /* border-left: 2px solid #e6b8c47e; */
+  border: 1px solid #d1dbe7;
   transition: all 0.1s ease-in-out;
   overflow: auto;
-  margin-left: 10px;
+  margin-left: 14px;
   margin-right: 10px;
   font-size: 14px;
 }
 .scs-cc-arc__text-area-content:focus, .scs-cc-arc__text-area-content:hover{
-  border-left:2px solid #CD5D7D;
+  border:2px solid #C8D9EB;
 }
 
 /* previous answers / save */
 .scs-cc-arc__save-prev-container{
   display: flex;
   justify-content: space-between;
-  /* margin-left: 10px; */
-  /* margin-right: 10px; */
   margin-top: 15px;
   align-items: center;
 }
 
 .scs-cc-arc__previous-answers{
-
   /* position: absolute; */
   font-style: italic;
-  left: 45px;
   bottom: 30px;
   cursor: pointer;
   font-size: 14px;
   color: #8F8F8F;
+  margin: 14px 0;
+  padding: 10px 0;
+  min-width: 200px;
 }
 .scs-cc-arc__previous-answers:hover{
   /* text-decoration: underline; */
@@ -125,8 +125,7 @@
 
 .scs-cc-arc__save-answer{
   /* position: absolute; */
-  right: 45px;
-  bottom: 22px;
+  margin: 4px 0;
   padding: 9px 20px;
   /* width: 40%; */
   background-color: #8fa0e4;
@@ -140,7 +139,6 @@
   text-align: center;
   box-shadow: 0 1px 2px rgba(0,0,0,0.24);
   transition: all 0.3s cubic-bezier(.25,.8,.25,1);
-  display: flex;
 }
 
 .scs-cc-arc__save-answer:hover{
@@ -153,4 +151,55 @@
 .scs-cc__active-answers-container{
   width: 90%;
   margin-bottom: 30px;
+}
+
+.scs-cc-ac__author-title{
+  margin-top: 5px;
+  width: 30%;
+  color: #8F8F8F;
+}
+.scs-cc-ac__author-answer{
+  min-height: 180px;
+  width: 96%;
+  padding: 8px;
+  margin-top: 5px;
+  border: none;
+  border-left: 2px solid #CD5D7D;
+  transition: all 0.1s ease-in-out;
+  overflow: auto;
+  margin-left: 14px;
+  margin-right: 10px;
+  font-size: 14px;
+}
+
+.scs-cc-ac__icons-view{
+  display: flex;
+  justify-content: space-between;
+  margin-top: 15px;
+  align-items: center;
+}
+.scs-cc-ac-iv__view-others{
+
+  /* position: absolute; */
+  font-style: italic;
+  cursor: pointer;
+  font-size: 14px;
+  color: #8F8F8F;
+  margin: 16px 0;
+  padding: 10px 0;
+  min-width: 200px;
+
+}
+.scs-cc-ac-iv__view-others:hover{
+  /* text-decoration: underline; */
+  color: #98ACF8;
+  /* text-decoration-color: #98ACF8; */
+}
+
+.scs-cc-ac-iv__icons-container{
+  /* position: absolute; */
+  /* padding: 15px 20px; */
+  /* width: 40%; */
+  margin: 4px 0;
+
 }
