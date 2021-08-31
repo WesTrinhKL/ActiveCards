@@ -27,6 +27,8 @@ class ActiveRecallUtility(db.Model):
     updated_at = db.Column(db.DateTime, nullable=False,
                            default=datetime.datetime.now(datetime.timezone.utc))
 
+    # active recall utility is a one to one with quiz_cards, so their id should always match
+
     def to_dict(self):
         return {
             'active_recall_id': self.id,
@@ -39,3 +41,10 @@ class ActiveRecallUtility(db.Model):
         return {
             'correct_answer': self.correct_answer,
         }
+
+    @staticmethod
+    def active_recall_quiz_is_public(id):
+        active_check = ActiveRecallUtility.query.filter_by(id=id).first()
+        if active_check:
+            return not active_check.quiz_card_relation.quiz_template_relation.is_private
+        return False

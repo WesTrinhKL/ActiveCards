@@ -56,7 +56,7 @@ class UserActiveRecallAnswer(db.Model):
             # 'user_previous_answer': self.user_previous_answer,
             'user_relation': self.user_relation.to_dict_basic_user_info(),
             'quiz_card_relation': self.quiz_card_relation.to_dict_basic_info(),
-            'active_recall_utilities_relation': self.active_recall_utilities_relation.to_dict(),
+            # 'active_recall_utilities_relation': self.active_recall_utilities_relation.to_dict(),
         }
 
     def to_dict_basic(self):

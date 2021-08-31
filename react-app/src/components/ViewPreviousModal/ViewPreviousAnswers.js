@@ -30,26 +30,7 @@ const ViewPreviousAnswers = ({previousAnswers}) => {
                 answer: {answer.user_active_answer}
             </div>
           </>))}
-          <div className="vpc__all-comments-container">
-        {previousAnswers && previousAnswers.map(answer=>(<>
-          <div className="vpc-acc__answer-title">
-            created: <span>{process_date( answer.date_age )}</span>
-          </div>
-          <div className="answer-title__item-answer-container">
-              answer: {answer.user_active_answer}
-          </div>
-        </>))}
-      </div>
-      <div className="vpc__all-comments-container">
-        {previousAnswers && previousAnswers.map(answer=>(<>
-          <div className="vpc-acc__answer-title">
-            created: <span>{process_date( answer.date_age )}</span>
-          </div>
-          <div className="answer-title__item-answer-container">
-              answer: {answer.user_active_answer}
-          </div>
-        </>))}
-      </div>
+
         </div>
       </div>
 

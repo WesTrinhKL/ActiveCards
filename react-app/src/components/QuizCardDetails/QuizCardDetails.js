@@ -9,10 +9,15 @@ const QuizCardDetails = ({singleCardData, editMode=false}) => {
   // state for allowAnswer (if active recall answered, allow answer)
 
   // single data properties: card_number, id, question, quiz_template_relation, title, user_relation
-  console.log('single data', singleCardData)
+  // console.log('single data', singleCardData)
 
   const [question, setquestion] = useState(singleCardData.question)
+  const [answer, setAnswer] = useState('')
 
+  const setAnswerE = (e) => {
+    setAnswer(e.target.value)
+    // console.log("myanswer", answer);
+  }
 
   return (
     <>
@@ -38,7 +43,7 @@ const QuizCardDetails = ({singleCardData, editMode=false}) => {
             {/* in each tab, we'll have a button to add extension. Once clicked, you can select an extension from the collapsible on the right. Adding an extension will then add the component for that extension in the list that will be mapped. for each extension in extensions, render template and pass in extension data (or make individual extension components*/}
             {/* active-recall content */}
             <div className="scs-cc-arc__text-area-title"> Enter Answer Here:</div>
-            <textarea className="scs-cc-arc__text-area-content"></textarea>
+            <textarea value={answer} onChange={(e)=>setAnswerE(e)} className="scs-cc-arc__text-area-content"></textarea>
             <div className="scs-cc-arc__save-prev-container">
               <div className="scs-cc-arc__previous-answers"> <ViewPreviousModal previousAnswers={singleCardData.current_user_answers}/> </div>
               <div className="scs-cc-arc__save-answer"> save answer</div>
