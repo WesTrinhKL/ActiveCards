@@ -11,7 +11,7 @@ const ViewPreviousModal = ({previousAnswers}) => {
   const [verifyClose, setVerifyClose] = useState(false);
   return (
     <>
-      <div className="" onClick={() => setShowModal(true)}>VIEW PREVIOUS </div>
+      <div onClick={() => setShowModal(true)}>VIEW PREVIOUS </div>
 
       {showModal && (
         <Modal onClose={() => setShowModal(false)} >

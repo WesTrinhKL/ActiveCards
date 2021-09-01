@@ -112,7 +112,7 @@ const QuizViewSinglePage = () => {
               {!belongs_to_user && <i class="fas fa-plus sai__plus"></i>}
               <i class="fas fa-share sai__share"></i>
               {belongs_to_user && <div>
-                <EditDropDown quiz_id={quiz_id}/>
+                <EditDropDown for_banner={true} quiz_id={quiz_id}/>
               </div>}
             </div>
           </div>
@@ -123,11 +123,20 @@ const QuizViewSinglePage = () => {
       {getQuizCardsArray && <div className="qvspw__cards-wrapper">
         <div className="qvspw-cw__cards-container">
           {/* cards will be mapped here with QuizCardDetails component */}
+          <div className="qvsp-cw-cc__utilities-bar">
+            <div className="utilities-bar__view-options">
+            {/* <i class="fas fa-layer-group view-options__layer"></i> */}
+            </div>
+            {belongs_to_user && <div className="utilities-bar__settings-button">
+              <EditDropDown for_cards={true} quiz_id={quiz_id}/>
+            </div>}
+          </div>
+
 
           <QuizCardsView allQuizCardsDataArray={getQuizCardsArray}/>
 
           {belongs_to_user && <div className="add-card-container">
-            <button>add, edit, or remove card (sends you to edit page)</button>
+            <div className="qvsp-cw-cc__edit-button"> add / edit cards </div>
           </div>}
         </div>
 

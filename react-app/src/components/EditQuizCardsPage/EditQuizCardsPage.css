@@ -1,3 +1,55 @@
+/* container and wrapper */
+.edit-cards-wrapper{
+  width: 100%;
+  padding: 30px;
+}
+
+.ecw__page{
+  width: 80%;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* ----------header----------- */
+.ecw-p__header-container{
+  width: 80%;
+  margin: 30px 0px;
+}
+.header-container__title{
+  font-size: 26px;
+  margin-top: 30px;
+}
+.header-container__title span{
+  color: #CD5D7D;
+}
+.header-container__sub-title span{
+  color: #CD5D7D;
+  text-decoration: underline;
+  cursor: pointer;
+}
+.return-icon{
+  padding-top: 3px;
+  margin-right: 3px;
+}
+.header-container__utilities{
+  display: flex;
+  justify-content: space-between;
+  height: 50px;
+  align-items: center;
+}
+
+.edit-save-button{
+  position: -webkit-sticky;
+  position: sticky;
+  top: 200px;
+  align-self: flex-start;
+}
+/* ----------content---------- */
 .edit-page-cards-view-container{
   width: 80%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
 }

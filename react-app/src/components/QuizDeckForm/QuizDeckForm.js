@@ -41,9 +41,6 @@ export const QuizDeckForm = ({editModeOn, quiz_id}) => {
   }, [dispatch])
 
   const onFormSubmit = (e)=>{
-    // required data in payload besides form:
-    // user_id
-
     e.preventDefault();
       const payload = {
         title,
@@ -70,13 +67,10 @@ export const QuizDeckForm = ({editModeOn, quiz_id}) => {
       else{
         dispatch(setFormQuizDeckTemp(payload)).then( (data)=>{
           if(data && data.id){
-
             console.log("time to reload", data)
             history.push(`/view/quizzes/${data.id}`);
-
             window.location.reload();
           }
-
         }).catch(async (res) =>{
           console.log("error hit")
           const data = res

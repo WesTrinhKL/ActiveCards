@@ -5,6 +5,7 @@ const CREATE_QUIZ_CARD = 'quizcard/create'
 const UPDATE_QUIZ_CARD = 'quizcard/update'
 const DELETE_QUIZ_CARD = 'quizcard/delete'
 
+// const CREATE_ACTIVE_RECALL_FOR_CARD = 'quizcard/active-recall/create'
 
 
 const getSingleCard= (payload) => ({
@@ -23,7 +24,11 @@ const deleteQuizCard = (payload) => ({
   type: DELETE_QUIZ_CARD,
   payload,
 });
-
+// for active recall extension
+// const createQuizCard = (payload) => ({
+//   type: CREATE_QUIZ_CARD,
+//   payload,
+// });
 
 export const setSingleCard = (card_id) => async (dispatch) => {
   const response = await fetch(`/api/cards/${card_id}`);
@@ -44,13 +49,19 @@ export const createQuizCardThunk = (payload) => async (dispatch) => {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(payload),
   });
+  console.log("response", response)
 
-  if (response.ok) {
+  if (!response.ok) {
+      const errorObj = await response.json();
+      if (errorObj){
+        // console.log(errorObj)
+        return errorObj
+      }
+      return {'errors':'An error occurred. Cannot create card. Please try again.'}
+  } else {
       const payload = await response.json();
       await dispatch(createQuizCard(payload));
       return payload;
-  } else {
-      return ['An error occurred. Cannot create card. Please try again.']
   }
 }
 
@@ -81,6 +92,7 @@ export const deleteFormQuizDeckTempThunk = (id) => async(dispatch) =>{
         return {'error': ['An error occurred. Cannot delete, please try again later.']}
     }
 }
+
 
 
 /* ----- REDUCERS ------ */

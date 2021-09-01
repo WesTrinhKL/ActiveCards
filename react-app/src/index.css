@@ -18,3 +18,87 @@ body {
 /* .container-app{
     min-height: 90vh;
 } */
+
+.vanilla-button-1{
+    padding: 9px 20px;
+    background-color: #8fa0e4;
+    border-style: none;
+    border-radius: 15px;
+    color: white;
+    font-size: 12px;
+    font-weight: bold;
+    min-width: 70px;
+    max-width: fit-content;
+    /* max-height: 30px; */
+    box-shadow: 0 1px 2px rgba(0,0,0,0.24);
+    transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+    display: flex;
+    justify-content: center;
+    margin-top: 5px;
+    margin-right: 25px;
+
+}
+.vanilla-button-1{
+    box-shadow: 0 4px 8px rgba(0,0,0,0.22);
+    cursor: pointer;
+    background-color: #98ACF8;
+}
+
+
+.vanilla-round-button-1{
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    /* border: 1px solid red; */
+    background-color: #A7C5EB;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.24);
+}
+.vanilla-round-button-1:hover{
+    background-color: #7fa0cc;
+    cursor: pointer;
+}
+
+.vanilla-square-button-1{
+    height: 25px;
+    width: 25px;
+    /* border: 1px solid red; */
+    background-color: #A7C5EB;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.24);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.vanilla-square-button-1:hover{
+    background-color: #7fa0cc;
+    cursor: pointer;
+}
+
+/* general error handling */
+.error-group-container{
+    /* will be different depending on situation, just add --mutation */
+    min-height: 50px;
+    padding-top: 10px;
+}
+.error-group{
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    align-items: center;
+    padding: 0;
+}
+
+.error-text{
+    margin: 2px 0;
+    font-size: 12px;
+    color: #CD5D7D;
+  }
+
+
+/* required validation messages */
+.required-containers{
+    font-size: 12px;
+    color: #CD5D7D;
+  }
+.required-containers--invisble{
+    opacity: 0;
+}

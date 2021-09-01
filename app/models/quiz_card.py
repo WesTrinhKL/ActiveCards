@@ -42,6 +42,14 @@ class QuizCard(db.Model):
             return current_user.id == self.user_id
         return False
 
+    def to_dict_after_created(self):
+        return {
+            'id': self.id,
+            'title': self.title,
+            'card_number': self.card_number,
+            'question': self.question,
+        }
+
     def to_dict(self):
         return {
             'id': self.id,
