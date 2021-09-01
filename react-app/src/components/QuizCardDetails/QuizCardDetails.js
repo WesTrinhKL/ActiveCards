@@ -4,10 +4,13 @@ import ViewPreviousModal from '../ViewPreviousModal'
 import { setNewActiveRecallAnswer } from '../../store/quiz_deck'
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router';
+import { createQuizCardThunk } from '../../store/quiz_card';
+import { getSingleDeckWithCardsByIdThunk } from '../../store/quiz_deck';
 
-
-const QuizCardDetails = ({singleCardData, quizDeckMetadata, editMode=false, addMode=false}) => {
-  console.log("metadata for quiz deck", quizDeckMetadata)
+const QuizCardDetails = ({singleCardData, editMode=false, quizMetadata, addMode=false}) => {
+  // console.log("metadata for quiz deck", quizMetadata)
+  // console.log("add mode true?", addMode)
+  // console.log("metadata for quiz deck", singleCardData)
 
   const user_id = useSelector((state) => state.session.user?.id);
   const history = useHistory();
@@ -39,24 +42,34 @@ const QuizCardDetails = ({singleCardData, quizDeckMetadata, editMode=false, addM
   const add_new_item = ()=>{
     // attempt to add new item, then dispatch the card_template get thunk to grab everything so the main components at the top will re-render
     // if there's a bunch of utility to be added, then it's better to chain multiple REST API requests than sending all the data in the future.
-    const payload = {
-      title:quizDeckMetadata?.title,
-      card_number: (quizDeckMetadata?.quiz_card_relation).length +1 || 1,
+    // payloads would also be passed as a variable
+    const payload1 = {
+      title:quizMetadata?.title,
+      card_number: (quizMetadata?.quiz_card_relation).length +1 || 1,
       question: question,
-      quiz_template_id: quizDeckMetadata?.id,
+      quiz_template_id: quizMetadata?.id,
       user_id,
+      correct_answer: correctAnswer,
       // id: current_deck_id
     }
+
     setErrors([]);
-    dispatch(setNewActiveRecallAnswer(payload)).then( (data)=>{
+    dispatch(createQuizCardThunk(payload1)).then( (data)=>{
       if(data && data.id){
-        console.log("time to reload", data)
+        console.log("first payload returned", data)
         // history.push(`/view/quizzes/${data.id}`);
         // window.location.reload();
-        alert("Saved Answer Successfully");
-        history.push('/temp');
-        history.goBack();
+
+        // history.push('/temp');
+        // history.goBack();
         // window.location.reload();
+
+        dispatch(getSingleDeckWithCardsByIdThunk(quizMetadata?.id))
+        alert("created card Answer Successfully");
+        // change add mode to false
+        setaddModeSingleState(false);
+
+
       }
     }).catch(async (res) =>{
       console.log("error hit")
@@ -219,7 +232,7 @@ const QuizCardDetails = ({singleCardData, quizDeckMetadata, editMode=false, addM
 
         <div>
           {/* after adding successfully, reset counter */}
-          <button className="scs-cc-arc__save-answer edit-update-save-button" onClick={()=>console.log("add question + recall")} > Add and Save</button>
+          <button className="scs-cc-arc__save-answer edit-update-save-button" onClick={add_new_item} > Add and Save</button>
         </div>
       </div>}
     </>

@@ -139,9 +139,9 @@ def create_quiz_template_edit_delete(id):
 
 
 # ---------------QuizCards CRUD Routes-----------------
-@ quizzes_routes.route('cards/', methods=['POST'])
+@ quizzes_routes.route('/cards', methods=['POST'])
 @ login_required
-def create_quiz_card():
+def create_quiz_card_item():
     form = QuizCardForm()
     form['csrf_token'].data = request.cookies['csrf_token']
     # categories in future
@@ -152,9 +152,13 @@ def create_quiz_card():
         create_quiz_card.question = form.question.data
         create_quiz_card.quiz_template_id = form.quiz_template_id.data
         create_quiz_card.card_number = form.card_number.data
+        # create active recall utility and attach here
+        active_recall_extension = ActiveRecallUtility(correct_answer=form.correct_answer.data, user_id=form.user_id.data, quiz_card_relation=create_quiz_card
+                                                      )
+
         db.session.add(create_quiz_card)
         db.session.commit()
-        return create_quiz_card.to_dict()
+        return create_quiz_card.to_dict_after_created()
 
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
@@ -173,7 +177,6 @@ def update_quiz_card_edit_delete(id):
                 quiz_by_id.question = form.question.data
                 quiz_by_id.card_number = form.card_number.data
                 quiz_by_id.quiz_template_id = form.quiz_template_id.data
-
                 db.session.add(quiz_by_id)
                 db.session.commit()
                 return quiz_by_id.to_dict()
@@ -186,6 +189,8 @@ def update_quiz_card_edit_delete(id):
             return {'message': 'Quiz Card Deleted Successfully'}
         return authorization_errors_to_error_messages("Unauthorized access.")
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401
+
+# ---------------Create Active Recall Utility For Given ID-----------------
 
 
 # ---------------Create Answer Given the Utility Id-----------------

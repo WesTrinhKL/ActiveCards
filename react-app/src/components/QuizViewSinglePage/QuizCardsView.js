@@ -4,6 +4,9 @@ import QuizCardDetails from '../QuizCardDetails/QuizCardDetails'
 
 const QuizCardsView = ({allQuizCardsDataArray, quizDeckMetadata, editMode=false}) => {
   // console.log("all quiz data", allQuizCardsDataArray[0])
+  // console.log("quiz deck meta", quizDeckMetadata)
+  // console.log("quiz deck meta copy", quizDeckMetadataCopy)
+  // const quizDeckMetadataCopy = {...quizDeckMetadata}
 
   const [editModeState, seteditModeState] = useState(editMode);
   const [itemsToAdd, setItemsToAdd] = useState([]);
@@ -49,8 +52,10 @@ const QuizCardsView = ({allQuizCardsDataArray, quizDeckMetadata, editMode=false}
 
       {/* newly created items to be added under 'addMode' */}
       {itemsToAdd && editMode &&
-        itemsToAdd.map(()=> <QuizCardDetails quizDeckMetadata={quizDeckMetadata} addMode={true}/>)
+        itemsToAdd.map(()=> <QuizCardDetails
+        quizMetadata={quizDeckMetadata}  addMode={true}/>)
       }
+
 
 
 
