@@ -90,7 +90,7 @@ const QuizViewSinglePage = () => {
             <div className="template-data__details">
               <div className="td-d__details-title"> Details </div>
               <div className="details-container">
-                <div className="td-d__amount-answered"> you've answered: <span> 0/{quiz_length}</span> </div>
+                <div className="td-d__amount-answered"> number of questions: <span> {quiz_length}</span> </div>
                 <div className="td-d__current-state"> current status: <span> {single_deck_and_cards.is_private ? "private" : "public"}</span> </div>
                 <div className="td-d__created-ago">created: <span>3 months ago </span> </div>
               </div>
@@ -100,8 +100,8 @@ const QuizViewSinglePage = () => {
               <div className="td-u__utilities-title"> Extensions </div>
               <div className="td-u__utilities-container">
                 <div className="td-u-uc__one"> Active Recall </div>
-                <div className="td-u-uc__two"> Multiple Choice </div>
-                <div className="td-u-uc__three"> Flash Cards </div>
+                <div className="td-u-uc__two"> Asnwers </div>
+                {/* <div className="td-u-uc__three"> Flash Cards </div> */}
               </div>
 
             </div>

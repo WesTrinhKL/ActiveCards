@@ -4,13 +4,12 @@ import ViewPreviousModal from '../ViewPreviousModal'
 import { setNewActiveRecallAnswer } from '../../store/quiz_deck'
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router';
-import { createQuizCardThunk } from '../../store/quiz_card';
+import { createQuizCardThunk, updateQuizCardThunk } from '../../store/quiz_card';
 import { getSingleDeckWithCardsByIdThunk } from '../../store/quiz_deck';
 
 const QuizCardDetails = ({singleCardData, editMode=false, quizMetadata, addMode=false}) => {
-  // console.log("metadata for quiz deck", quizMetadata)
-  // console.log("add mode true?", addMode)
-  // console.log("metadata for quiz deck", singleCardData)
+  console.log("metadata for quiz deck", singleCardData)
+  console.log("metadata for quiz deck", singleCardData?.active_recall_utility_answer?.correct_answer)
 
   const user_id = useSelector((state) => state.session.user?.id);
   const history = useHistory();
@@ -75,7 +74,40 @@ const QuizCardDetails = ({singleCardData, editMode=false, quizMetadata, addMode=
     })
   }
 
+  // --------update item to db given id --------
+  const update_current_item = ()=>{
+    const payload2 = {
+      title:singleCardData?.title,
+      card_number: singleCardData?.card_number || 1,
+      question: question,
+      quiz_template_id: singleCardData?.quiz_template_id,
+      user_id,
+      correct_answer: correctAnswer,
+      id: singleCardData?.id
+    }
+    console.log('payload updated', payload2)
 
+    setErrors([]);
+    dispatch(updateQuizCardThunk(payload2)).then( (data)=>{
+      if(data && !data.errors){
+        dispatch(getSingleDeckWithCardsByIdThunk(singleCardData?.quiz_template_id))
+        alert("updated card successfully!");
+
+      }
+      else if(data && data.errors){
+        setErrors(data.errors);
+      }
+      else{
+        setErrors(['something went wrong, please try again.'])
+      }
+    }).catch(async (res) =>{
+      console.log("error hit")
+      const data = res
+      if(data && data.errors) setErrors(data.errors);
+    })
+  }
+
+  // ----saving answers in the view-----
   const onSaveAnswer = ()=>{
     const payload = {
       user_active_answer:answer,
@@ -163,9 +195,6 @@ const QuizCardDetails = ({singleCardData, editMode=false, quizMetadata, addMode=
 
           {/* questions tab */}
           {tab==='question' && <div className="scs-cc__active-recall-container" >
-            <ul className="error-group">
-                {errors.map((error, idx) => <li key={idx}>*{error}</li>)}
-            </ul>
             <div className="edit-question"> <span>Question: </span></div>
             {/* <div className="scs-cc-arc__text-area-title"> Update Question Here:</div> */}
             <textarea value={question} onChange={(e)=>setquestionE(e)} className="scs-cc-arc__text-area-content"></textarea>
@@ -174,17 +203,14 @@ const QuizCardDetails = ({singleCardData, editMode=false, quizMetadata, addMode=
 
           {/* these should be their own components later */}
           {tab==='active-recall' && <div className="scs-cc__active-recall-container" >
-            <ul className="error-group">
-                {errors.map((error, idx) => <li key={idx}>*{error}</li>)}
-            </ul>
             <div className="edit-correct-answer-title"> Author's (your) Answer:</div>
-            <textarea value={correctAnswer} onChange={(e)=>setCorrectAnswer(e)} className="recall-correct-answer-textarea"></textarea>
+            <textarea value={correctAnswer} onChange={(e)=>setCorrectAnswerE(e)} className="recall-correct-answer-textarea"></textarea>
 
           </div>}
 
         </div>
         <div className="scs-cc-arc__save-prev-container">
-            <div onClick={onSaveAnswer} className="scs-cc-arc__save-answer edit-update-save-button"> update the card</div>
+            <div onClick={update_current_item} className="scs-cc-arc__save-answer edit-update-save-button"> update the card</div>
           </div>
       </div>
         // each component will have its own location for errors

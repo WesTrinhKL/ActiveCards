@@ -65,18 +65,22 @@ export const createQuizCardThunk = (payload) => async (dispatch) => {
   }
 }
 
-export const updateFormQuizDeckTempThunk = (payload) => async(dispatch) =>{
+export const updateQuizCardThunk = (payload) => async(dispatch) =>{
   const response = await fetch(`/api/quizzes/cards/${payload.id}`, {
     method: 'PUT',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(payload)
   });
-    if (response.ok) {
+    if (!response.ok) {
+        const errorObj = await response.json();
+        if (errorObj){
+          return errorObj
+        }
+        return {'errors':'An error occurred. Cannot create card. Please try again.'}
+    } else {
         const payload = await response.json();
         await dispatch(updateQuizCard(payload));
         return payload;
-    } else {
-        return ['An error occurred. Please try again.'];
     }
 }
 

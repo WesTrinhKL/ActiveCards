@@ -179,9 +179,16 @@ def update_quiz_card_edit_delete(id):
                 quiz_by_id.question = form.question.data
                 quiz_by_id.card_number = form.card_number.data
                 quiz_by_id.quiz_template_id = form.quiz_template_id.data
+
+                active_recall_to_update = ActiveRecallUtility.query.filter_by(
+                    quiz_card_id=id).first()
+                active_recall_to_update.correct_answer = form.correct_answer.data
+
                 db.session.add(quiz_by_id)
+                db.session.add(active_recall_to_update)
                 db.session.commit()
                 return quiz_by_id.to_dict()
+            return authorization_errors_to_error_messages("Unauthorized access.")
 
     elif request.method == 'DELETE':
         card_to_delete = QuizCard.query.get(id)

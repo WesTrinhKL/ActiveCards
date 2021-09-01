@@ -57,7 +57,7 @@ class QuizCard(db.Model):
             'card_number': self.card_number,
             'question': self.question,
             # 'user_relation': self.user_relation.to_dict_basic_user_info(),
-            # 'quiz_template_relation': self.quiz_template_relation.to_dict(),
+            'quiz_template_id': self.quiz_template_relation.id,
             'active_recall_utility_answer': [active_recall.to_dict() for active_recall in self.active_recall_relation][0],
             # we can get the current user answer from the static method, or filter child from own model
             'current_user_answers': UserActiveRecallAnswer.get_current_user_active_recall_answers(current_user.id, self.id)
