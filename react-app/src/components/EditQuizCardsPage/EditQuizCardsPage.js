@@ -63,7 +63,7 @@ const EditQuizCardsPage = () => {
 
         {/* ---content--- */}
         <div className="edit-page-cards-view-container">
-          <QuizCardsView allQuizCardsDataArray={getQuizCardsArray} editMode={true} />
+          <QuizCardsView allQuizCardsDataArray={getQuizCardsArray} quizDeckMetadata={single_deck_and_cards} editMode={true} />
         </div>
       </div>}
 

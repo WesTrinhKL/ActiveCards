@@ -6,7 +6,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router';
 
 
-const QuizCardDetails = ({singleCardData, editMode=false, addMode=false}) => {
+const QuizCardDetails = ({singleCardData, quizDeckMetadata, editMode=false, addMode=false}) => {
+  console.log("metadata for quiz deck", quizDeckMetadata)
+
+  const user_id = useSelector((state) => state.session.user?.id);
   const history = useHistory();
   const dispatch = useDispatch();
 
@@ -34,7 +37,32 @@ const QuizCardDetails = ({singleCardData, editMode=false, addMode=false}) => {
   const setquestionE = (e) => setquestion(e.target.value);
 
   const add_new_item = ()=>{
-    // attempt to add new item, then dispatch the card_template thunk to grab everything so the main components at the top will re-render
+    // attempt to add new item, then dispatch the card_template get thunk to grab everything so the main components at the top will re-render
+    // if there's a bunch of utility to be added, then it's better to chain multiple REST API requests than sending all the data in the future.
+    const payload = {
+      title:quizDeckMetadata?.title,
+      card_number: (quizDeckMetadata?.quiz_card_relation).length +1 || 1,
+      question: question,
+      quiz_template_id: quizDeckMetadata?.id,
+      user_id,
+      // id: current_deck_id
+    }
+    setErrors([]);
+    dispatch(setNewActiveRecallAnswer(payload)).then( (data)=>{
+      if(data && data.id){
+        console.log("time to reload", data)
+        // history.push(`/view/quizzes/${data.id}`);
+        // window.location.reload();
+        alert("Saved Answer Successfully");
+        history.push('/temp');
+        history.goBack();
+        // window.location.reload();
+      }
+    }).catch(async (res) =>{
+      console.log("error hit")
+      const data = res
+      if(data && data.errors) setErrors(data.errors);
+    })
   }
 
 
@@ -191,7 +219,7 @@ const QuizCardDetails = ({singleCardData, editMode=false, addMode=false}) => {
 
         <div>
           {/* after adding successfully, reset counter */}
-          <button onClick={()=>console.log("add question + recall")} > Add and Save</button>
+          <button className="scs-cc-arc__save-answer edit-update-save-button" onClick={()=>console.log("add question + recall")} > Add and Save</button>
         </div>
       </div>}
     </>

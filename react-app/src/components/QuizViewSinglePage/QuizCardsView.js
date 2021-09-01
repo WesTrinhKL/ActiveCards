@@ -2,7 +2,7 @@ import React, {useState} from 'react'
 import './QuizCardsView.css'
 import QuizCardDetails from '../QuizCardDetails/QuizCardDetails'
 
-const QuizCardsView = ({allQuizCardsDataArray, editMode=false}) => {
+const QuizCardsView = ({allQuizCardsDataArray, quizDeckMetadata, editMode=false}) => {
   // console.log("all quiz data", allQuizCardsDataArray[0])
 
   const [editModeState, seteditModeState] = useState(editMode);
@@ -49,7 +49,7 @@ const QuizCardsView = ({allQuizCardsDataArray, editMode=false}) => {
 
       {/* newly created items to be added under 'addMode' */}
       {itemsToAdd && editMode &&
-        itemsToAdd.map(()=> <QuizCardDetails addMode={true}/>)
+        itemsToAdd.map(()=> <QuizCardDetails quizDeckMetadata={quizDeckMetadata} addMode={true}/>)
       }
 
 
