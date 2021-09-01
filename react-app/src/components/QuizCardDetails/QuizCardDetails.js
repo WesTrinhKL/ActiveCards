@@ -39,6 +39,7 @@ const QuizCardDetails = ({singleCardData, editMode=false, quizMetadata, addMode=
   const setCorrectAnswerE = (e) => setCorrectAnswer(e.target.value);
   const setquestionE = (e) => setquestion(e.target.value);
 
+  // -------- create and add new item to db --------
   const add_new_item = ()=>{
     // attempt to add new item, then dispatch the card_template get thunk to grab everything so the main components at the top will re-render
     // if there's a bunch of utility to be added, then it's better to chain multiple REST API requests than sending all the data in the future.

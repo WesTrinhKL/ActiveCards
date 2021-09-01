@@ -1,5 +1,5 @@
 import React ,{useEffect, useState} from 'react'
-import { useParams } from 'react-router-dom'
+import { useParams, useHistory } from 'react-router-dom'
 import './QuizViewSinglePage.css'
 import { useDispatch, useSelector } from 'react-redux';
 import { getSingleDeckWithCardsByIdThunk } from '../../store/quiz_deck';
@@ -9,8 +9,12 @@ import QuizCardsView from './QuizCardsView';
 
 const QuizViewSinglePage = () => {
   const dispatch = useDispatch();
-  const user_id = useSelector((state) => state.session.user?.id);
   const {quiz_id} = useParams();
+  const history = useHistory();
+
+
+
+  const user_id = useSelector((state) => state.session.user?.id);
   const single_deck_and_cards = useSelector(state=> state.quiz_deck.single_deck_with_cards?.quiz)
   const single_deck_and_cards_errors= useSelector(state=> state.quiz_deck.single_deck_with_cards?.errors)
 
@@ -26,6 +30,11 @@ const QuizViewSinglePage = () => {
   useEffect(() => {
     dispatch(getSingleDeckWithCardsByIdThunk(quiz_id))
   }, [dispatch])
+
+  // send to edit
+  const send_to_edit = (quiz_id)=>{
+    history.push(`/edit/quizzes/${quiz_id}`)
+  }
 
   // count logic for preview question
   const setcountE = (count_result) => {
@@ -136,7 +145,7 @@ const QuizViewSinglePage = () => {
           <QuizCardsView allQuizCardsDataArray={getQuizCardsArray}/>
 
           {belongs_to_user && <div className="add-card-container">
-            <div className="qvsp-cw-cc__edit-button"> add / edit cards </div>
+            <div onClick={()=>send_to_edit(quiz_id)} className="qvsp-cw-cc__edit-button vanilla-button-1 vanilla-button-1--color"> add / edit cards </div>
           </div>}
         </div>
 

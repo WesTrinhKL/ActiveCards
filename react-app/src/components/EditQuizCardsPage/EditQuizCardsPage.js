@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import QuizCardsView from '../QuizViewSinglePage/QuizCardsView';
 import { useHistory } from 'react-router-dom';
 import './EditQuizCardsPage.css';
+import { handleScrollTopUtil } from '../utilities/util';
 
 
 const EditQuizCardsPage = () => {
@@ -25,8 +26,13 @@ const EditQuizCardsPage = () => {
     dispatch(getSingleDeckWithCardsByIdThunk(quiz_id))
   }, [dispatch])
 
+  useEffect(() => {
+    // upon entering page, intially scroll to top once.
+    handleScrollTopUtil()
+  }, [])
+
   const go_back_to_set = ()=>{
-    history.goBack();
+    history.push(`/view/quizzes/${quiz_id}`);
   }
 
   // verify that the user_id is the same as the one from the deck being requested in the url, otherwise 404
@@ -39,6 +45,7 @@ const EditQuizCardsPage = () => {
   // try to dispatch for the template / deck id, if error return 404 error
   // figure out a way to close modal using global context and save quiz_deck state
 
+
   return (
     <div className="edit-cards-wrapper">
 
@@ -49,7 +56,7 @@ const EditQuizCardsPage = () => {
           <div className="header-container__utilities">
             <div onClick={go_back_to_set} className="vanilla-button-1">
               {/* go back / return to previous */}
-              <i className="fas fa-chevron-left return-icon"></i> Return
+              <i className="fas fa-chevron-left return-icon"></i> Go to View
             </div>
           </div>
           <div className="header-container__title">

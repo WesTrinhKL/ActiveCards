@@ -281,6 +281,9 @@
 .add-card-container{
   /* margin-top: 75px; */
   margin-bottom: 75px;
+  width: 40%;
+  display: flex;
+  justify-content: center;
 }
 
 /* ---utilities bar--- */
@@ -314,4 +317,7 @@
   margin-top: 75px;
   /* margin-bottom: 75px; */
   font-weight: bold;
+}
+.vanilla-button-1--color{
+  background-color: #8fdbee;
 }
