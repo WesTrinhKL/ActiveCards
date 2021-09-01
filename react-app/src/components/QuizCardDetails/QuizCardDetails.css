@@ -29,13 +29,21 @@
 }
 
 .single-card-container{
-  min-width: 70vh;
+  /* min-width: 50vw;
+  max-width: 50vw;
+  min-height: 35vh;
+  max-height: 50vh; */
   /* margin: auto; */
+  height: fit-content;
+  min-width: 725px;
+  min-height: 450px;
+  max-width: 725px;
+  max-height: 450px;
   margin-top: 60px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  min-height: 35vh;
+
   background-color: white;
   border-bottom: 1px solid rgb(201, 201, 201);
   border-right: 1px solid rgb(201, 201, 201);
@@ -108,10 +116,10 @@
 
 .scs-cc-arc__previous-answers{
   /* position: absolute; */
-  font-style: italic;
+  /* font-style: italic; */
   bottom: 30px;
   cursor: pointer;
-  font-size: 14px;
+  font-size: 11px;
   color: #8F8F8F;
   margin: 14px 0;
   padding: 10px 0;
@@ -181,9 +189,9 @@
 .scs-cc-ac-iv__view-others{
 
   /* position: absolute; */
-  font-style: italic;
+  /* font-style: italic; */
   cursor: pointer;
-  font-size: 14px;
+  font-size: 11px;
   color: #8F8F8F;
   margin: 16px 0;
   padding: 10px 0;
@@ -193,6 +201,7 @@
 .scs-cc-ac-iv__view-others:hover{
   /* text-decoration: underline; */
   color: #98ACF8;
+
   /* text-decoration-color: #98ACF8; */
 }
 

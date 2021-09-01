@@ -103,6 +103,11 @@ const QuizCardDetails = ({singleCardData, editMode=false}) => {
       {/* EDIT MODE COMPONENT */}
       {editModeSingleState &&
         <div> Edit Mode for single card component</div>
+        // each component will have its own location for errors
+        // --------tab to edit question
+        // --------tab to edit active recall (answer)
+        // update button for each tab.
+        // each utility will only have 1 tab (active recall 1 tab where they can update question)
       }
     </>
   )
