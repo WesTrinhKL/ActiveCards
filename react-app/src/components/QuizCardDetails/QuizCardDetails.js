@@ -119,7 +119,7 @@ const QuizCardDetails = ({singleCardData, editMode=false}) => {
             <ul className="error-group">
                 {errors.map((error, idx) => <li key={idx}>*{error}</li>)}
             </ul>
-            <div className="scs-cc__question"> <span>Question: </span></div>
+            <div className="edit-question"> <span>Question: </span></div>
             {/* <div className="scs-cc-arc__text-area-title"> Update Question Here:</div> */}
             <textarea value={question} onChange={(e)=>setAnswerE(e)} className="scs-cc-arc__text-area-content"></textarea>
             <div className="scs-cc-arc__save-prev-container">
@@ -129,24 +129,14 @@ const QuizCardDetails = ({singleCardData, editMode=false}) => {
 
 
           {/* these should be their own components later */}
-          {tab==='active-recall' && <div className="scs-cc__active-recall-container" >
-            <div className="scs-cc-arc__text-area-title active-recall-"> Current Answer:</div>
-            <textarea value={correctAnswer} onChange={(e)=>setAnswerE(e)} className="scs-cc-ac__author-answer"></textarea>
+          {tab==='active-recall' && <div className="scs-cc__active-recall-container edit-active-recall-container" >
+            <ul className="error-group">
+                {errors.map((error, idx) => <li key={idx}>*{error}</li>)}
+            </ul>
+            <div className="edit-correct-answer-title"> Current Answer:</div>
+            <textarea value={correctAnswer} onChange={(e)=>setAnswerE(e)} className="recall-correct-answer-textarea"></textarea>
             <div className="scs-cc-arc__save-prev-container">
-              <div className="scs-cc-arc__previous-answers"> <ViewPreviousModal previousAnswers={singleCardData.current_user_answers}/> </div>
-              <div onClick={onSaveAnswer} className="scs-cc-arc__save-answer"> save answer</div>
-            </div>
-          </div>}
-
-
-          {tab==='answers' && <div className="scs-cc__active-answers-container">
-            {/* each extension will have an optional answer property that the user can add. If not added, then don't render */}
-            {/* for each extension, display answer_component wrapped over answer */}
-            <div className="scs-cc-ac__author-title"> Author's Answer:</div>
-            <div className="scs-cc-ac__author-answer">{singleCardData.active_recall_utility_answer?.correct_answer}</div>
-            <div className="scs-cc-ac__icons-view">
-              <div className="scs-cc-ac-iv__view-others"> VIEW OTHERS</div>
-              {/* <div className="scs-cc-ac-iv__icons-container"> <i className="fas fa-thumbs-up thumbs-up-card-answer"></i></div> */}
+              <div onClick={onSaveAnswer} className="scs-cc-arc__save-answer edit-update-save-button"> update answer</div>
             </div>
           </div>}
 

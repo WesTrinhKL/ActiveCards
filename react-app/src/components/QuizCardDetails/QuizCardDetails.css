@@ -221,6 +221,40 @@
   margin-top: 25px;
 }
 
+.edit-question{
+  color: #8F8F8F;
+  font-weight: normal;
+  margin-top: 50px;
+}
+
 .edit-update-save-button{
   background-color: #b0f1a3;
+}
+
+.edit-active-recall-container{
+  margin-top: 50px;
+}
+
+.recall-correct-answer-textarea{
+  min-height: 180px;
+  resize: none;
+  width: 96%;
+  padding: 8px;
+  outline: none;
+  margin-top: 5px;
+  border: none;
+  border-left: 2px solid #e6b8c47e;
+  transition: all 0.1s ease-in-out;
+  overflow: auto;
+  margin-left: 14px;
+  margin-right: 10px;
+  font-size: 14px;
+}
+.recall-correct-answer-textarea:focus, .recall-correct-answer-textarea:hover{
+  border-left:2px solid #CD5D7D;
+}
+
+.edit-correct-answer-title{
+  width: 30%;
+  color: #8F8F8F;
 }
