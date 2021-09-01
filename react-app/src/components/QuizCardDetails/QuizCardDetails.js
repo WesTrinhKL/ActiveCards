@@ -56,15 +56,11 @@ const QuizCardDetails = ({singleCardData, editMode=false, quizMetadata, addMode=
     setErrors([]);
     dispatch(createQuizCardThunk(payload1)).then( (data)=>{
       if(data && data.id){
-        console.log("first payload returned", data)
-        // history.push(`/view/quizzes/${data.id}`);
-        // window.location.reload();
-
-        // history.push('/temp');
-        // history.goBack();
-        // window.location.reload();
+        // console.log("first payload returned", data)
 
         dispatch(getSingleDeckWithCardsByIdThunk(quizMetadata?.id))
+        // change this to message banner later
+
         alert("created card Answer Successfully");
         // change add mode to false
         setaddModeSingleState(false);
@@ -84,19 +80,15 @@ const QuizCardDetails = ({singleCardData, editMode=false, quizMetadata, addMode=
       user_active_answer:answer,
       active_recall_utility_id: singleCardData.active_recall_utility_answer.active_recall_id,
       quiz_card_id: singleCardData.id
-      // quiz_directory_id: user_first_directory_id,
-      // user_id,
-      // id: current_deck_id
     }
     setErrors([]);
     dispatch(setNewActiveRecallAnswer(payload)).then( (data)=>{
       if(data && data.id){
         console.log("time to reload", data)
-        // history.push(`/view/quizzes/${data.id}`);
-        // window.location.reload();
         alert("Saved Answer Successfully");
         history.push('/temp');
         history.goBack();
+         // history.push(`/view/quizzes/${data.id}`);
         // window.location.reload();
       }
     }).catch(async (res) =>{
@@ -166,10 +158,7 @@ const QuizCardDetails = ({singleCardData, editMode=false, quizMetadata, addMode=
             </ul>
             <div className="edit-question"> <span>Question: </span></div>
             {/* <div className="scs-cc-arc__text-area-title"> Update Question Here:</div> */}
-            <textarea value={question} onChange={(e)=>setAnswerE(e)} className="scs-cc-arc__text-area-content"></textarea>
-            <div className="scs-cc-arc__save-prev-container">
-              <div onClick={onSaveAnswer} className="scs-cc-arc__save-answer edit-update-save-button"> update question</div>
-            </div>
+            <textarea value={question} onChange={(e)=>setquestionE(e)} className="scs-cc-arc__text-area-content"></textarea>
           </div>}
 
 
@@ -178,12 +167,13 @@ const QuizCardDetails = ({singleCardData, editMode=false, quizMetadata, addMode=
             <ul className="error-group">
                 {errors.map((error, idx) => <li key={idx}>*{error}</li>)}
             </ul>
-            <div className="edit-correct-answer-title"> Current Answer:</div>
-            <textarea value={correctAnswer} onChange={(e)=>setAnswerE(e)} className="recall-correct-answer-textarea"></textarea>
-            <div className="scs-cc-arc__save-prev-container">
+            <div className="edit-correct-answer-title"> Author's (your) Answer:</div>
+            <textarea value={correctAnswer} onChange={(e)=>setCorrectAnswer(e)} className="recall-correct-answer-textarea"></textarea>
+
+          </div>}
+          <div className="scs-cc-arc__save-prev-container">
               <div onClick={onSaveAnswer} className="scs-cc-arc__save-answer edit-update-save-button"> update answer</div>
             </div>
-          </div>}
         </div>
       </div>
         // each component will have its own location for errors
@@ -232,7 +222,7 @@ const QuizCardDetails = ({singleCardData, editMode=false, quizMetadata, addMode=
 
         <div>
           {/* after adding successfully, reset counter */}
-          <button className="scs-cc-arc__save-answer edit-update-save-button" onClick={add_new_item} > Add and Save</button>
+          <button className="scs-cc-arc__save-answer edit-create-button" onClick={add_new_item} > Add and Save</button>
         </div>
       </div>}
     </>

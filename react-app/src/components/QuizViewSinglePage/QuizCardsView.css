@@ -25,6 +25,7 @@
   display: flex;
   justify-content: center;
   position: relative;
+  margin-left: 12px;
 }
 .add-card-button-icon{
   color: white;

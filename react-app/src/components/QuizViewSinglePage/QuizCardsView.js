@@ -28,6 +28,7 @@ const QuizCardsView = ({allQuizCardsDataArray, quizDeckMetadata, editMode=false}
 
   const addNewCard = ()=>{
     setItemsToAdd(itemsToAdd => [...itemsToAdd, true]);
+    handleScrollBottom();
   }
 
   return (
@@ -54,6 +55,7 @@ const QuizCardsView = ({allQuizCardsDataArray, quizDeckMetadata, editMode=false}
       {itemsToAdd && editMode &&
         itemsToAdd.map(()=> <QuizCardDetails
         quizMetadata={quizDeckMetadata}  addMode={true}/>)
+
       }
 
 
@@ -61,9 +63,9 @@ const QuizCardsView = ({allQuizCardsDataArray, quizDeckMetadata, editMode=false}
 
       {/* if edit mode, have button to add cards */}
       {editMode &&
-      <div onClick={addNewCard} className="edit-add-card-button-container">
-        <div className="vanilla-button-1">Add New Card</div>
-        <div className="vanilla-square-button-1 edit-go-to-top-position"><i class="fas fa-chevron-up edit-up-icon"></i> </div>
+      <div className="edit-add-card-button-container">
+        <div onClick={addNewCard} className="vanilla-button-1">Add New Card</div>
+        <div onClick={handleScrollTop} className="vanilla-square-button-1 edit-go-to-top-position"><i class="fas fa-chevron-up edit-up-icon"></i> </div>
       </div>}
 
 
