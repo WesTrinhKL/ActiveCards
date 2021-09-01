@@ -75,7 +75,7 @@
 .scs-cc__active-recall-container{
   width: 90%;
   margin-bottom: 30px;
-  margin-top: 40px;
+  /* margin-top: 20px; */
 }
 
 
@@ -268,5 +268,5 @@
 .edit-correct-answer-title{
   width: 30%;
   color: #8F8F8F;
-  margin-top: 10px;
+  /* margin-top: 10px; */
 }

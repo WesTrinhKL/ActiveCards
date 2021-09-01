@@ -154,6 +154,13 @@ const QuizCardDetails = ({singleCardData, editMode=false, quizMetadata, addMode=
         </div>
 
         <div className="scs__content-container">
+          <div className="error-group-container">
+            <ul className="error-group">
+                {errors.map((error, idx) => <li className="error-text" key={idx}>*{error}</li>)}
+            </ul>
+          </div>
+
+          {/* questions tab */}
           {tab==='question' && <div className="scs-cc__active-recall-container" >
             <ul className="error-group">
                 {errors.map((error, idx) => <li key={idx}>*{error}</li>)}
@@ -173,10 +180,11 @@ const QuizCardDetails = ({singleCardData, editMode=false, quizMetadata, addMode=
             <textarea value={correctAnswer} onChange={(e)=>setCorrectAnswer(e)} className="recall-correct-answer-textarea"></textarea>
 
           </div>}
-          <div className="scs-cc-arc__save-prev-container">
-              <div onClick={onSaveAnswer} className="scs-cc-arc__save-answer edit-update-save-button"> update the card</div>
-            </div>
+
         </div>
+        <div className="scs-cc-arc__save-prev-container">
+            <div onClick={onSaveAnswer} className="scs-cc-arc__save-answer edit-update-save-button"> update the card</div>
+          </div>
       </div>
         // each component will have its own location for errors
         // --------tab to edit question
@@ -195,19 +203,21 @@ const QuizCardDetails = ({singleCardData, editMode=false, quizMetadata, addMode=
         </div>
 
         <div className="scs__content-container">
-          <ul ul className="error-group">
-              {errors.map((error, idx) => <li className="error-text" key={idx}>*{error}</li>)}
-          </ul>
+          <div className="error-group-container">
+            <ul className="error-group">
+                {errors.map((error, idx) => <li className="error-text" key={idx}>*{error}</li>)}
+            </ul>
+          </div>
 
+          {/* edit question tab */}
           {tab==='question' && <div className="scs-cc__active-recall-container" >
-            {/* <div className="edit-required-containers"> *required </div> */}
+            {<div className={`edit-required-containers ${question &&'edit-required-containers--invisble'}`}> *required </div>}
             <div className="edit-question"> <span>Question: </span></div>
-            {/* <div className="scs-cc-arc__text-area-title"> Update Question Here:</div> */}
             <textarea value={question} onChange={(e)=>setquestionE(e)} className="scs-cc-arc__text-area-content"></textarea>
           </div>}
 
 
-          {/* these should be their own components later */}
+          {/* active-recall edit extension */}
           {tab==='active-recall' && <div className="scs-cc__active-recall-container" >
             {<div className={`edit-required-containers ${correctAnswer &&'edit-required-containers--invisble'}`}> *required </div>}
             <div className="edit-correct-answer-title"> Current Answer:</div>

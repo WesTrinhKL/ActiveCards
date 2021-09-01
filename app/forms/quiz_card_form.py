@@ -41,4 +41,5 @@ class QuizCardForm(FlaskForm):
     card_number = IntegerField(
         validators=[DataRequired(), check_card_number_is_valid])
 
-    correct_answer = StringField(validators=[DataRequired(), Length(max=1000)])
+    correct_answer = StringField(validators=[DataRequired(
+        message="Active Recall Extension's answer field cannot be empty"), Length(max=1000)])
