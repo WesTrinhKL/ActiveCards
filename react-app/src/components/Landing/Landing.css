@@ -1,0 +1,27 @@
+.landing-page-wrapper{
+  height: 100vh;
+  width: 100%;
+}
+
+.lpw__landing-page{
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: auto;
+  height: 90%;
+}
+
+/* --------header------- */
+.lp-hc__title{
+  font-size: 36px;
+  font-weight: bold;
+  color: #98ACF8;
+  margin: 40px 10px;
+}
+
+
+/* footer */
+.landing-page__footer-container{
+
+}

@@ -12,8 +12,6 @@ const QuizViewSinglePage = () => {
   const {quiz_id} = useParams();
   const history = useHistory();
 
-
-
   const user_id = useSelector((state) => state.session.user?.id);
   const single_deck_and_cards = useSelector(state=> state.quiz_deck.single_deck_with_cards?.quiz)
   const single_deck_and_cards_errors= useSelector(state=> state.quiz_deck.single_deck_with_cards?.errors)
