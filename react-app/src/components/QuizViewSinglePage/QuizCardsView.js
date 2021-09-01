@@ -12,18 +12,23 @@ const QuizCardsView = ({allQuizCardsDataArray, quizDeckMetadata, editMode=false}
   const [itemsToAdd, setItemsToAdd] = useState([]);
 
   const handleScrollBottom = ()=> {
-    window.scroll({
-      top: document.body.offsetHeight,
-      left: 0,
-      behavior: 'smooth',
-    });
+    setTimeout(()=>{
+      window.scroll({
+        top: document.body.offsetHeight,
+        left: 0,
+        behavior: 'smooth',
+      });
+    }, 100);
+
   }
   const handleScrollTop = ()=> {
-    window.scroll({
-      top: document.body.offsetTop,
-      left: 0,
-      behavior: 'smooth',
-    });
+    setTimeout(()=>{
+      window.scroll({
+        top: document.body.offsetTop,
+        left: 0,
+        behavior: 'smooth',
+      });
+    }, 100);
   }
 
   const addNewCard = ()=>{
@@ -39,7 +44,7 @@ const QuizCardsView = ({allQuizCardsDataArray, quizDeckMetadata, editMode=false}
 
       {editMode && <div className="cards-header-container header-edit">
         <div className="chc__title">Cards</div>
-        <div onClick={handleScrollBottom} className="vanilla-round-button-1">
+        <div onClick={addNewCard} className="vanilla-round-button-1">
           <i class="fas fa-plus add-card-button-icon"></i>
         </div>
       </div>}

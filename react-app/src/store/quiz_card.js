@@ -49,13 +49,19 @@ export const createQuizCardThunk = (payload) => async (dispatch) => {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(payload),
   });
+  console.log("response", response)
 
-  if (response.ok) {
+  if (!response.ok) {
+      const errorObj = await response.json();
+      if (errorObj){
+        // console.log(errorObj)
+        return errorObj
+      }
+      return {'errors':'An error occurred. Cannot create card. Please try again.'}
+  } else {
       const payload = await response.json();
       await dispatch(createQuizCard(payload));
       return payload;
-  } else {
-      return ['An error occurred. Cannot create card. Please try again.']
   }
 }
 

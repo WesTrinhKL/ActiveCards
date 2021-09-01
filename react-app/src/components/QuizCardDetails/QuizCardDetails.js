@@ -32,7 +32,7 @@ const QuizCardDetails = ({singleCardData, editMode=false, quizMetadata, addMode=
   // includes 'question'
   const [correctAnswer, setCorrectAnswer] = useState(singleCardData?.active_recall_utility_answer?.correct_answer || '');
 
-  //---- add ----
+  //---- for adding question----
   const [addTab, addSetTab] = useState('question')
 
   const setAnswerE = (e) => setAnswer(e.target.value);
@@ -50,12 +50,13 @@ const QuizCardDetails = ({singleCardData, editMode=false, quizMetadata, addMode=
       quiz_template_id: quizMetadata?.id,
       user_id,
       correct_answer: correctAnswer,
-      // id: current_deck_id
     }
+    console.log('payload data', payload1)
 
     setErrors([]);
+
     dispatch(createQuizCardThunk(payload1)).then( (data)=>{
-      if(data && data.id){
+      if(data && data.id && !data.errors){
         // console.log("first payload returned", data)
 
         dispatch(getSingleDeckWithCardsByIdThunk(quizMetadata?.id))
@@ -64,8 +65,6 @@ const QuizCardDetails = ({singleCardData, editMode=false, quizMetadata, addMode=
         alert("created card Answer Successfully");
         // change add mode to false
         setaddModeSingleState(false);
-
-
       }
     }).catch(async (res) =>{
       console.log("error hit")
@@ -97,6 +96,8 @@ const QuizCardDetails = ({singleCardData, editMode=false, quizMetadata, addMode=
       if(data && data.errors) setErrors(data.errors);
     })
   }
+
+
 
   return (
     <>
@@ -172,7 +173,7 @@ const QuizCardDetails = ({singleCardData, editMode=false, quizMetadata, addMode=
 
           </div>}
           <div className="scs-cc-arc__save-prev-container">
-              <div onClick={onSaveAnswer} className="scs-cc-arc__save-answer edit-update-save-button"> update answer</div>
+              <div onClick={onSaveAnswer} className="scs-cc-arc__save-answer edit-update-save-button"> update the card</div>
             </div>
         </div>
       </div>
@@ -222,7 +223,7 @@ const QuizCardDetails = ({singleCardData, editMode=false, quizMetadata, addMode=
 
         <div>
           {/* after adding successfully, reset counter */}
-          <button className="scs-cc-arc__save-answer edit-create-button" onClick={add_new_item} > Add and Save</button>
+          <button className="scs-cc-arc__save-answer edit-create-button" onClick={add_new_item} > add and save</button>
         </div>
       </div>}
     </>

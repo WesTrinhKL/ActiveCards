@@ -146,20 +146,22 @@ def create_quiz_card_item():
     form['csrf_token'].data = request.cookies['csrf_token']
     # categories in future
     if form.validate_on_submit():
-        create_quiz_card = QuizCard()
-        create_quiz_card.user_id = form.user_id.data
-        create_quiz_card.title = form.title.data
-        create_quiz_card.question = form.question.data
-        create_quiz_card.quiz_template_id = form.quiz_template_id.data
-        create_quiz_card.card_number = form.card_number.data
-        # create active recall utility and attach here
-        active_recall_extension = ActiveRecallUtility(correct_answer=form.correct_answer.data, user_id=form.user_id.data, quiz_card_relation=create_quiz_card
-                                                      )
 
-        db.session.add(create_quiz_card)
-        db.session.commit()
-        return create_quiz_card.to_dict_after_created()
+        if form.user_id.data == current_user.id:
+            create_quiz_card = QuizCard()
+            create_quiz_card.user_id = form.user_id.data
+            create_quiz_card.title = form.title.data
+            create_quiz_card.question = form.question.data
+            create_quiz_card.quiz_template_id = form.quiz_template_id.data
+            create_quiz_card.card_number = form.card_number.data
+            # create active recall utility and attach here
+            active_recall_extension = ActiveRecallUtility(correct_answer=form.correct_answer.data, user_id=form.user_id.data, quiz_card_relation=create_quiz_card
+                                                          )
 
+            db.session.add(create_quiz_card)
+            db.session.commit()
+            return create_quiz_card.to_dict_after_created()
+        return authorization_errors_to_error_messages("Unauthorized access.")
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
 
