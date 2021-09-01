@@ -72,3 +72,25 @@ body {
     background-color: #7fa0cc;
     cursor: pointer;
 }
+
+/* general error handling */
+.error-group{
+    display: flex;
+    flex-direction: column;
+}
+
+.error-text{
+    margin-top: 20px;
+    font-size: 12px;
+    color: #CD5D7D;
+  }
+
+
+/* required validation messages */
+.required-containers{
+    font-size: 12px;
+    color: #CD5D7D;
+  }
+.required-containers--invisble{
+    opacity: 0;
+}

@@ -54,17 +54,18 @@ const QuizCardDetails = ({singleCardData, editMode=false, quizMetadata, addMode=
     console.log('payload data', payload1)
 
     setErrors([]);
-
     dispatch(createQuizCardThunk(payload1)).then( (data)=>{
-      if(data && data.id && !data.errors){
-        // console.log("first payload returned", data)
-
+      if(data && !data.errors){
         dispatch(getSingleDeckWithCardsByIdThunk(quizMetadata?.id))
         // change this to message banner later
-
         alert("created card Answer Successfully");
-        // change add mode to false
-        setaddModeSingleState(false);
+        setaddModeSingleState(false); //hides this component
+      }
+      else if(data && data.errors){
+        setErrors(data.errors);
+      }
+      else{
+        setErrors(['something went wrong, please try again.'])
       }
     }).catch(async (res) =>{
       console.log("error hit")
@@ -187,7 +188,6 @@ const QuizCardDetails = ({singleCardData, editMode=false, quizMetadata, addMode=
       {/*------------------------ ADD MODE COMPONENT ------------------------*/}
       {addModeSingleState &&
       <div className="single-card-container edit-single-card-container">
-
         <div className="scs__buttons-container">
           {/* when moved to its own component, make sure to update 'tab' to default to 'questions tab' first */}
           <div className={`${tab==='question'? 'scs-bc__tab-button--active': ""} scs-bc__tab-button`} onClick={()=>setTab('question')}>Question</div>
@@ -196,14 +196,11 @@ const QuizCardDetails = ({singleCardData, editMode=false, quizMetadata, addMode=
 
         <div className="scs__content-container">
           <ul ul className="error-group">
-              {errors.map((error, idx) => <li key={idx}>*{error}</li>)}
+              {errors.map((error, idx) => <li className="error-text" key={idx}>*{error}</li>)}
           </ul>
 
           {tab==='question' && <div className="scs-cc__active-recall-container" >
-            <ul className="error-group">
-                {errors.map((error, idx) => <li key={idx}>*{error}</li>)}
-            </ul>
-            <div className="edit-required-containers"> *required </div>
+            {/* <div className="edit-required-containers"> *required </div> */}
             <div className="edit-question"> <span>Question: </span></div>
             {/* <div className="scs-cc-arc__text-area-title"> Update Question Here:</div> */}
             <textarea value={question} onChange={(e)=>setquestionE(e)} className="scs-cc-arc__text-area-content"></textarea>
@@ -212,10 +209,7 @@ const QuizCardDetails = ({singleCardData, editMode=false, quizMetadata, addMode=
 
           {/* these should be their own components later */}
           {tab==='active-recall' && <div className="scs-cc__active-recall-container" >
-            <ul className="error-group">
-                {errors.map((error, idx) => <li key={idx}>*{error}</li>)}
-            </ul>
-            <div className="edit-required-containers"> *required </div>
+            {<div className={`edit-required-containers ${correctAnswer &&'edit-required-containers--invisble'}`}> *required </div>}
             <div className="edit-correct-answer-title"> Current Answer:</div>
             <textarea value={correctAnswer} onChange={(e)=>setCorrectAnswerE(e)} className="recall-correct-answer-textarea"></textarea>
           </div>}
