@@ -215,3 +215,12 @@
   font-size: 20px;
   color: #8F8F8F;
 }
+
+/* -------edit version------- */
+.edit-single-card-container{
+  margin-top: 25px;
+}
+
+.edit-update-save-button{
+  background-color: #b0f1a3;
+}

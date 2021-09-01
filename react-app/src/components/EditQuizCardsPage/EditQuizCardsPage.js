@@ -41,9 +41,10 @@ const EditQuizCardsPage = () => {
 
   return (
     <div className="edit-cards-wrapper">
+
       {single_deck_and_cards && belongs_to_user &&
       <div className="ecw__page">
-       {/* ---header--- */}
+        {/* ---header--- */}
         <div className="ecw-p__header-container">
           <div className="header-container__utilities">
             <div onClick={go_back_to_set} className="vanilla-button-1">
@@ -51,8 +52,6 @@ const EditQuizCardsPage = () => {
               <i className="fas fa-chevron-left return-icon"></i> Return
             </div>
           </div>
-
-
           <div className="header-container__title">
             Currently Editing: <span> {single_deck_and_cards.title} </span>
           </div>
@@ -64,7 +63,7 @@ const EditQuizCardsPage = () => {
 
         {/* ---content--- */}
         <div className="edit-page-cards-view-container">
-          <QuizCardsView allQuizCardsDataArray={getQuizCardsArray} editMode={false} />
+          <QuizCardsView allQuizCardsDataArray={getQuizCardsArray} editMode={true} />
         </div>
 
       </div>}
