@@ -6,30 +6,37 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router';
 
 
-const QuizCardDetails = ({singleCardData, editMode=false}) => {
+const QuizCardDetails = ({singleCardData, editMode=false, addMode=false}) => {
   const history = useHistory();
   const dispatch = useDispatch();
 
   const [tab, setTab] = useState('active-recall')
   const [editModeSingleState, seteditModeSingleState] = useState(editMode)
+  const [addModeSingleState, setaddModeSingleState] = useState(addMode)
   // state for allowAnswer (if active recall answered, allow answer)
 
   // single data properties: card_number, id, question, quiz_template_relation, title, user_relation
   // console.log('single data', singleCardData)
 
-  const [question, setquestion] = useState(singleCardData.question);
+  const [question, setquestion] = useState(singleCardData?.question || '' );
   const [answer, setAnswer] = useState('');
   const [errors, setErrors] = useState([]);
 
   //---- strictly edit ----
   // includes 'question'
-  const [correctAnswer, setCorrectAnswer] = useState(singleCardData.active_recall_utility_answer?.correct_answer);
+  const [correctAnswer, setCorrectAnswer] = useState(singleCardData?.active_recall_utility_answer?.correct_answer || '');
 
+  //---- add ----
+  const [addTab, addSetTab] = useState('question')
 
-  const setAnswerE = (e) => {
-    setAnswer(e.target.value);
-    // console.log("myanswer", answer);
+  const setAnswerE = (e) => setAnswer(e.target.value);
+  const setCorrectAnswerE = (e) => setCorrectAnswer(e.target.value);
+  const setquestionE = (e) => setquestion(e.target.value);
+
+  const add_new_item = ()=>{
+    // attempt to add new item, then dispatch the card_template thunk to grab everything so the main components at the top will re-render
   }
+
 
   const onSaveAnswer = ()=>{
     const payload = {
@@ -39,7 +46,6 @@ const QuizCardDetails = ({singleCardData, editMode=false}) => {
       // quiz_directory_id: user_first_directory_id,
       // user_id,
       // id: current_deck_id
-
     }
     setErrors([]);
     dispatch(setNewActiveRecallAnswer(payload)).then( (data)=>{
@@ -61,7 +67,7 @@ const QuizCardDetails = ({singleCardData, editMode=false}) => {
 
   return (
     <>
-
+      {/*------------------------ VIEW MODE COMPONENT ------------------------*/}
       {!editModeSingleState && singleCardData &&
       <div className="single-card-container">
         {/* logic for tabs: button changes state 'tab' and based on tab, render that one */}
@@ -112,10 +118,7 @@ const QuizCardDetails = ({singleCardData, editMode=false}) => {
           <div className={`${tab==='active-recall'? 'scs-bc__tab-button--active': ""} scs-bc__tab-button`} onClick={()=>setTab('active-recall')}>Active Recall</div>
         </div>
 
-
-
         <div className="scs__content-container">
-
           {tab==='question' && <div className="scs-cc__active-recall-container" >
             <ul className="error-group">
                 {errors.map((error, idx) => <li key={idx}>*{error}</li>)}
@@ -130,7 +133,7 @@ const QuizCardDetails = ({singleCardData, editMode=false}) => {
 
 
           {/* these should be their own components later */}
-          {tab==='active-recall' && <div className="scs-cc__active-recall-container edit-active-recall-container" >
+          {tab==='active-recall' && <div className="scs-cc__active-recall-container" >
             <ul className="error-group">
                 {errors.map((error, idx) => <li key={idx}>*{error}</li>)}
             </ul>
@@ -140,7 +143,6 @@ const QuizCardDetails = ({singleCardData, editMode=false}) => {
               <div onClick={onSaveAnswer} className="scs-cc-arc__save-answer edit-update-save-button"> update answer</div>
             </div>
           </div>}
-
         </div>
       </div>
         // each component will have its own location for errors
@@ -148,8 +150,50 @@ const QuizCardDetails = ({singleCardData, editMode=false}) => {
         // --------tab to edit active recall (answer)
         // update button for each tab.
         // each utility will only have 1 tab (active recall 1 tab where they can update question)
-
       }
+
+      {/*------------------------ ADD MODE COMPONENT ------------------------*/}
+      {addModeSingleState &&
+      <div className="single-card-container edit-single-card-container">
+
+        <div className="scs__buttons-container">
+          {/* when moved to its own component, make sure to update 'tab' to default to 'questions tab' first */}
+          <div className={`${tab==='question'? 'scs-bc__tab-button--active': ""} scs-bc__tab-button`} onClick={()=>setTab('question')}>Question</div>
+          <div className={`${tab==='active-recall'? 'scs-bc__tab-button--active': ""} scs-bc__tab-button`} onClick={()=>setTab('active-recall')}>Active Recall</div>
+        </div>
+
+        <div className="scs__content-container">
+          <ul ul className="error-group">
+              {errors.map((error, idx) => <li key={idx}>*{error}</li>)}
+          </ul>
+
+          {tab==='question' && <div className="scs-cc__active-recall-container" >
+            <ul className="error-group">
+                {errors.map((error, idx) => <li key={idx}>*{error}</li>)}
+            </ul>
+            <div className="edit-required-containers"> *required </div>
+            <div className="edit-question"> <span>Question: </span></div>
+            {/* <div className="scs-cc-arc__text-area-title"> Update Question Here:</div> */}
+            <textarea value={question} onChange={(e)=>setquestionE(e)} className="scs-cc-arc__text-area-content"></textarea>
+          </div>}
+
+
+          {/* these should be their own components later */}
+          {tab==='active-recall' && <div className="scs-cc__active-recall-container" >
+            <ul className="error-group">
+                {errors.map((error, idx) => <li key={idx}>*{error}</li>)}
+            </ul>
+            <div className="edit-required-containers"> *required </div>
+            <div className="edit-correct-answer-title"> Current Answer:</div>
+            <textarea value={correctAnswer} onChange={(e)=>setCorrectAnswerE(e)} className="recall-correct-answer-textarea"></textarea>
+          </div>}
+        </div>
+
+        <div>
+          {/* after adding successfully, reset counter */}
+          <button onClick={()=>console.log("add question + recall")} > Add and Save</button>
+        </div>
+      </div>}
     </>
   )
 }

@@ -285,7 +285,7 @@
 
 /* ---utilities bar--- */
 .qvsp-cw-cc__utilities-bar{
-  width: 58%;
+  width: 725px ;
   z-index: 1;
   display: flex;
   justify-content: space-between;
@@ -305,7 +305,7 @@
 .utilities-bar__settings-button{
   display: flex;
   justify-content: flex-end;
-  margin-right: 10px;
+  /* margin-right: 10px; */
 }
 
 /* ---footer utilities--- */

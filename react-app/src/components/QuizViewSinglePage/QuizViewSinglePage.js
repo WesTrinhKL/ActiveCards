@@ -124,12 +124,8 @@ const QuizViewSinglePage = () => {
         <div className="qvspw-cw__cards-container">
           {/* cards will be mapped here with QuizCardDetails component */}
           <div className="qvsp-cw-cc__utilities-bar">
-            {/* {belongs_to_user &&
-              <div className="utilities-bar__edit-button"> Edit Cards</div>
-            }
-            {belongs_to_user && <i class="fas fa-edit utilities-bar__edit"></i>} */}
             <div className="utilities-bar__view-options">
-            <i class="fas fa-layer-group view-options__layer"></i>
+            {/* <i class="fas fa-layer-group view-options__layer"></i> */}
             </div>
             {belongs_to_user && <div className="utilities-bar__settings-button">
               <EditDropDown for_cards={true} quiz_id={quiz_id}/>

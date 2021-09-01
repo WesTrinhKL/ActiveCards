@@ -2,6 +2,9 @@
   margin-top: 20px;
   display: flex;
   min-width: 725px;
+  justify-content: center;
+}
+.header-edit{
   justify-content: space-between;
 }
 

@@ -65,7 +65,6 @@ const EditQuizCardsPage = () => {
         <div className="edit-page-cards-view-container">
           <QuizCardsView allQuizCardsDataArray={getQuizCardsArray} editMode={true} />
         </div>
-
       </div>}
 
       {/* quiz card view, for plural, get all cards, map each card to the quizcard component */}
