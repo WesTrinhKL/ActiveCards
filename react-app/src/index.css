@@ -43,3 +43,32 @@ body {
     cursor: pointer;
     background-color: #98ACF8;
 }
+
+
+.vanilla-round-button-1{
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    /* border: 1px solid red; */
+    background-color: #A7C5EB;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.24);
+}
+.vanilla-round-button-1:hover{
+    background-color: #7fa0cc;
+    cursor: pointer;
+}
+
+.vanilla-square-button-1{
+    height: 25px;
+    width: 25px;
+    /* border: 1px solid red; */
+    background-color: #A7C5EB;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.24);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.vanilla-square-button-1:hover{
+    background-color: #7fa0cc;
+    cursor: pointer;
+}

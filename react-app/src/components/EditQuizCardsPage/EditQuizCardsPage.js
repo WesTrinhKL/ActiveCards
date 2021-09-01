@@ -55,8 +55,8 @@ const EditQuizCardsPage = () => {
           <div className="header-container__title">
             Currently Editing: <span> {single_deck_and_cards.title} </span>
           </div>
-          <div>
-            Current Visibility: {single_deck_and_cards.is_private? 'private': 'public'}
+          <div className="header-container__sub-title">
+            Current Visibility: <span>{single_deck_and_cards.is_private? 'private': 'public'} </span>
           </div>
         </div>
 

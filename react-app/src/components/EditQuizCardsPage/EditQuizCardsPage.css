@@ -24,6 +24,11 @@
 .header-container__title span{
   color: #CD5D7D;
 }
+.header-container__sub-title span{
+  color: #CD5D7D;
+  text-decoration: underline;
+  cursor: pointer;
+}
 .return-icon{
   padding-top: 3px;
   margin-right: 3px;

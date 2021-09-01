@@ -1,5 +1,8 @@
 .cards-header-container{
   margin-top: 20px;
+  display: flex;
+  min-width: 725px;
+  justify-content: space-between;
 }
 
 .cards-content-container{
@@ -9,4 +12,33 @@
 .chc__title{
   font-size: 26px;
   /* font-weight: bold; */
+}
+
+/* button to add card */
+.edit-add-card-button-container{
+  min-width: 725px;
+  margin-top: 40px;
+  padding-bottom: 45px;
+  display: flex;
+  justify-content: center;
+  position: relative;
+}
+.add-card-button-icon{
+  color: white;
+  display: flex;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+}
+
+.edit-go-to-top-position{
+  position: absolute;
+  right: 2px;
+  top: 10px;
+
+}
+
+.edit-up-icon{
+  color: white;
+  font-weight: bold;
 }

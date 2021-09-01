@@ -61,6 +61,7 @@ const QuizCardDetails = ({singleCardData, editMode=false}) => {
 
   return (
     <>
+
       {!editModeSingleState && singleCardData &&
       <div className="single-card-container">
         {/* logic for tabs: button changes state 'tab' and based on tab, render that one */}
