@@ -5,6 +5,7 @@ from app.api.util.error_handlers import validation_errors_to_error_messages, aut
 from app.forms.quiz_template_form import QuizTemplateForm
 from app.forms.quiz_card_form import QuizCardForm
 from app.forms.active_recall_form import ActiveRecallCreateForm
+from sqlalchemy import desc
 
 quizzes_routes = Blueprint('quizzes', __name__)
 
@@ -49,7 +50,7 @@ def get_all_quizzes():
 # get all quizzes (deck+cards) paginated
 def get_paginated_quizzes(page=1):
     per_page = 30
-    paged_quizzes = QuizTemplate.query.paginate(
+    paged_quizzes = QuizTemplate.query.filter_by(is_private=False).order_by(desc(QuizTemplate.created_at)).paginate(
         page, per_page, error_out=False)
     return {'quizzes': [quizzes.get_quizzes_deck_cover() for quizzes in paged_quizzes.items]}
 

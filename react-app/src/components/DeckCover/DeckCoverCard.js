@@ -1,16 +1,20 @@
-import React ,{useState} from 'react'
+import React ,{useState, useEffect} from 'react'
 import { useParams, useHistory } from 'react-router-dom'
 import './DeckCoverCard.css'
 import { process_date, reduceStringAttachDots, reduceStringIfLongThan } from '../utilities/util';
-
 import Error404Page from '../Error404Page/Error404Page';
 
 // fetch by most recent, public only
 
 
 const DeckCoverCard = ({deckCover}) => {
+  const history = useHistory();
+  const send_to_view_deck = ()=>{
+    history.push(`/view/quizzes/${deckCover.id}`)
+  }
+
   return (
-    <div className="deck-cover-card-wrapper">
+    <div onClick={send_to_view_deck} className="deck-cover-card-wrapper">
       <div className="vanilla-card-cover-container-1 deck-card-container-size">
         <div className="deck-cover-title-container">
           <div className="dctc__title">
