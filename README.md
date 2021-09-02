@@ -1,6 +1,3 @@
-<p align='center'>
-  <img src='./readme-assets/images/hotpotato.png' >
-</p>
 
 # ActiveCards
 ActiveCards is a flashcards based app that allows you to practice learning concepts through active recalling and also the ability to share your cards with others. It is a fullstack React App made with a Redux state manager and a backend using Python, Flask, SQL-Alchemy, and PostgresSQL. 
@@ -63,9 +60,6 @@ General authentication and authorization feature
 ## Contact
 
 ### Wes Trinh
-<a href="#"><img src="./readme-assets/logos/linkedin-logo.png" height="28" align="middle" /></a>
-<a href="https://github.com/WesTrinhKL"><img src="./readme-assets/logos/github-logo.png" height="38" align="middle" /></a>
-
 westrinh00@gmail.com
 
 
