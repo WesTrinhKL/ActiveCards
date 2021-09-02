@@ -32,13 +32,6 @@ ActiveCards is a flashcards based app that allows you to practice learning conce
 General authentication and authorization feature
 
 
-
-<span>
-<img alt="follow" src="./readme-assets/images/follow.png" height=300/>
-<img alt="unfollow" src="./readme-assets/images/following.png" height=300/>
-</span>
-
-
 ## Installation
 
 
