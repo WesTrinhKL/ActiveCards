@@ -36,33 +36,37 @@ const LoginForm = () => {
 
   return (
     <div className="signup-form-container">
-      <form onSubmit={onLogin}>
+      <form className="form-background-sign-up"onSubmit={onLogin}>
+        <h1>Log In</h1>
         <div className="error-group-container">
           {errors.map((error, ind) => (
             <div className="error-text" key={ind}>{error}</div>
           ))}
         </div>
-        <div>
-          <label htmlFor='email'>Email</label>
+        <div className="username-container">
+          <div className="placeholder">Email</div>
           <input
             name='email'
             type='text'
             placeholder='Email'
             value={email}
             onChange={updateEmail}
+            required
           />
         </div>
-        <div>
-          <label htmlFor='password'>Password</label>
+        <div className="password-container">
+          <div className="placeholder">Password</div>
           <input
             name='password'
             type='password'
             placeholder='Password'
             value={password}
             onChange={updatePassword}
+            required
           />
-          <button type='submit'>Login</button>
+
         </div>
+        <button className="signup-button" type='submit'>Login</button>
       </form>
     </div>
 
