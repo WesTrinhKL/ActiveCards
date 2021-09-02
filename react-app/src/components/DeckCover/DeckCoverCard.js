@@ -20,9 +20,9 @@ const DeckCoverCard = ({deckCover}) => {
         </div>
         <div className="deck-cover-metadata-container">
           <div className="dcmc__metadata-content">
-            <div> # of cards: <span>{deckCover.number_of_cards}</span> </div>
-            <div>created: <span>{process_date(deckCover.date_age)}</span> </div>
-            <div>description: <span>{reduceStringIfLongThan(deckCover.description,40,40)}</span></div>
+            <div className="metadata-content__all"> # of cards: <span>{deckCover.number_of_cards}</span> </div>
+            <div className="metadata-content__all">created: <span>{process_date(deckCover.date_age)}</span> </div>
+            <div className="metadata-content__all">description: <span>{reduceStringIfLongThan(deckCover.description,40,40)}</span></div>
           </div>
         </div>
         <div className="deck-cover-author-container">
