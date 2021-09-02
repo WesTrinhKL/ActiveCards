@@ -115,3 +115,12 @@ body {
     /* box-shadow: 0 3px 5px rgba(0, 0, 0, 0.295); */
     cursor: pointer;
 }
+
+
+/* no drop cursor for unavailable services */
+div .no-drop{
+    cursor: no-drop;
+}
+div .no-drop:hover{
+    cursor: no-drop;
+}

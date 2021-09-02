@@ -11,7 +11,7 @@ import { authenticate } from './store/session';
 import Landing from './components/Landing/Landing';
 import EditQuizCardsPage from './components/EditQuizCardsPage/EditQuizCardsPage';
 import QuizViewSinglePage from './components/QuizViewSinglePage/QuizViewSinglePage';
-
+import Error404Page from './components/Error404Page/Error404Page';
 function App() {
   const [loaded, setLoaded] = useState(false);
   const dispatch = useDispatch();
@@ -49,9 +49,12 @@ function App() {
         <ProtectedRoute path='/users/:userId' exact={true} >
           <User />
         </ProtectedRoute>
-        <ProtectedRoute path='/' exact={true} >
+        <Route path='/' exact={true} >
           <Landing/>
-        </ProtectedRoute>
+        </Route>
+        <Route path='*' >
+          <Error404Page/>
+        </Route>
       </Switch>
     </BrowserRouter>
   );

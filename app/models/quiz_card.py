@@ -64,6 +64,16 @@ class QuizCard(db.Model):
             # 'all_users_answer':
         }
 
+    def to_dict_not_logged_in(self):
+        return {
+            'id': self.id,
+            'title': self.title,
+            'card_number': self.card_number,
+            'question': self.question,
+            'quiz_template_id': self.quiz_template_relation.id,
+            'active_recall_utility_answer': [active_recall.to_dict() for active_recall in self.active_recall_relation][0],
+        }
+
     def to_dict_basic_info(self):
         return {
             'id': self.id,

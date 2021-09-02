@@ -89,15 +89,15 @@ export const deleteFormQuizDeckTempThunk = (id) => async(dispatch) =>{
     }
 }
 export const getSingleDeckWithCardsByIdThunk = (id) => async(dispatch) =>{
-  const catchError = error =>{
-    console.log("data error pre processed", error)
-    // console.log("data error json", error)
-  }
+
   const response = await fetch(`/api/quizzes/${id}`);
     if (!response.ok) {
-        catchError(response);
-        await dispatch(GetQuizDeckTempById({"errors":"not found!"}));
-        return ['An server error occurred and your request could not be processed. Please try again.'];
+        const errorObj = await response.json();
+        if (errorObj){
+          console.log(errorObj)
+          return errorObj
+        }
+        return {'errors':'An error occurred. Please try again.'}
     } else {
         const data = await response.json();
         await dispatch(GetQuizDeckTempById(data));

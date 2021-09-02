@@ -26,17 +26,13 @@ const EditQuizCardsPage = () => {
     dispatch(getSingleDeckWithCardsByIdThunk(quiz_id))
   }, [dispatch])
 
-  useEffect(() => {
-    // upon entering page, intially scroll to top once.
-    handleScrollTopUtil()
-  }, [])
 
   const go_back_to_set = ()=>{
     history.push(`/view/quizzes/${quiz_id}`);
   }
 
   // verify that the user_id is the same as the one from the deck being requested in the url, otherwise 404
-  if(single_deck_and_cards_errors || !belongs_to_user){
+  if(!belongs_to_user){
     return (<div>
       404 error, sorry unavailable
     </div>)

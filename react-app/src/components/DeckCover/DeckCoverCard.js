@@ -1,16 +1,18 @@
-import React ,{useState, useEffect} from 'react'
-import { useParams, useHistory } from 'react-router-dom'
+import React from 'react'
+import { useHistory } from 'react-router-dom'
 import './DeckCoverCard.css'
-import { process_date, reduceStringAttachDots, reduceStringIfLongThan } from '../utilities/util';
-import Error404Page from '../Error404Page/Error404Page';
-
-// fetch by most recent, public only
-
+import { process_date, reduceStringIfLongThan } from '../utilities/util';
+import { useSelector } from 'react-redux';
 
 const DeckCoverCard = ({deckCover}) => {
+  const user_id = useSelector((state) => state.session.user?.id);
   const history = useHistory();
+
   const send_to_view_deck = ()=>{
-    history.push(`/view/quizzes/${deckCover.id}`)
+    if(user_id) history.push(`/view/quizzes/${deckCover.id}`)
+    else{
+      history.push(`/sign-up`)
+    }
   }
 
   return (

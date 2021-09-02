@@ -59,9 +59,14 @@ def get_paginated_quizzes(page=1):
 # get a single quiz, if it's private, make sure current user is the correct one, else raise error.
 def get_single_quiz(id):
     quiz = QuizTemplate.query.get(id)
-    quiz = quiz.get_quiz_cards_with_all_relationship()
-    if quiz['is_private'] is False or (quiz['is_private'] is True and current_user.id == quiz['user_id']):
-        return {'quiz': quiz}
+    if quiz.is_private is False and not current_user.is_authenticated:
+        return {'quiz': quiz.get_quiz_for_not_logged_in_users()}
+    if quiz.is_private is False and current_user.is_authenticated:
+        return {'quiz': quiz.get_quiz_cards_with_all_relationship()}
+    if current_user.is_authenticated:
+        if quiz.is_private is True and current_user.id == quiz.user_id:
+            return {'quiz': quiz.get_quiz_cards_with_all_relationship()}
+
     return authorization_errors_to_error_messages("Can't be found!")
     # return {'quiz': quiz.get_quiz_cards_with_all_relationship()}
 

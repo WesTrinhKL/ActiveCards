@@ -14,7 +14,6 @@ const QuizViewSinglePage = () => {
 
   const user_id = useSelector((state) => state.session.user?.id);
   const single_deck_and_cards = useSelector(state=> state.quiz_deck.single_deck_with_cards?.quiz)
-  const single_deck_and_cards_errors= useSelector(state=> state.quiz_deck.single_deck_with_cards?.errors)
 
   const getQuizCardsArray = single_deck_and_cards?.quiz_card_relation;
   const getUserName = single_deck_and_cards?.username;
@@ -28,6 +27,8 @@ const QuizViewSinglePage = () => {
   useEffect(() => {
     dispatch(getSingleDeckWithCardsByIdThunk(quiz_id))
   }, [dispatch])
+
+
 
   // send to edit
   const send_to_edit = (quiz_id)=>{
@@ -43,9 +44,9 @@ const QuizViewSinglePage = () => {
   }
 
   // when recieving error from backend, return 404
-  if (single_deck_and_cards_errors){
+  if (!single_deck_and_cards){
     return (
-      <Error404Page errorMessage={single_deck_and_cards_errors} />
+      <Error404Page errorMessage={"404 Cannot be found"} />
     )
   }
 

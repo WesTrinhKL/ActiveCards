@@ -59,6 +59,16 @@ class QuizTemplate(db.Model):
             'description': self.description
         }
 
+    def get_quiz_for_not_logged_in_users(self):
+        return {
+            'id': self.id,
+            'title': self.title,
+            'is_private': self.is_private,
+            'quiz_card_relation': sorted([card.to_dict_not_logged_in() for card in self.quiz_card_relation], key=lambda i: i['id']),
+            'username': self.user_relation.username,
+            'description': self.description
+        }
+
     def get_age(self):
         old_time = (self.created_at).replace(tzinfo=datetime.timezone.utc)
         most_recent = datetime.datetime.now(datetime.timezone.utc)
