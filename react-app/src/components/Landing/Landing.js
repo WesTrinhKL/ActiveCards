@@ -29,7 +29,7 @@ const Landing = () => {
 
         <div div div className="landing-page__header-container">
           <div className="lp-hc__title">Active Cards</div>
-          <div> description goes here</div>
+          <div  className="lp-hc__description"> Find a set that's right for your study needs, or create your own!  Here's a collection of recent and public sets available</div>
         </div>
 
         <div className="landing-page__content-container">

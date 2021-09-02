@@ -16,8 +16,37 @@
 .deck-cover-title-container{
   width: 80%;
   align-self: center;
+  min-height: 50px;
+  max-height: 50px;
+
+}
+.dctc__title{
+  margin-top: 10px;
+  margin-bottom: 10px;
+  text-align: center;
+
 }
 /* metadata */
+.dcmc__metadata-content{
+  width: 90%;
+  margin:auto;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+
+}
+.deck-cover-metadata-container{
+  display: flex;
+  width: 100%;
+  height: 100px;
+  margin: auto;
+  background-color: #e5f1ff;
+}
+.dcmc__metadata-content span{
+  color: #cd5d7dc0;
+  font-weight: 680;
+  font-size: 15px;
+}
 
 
 /* author */

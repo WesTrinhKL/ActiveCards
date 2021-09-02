@@ -1,3 +1,4 @@
+/* --------wrapper-------- */
 .landing-page-wrapper{
   height: 100vh;
   width: 100%;
@@ -24,10 +25,14 @@
   font-size: 36px;
   font-weight: bold;
   color: #98ACF8;
-
+}
+.lp-hc__description{
+  text-align: center;
+  margin-top: 25px;
+  font-size: 18px;
 }
 
-/* content cards*/
+/* --------content cards--------*/
 .landing-page__content-container{
   display: flex;
   max-width: 1200px;
@@ -36,7 +41,7 @@
 }
 
 
-/* load more button */
+/* --------load more button-------- */
 .landing-page__load-more-container{
   width: 200px;
   height: 70px;
@@ -71,7 +76,7 @@
 }
 
 
-/* footer */
+/* --------footer-------- */
 .landing-page__footer-container{
   margin-top: 50px;
 }
