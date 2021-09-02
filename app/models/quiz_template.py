@@ -36,6 +36,11 @@ class QuizTemplate(db.Model):
             return current_user.id == self.user_id
         return False
 
+    def get_age(self):
+        old_time = (self.created_at).replace(tzinfo=datetime.timezone.utc)
+        most_recent = datetime.datetime.now(datetime.timezone.utc)
+        return get_age_for_two_dates(old_time, most_recent)
+
     def to_dict(self):
         return {
             'id': self.id,
@@ -44,6 +49,7 @@ class QuizTemplate(db.Model):
             'is_private': self.is_private,
             'user_relation': self.user_relation.to_dict(),
             'directory_relation': self.directory_relation.to_dict_without_user(),
+            'date_age': self.get_age(),
         }
 
     def get_quiz_cards_with_all_relationship(self):
@@ -56,7 +62,9 @@ class QuizTemplate(db.Model):
             # 'user_active_recall_answer_relation': sorted([utility.to_dict() for utility in self.user_active_recall_answer_relation], key=lambda i: i['steps']),
             'user_id': self.user_id,
             'username': self.user_relation.username,
-            'description': self.description
+            'description': self.description,
+            'date_age': self.get_age(),
+
         }
 
     def get_quiz_for_not_logged_in_users(self):
@@ -66,13 +74,9 @@ class QuizTemplate(db.Model):
             'is_private': self.is_private,
             'quiz_card_relation': sorted([card.to_dict_not_logged_in() for card in self.quiz_card_relation], key=lambda i: i['id']),
             'username': self.user_relation.username,
-            'description': self.description
+            'description': self.description,
+            'date_age': self.get_age(),
         }
-
-    def get_age(self):
-        old_time = (self.created_at).replace(tzinfo=datetime.timezone.utc)
-        most_recent = datetime.datetime.now(datetime.timezone.utc)
-        return get_age_for_two_dates(old_time, most_recent)
 
     def get_quizzes_deck_cover(self):
         return {

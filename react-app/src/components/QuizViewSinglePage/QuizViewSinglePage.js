@@ -6,6 +6,7 @@ import { getSingleDeckWithCardsByIdThunk } from '../../store/quiz_deck';
 import Error404Page from '../Error404Page/Error404Page';
 import EditDropDown from '../DropDownComponent/EditDropDown';
 import QuizCardsView from './QuizCardsView';
+import { process_date } from '../utilities/util';
 
 const QuizViewSinglePage = () => {
   const dispatch = useDispatch();
@@ -91,7 +92,7 @@ const QuizViewSinglePage = () => {
               <div className="details-container">
                 <div className="td-d__amount-answered"> number of questions: <span> {quiz_length}</span> </div>
                 <div className="td-d__current-state"> current status: <span> {single_deck_and_cards.is_private ? "private" : "public"}</span> </div>
-                <div className="td-d__created-ago">created: <span>3 months ago </span> </div>
+                <div className="td-d__created-ago">created: <span>{process_date(single_deck_and_cards.date_age)}</span> </div>
               </div>
 
             </div>
@@ -99,7 +100,7 @@ const QuizViewSinglePage = () => {
               <div className="td-u__utilities-title"> Extensions </div>
               <div className="td-u__utilities-container">
                 <div className="td-u-uc__one"> Active Recall </div>
-                <div className="td-u-uc__two"> Asnwers </div>
+                <div className="td-u-uc__two"> Answers </div>
                 {/* <div className="td-u-uc__three"> Flash Cards </div> */}
               </div>
 
@@ -107,7 +108,7 @@ const QuizViewSinglePage = () => {
             <div className="template-data__author">
               <div className="td-a__author-container" >
                 <i className="fas fa-user-circle td-a-ac__profile-icon"></i>
-                <div className="td-a-ac__created-by"> created by:  <span>{getUserName}</span> </div>
+                <div className="td-a-ac__created-by"> created by:  <span  className="no-drop">{getUserName}</span> </div>
               </div>
             </div>
           </div>
@@ -116,9 +117,9 @@ const QuizViewSinglePage = () => {
           <div className="settings-and-icon-container">
             <div className="settings-and-icon">
               {/* <i class="far fa-star sai__star"></i> */}
-              <i class="fas fa-star sai__star--selected"></i>
+              <i class="fas fa-star sai__star--selected no-drop"></i>
               {!belongs_to_user && <i class="fas fa-plus sai__plus"></i>}
-              <i class="fas fa-share sai__share"></i>
+              <i class="fas fa-share sai__share no-drop"></i>
               {belongs_to_user && <div>
                 <EditDropDown for_banner={true} quiz_id={quiz_id}/>
               </div>}

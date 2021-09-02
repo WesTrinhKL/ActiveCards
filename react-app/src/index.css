@@ -124,3 +124,9 @@ div .no-drop{
 div .no-drop:hover{
     cursor: no-drop;
 }
+div span .no-drop{
+    cursor: no-drop;
+}
+div span .no-drop:hover{
+    cursor: no-drop;
+}

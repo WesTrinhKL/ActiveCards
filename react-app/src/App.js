@@ -37,9 +37,9 @@ function App() {
         <Route path='/sign-up' exact={true}>
           <SignUpForm />
         </Route>
-        <Route path='/view/quizzes/:quiz_id' exact={true}>
+        <ProtectedRoute path='/view/quizzes/:quiz_id' exact={true}>
           <QuizViewSinglePage />
-        </Route>
+        </ProtectedRoute>
         <ProtectedRoute path='/users' exact={true} >
           <UsersList/>
         </ProtectedRoute>

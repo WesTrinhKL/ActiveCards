@@ -138,8 +138,8 @@ export const QuizDeckForm = ({editModeOn, quiz_id}) => {
               <label className="pic_switch">
                 Select Directory:
               </label>
-              <div className="quiz-deck-form-select-directory">
-                <div className="qdfsd__container">
+              <div className="quiz-deck-form-select-directory no-drop">
+                <div className="qdfsd__container no-drop">
                   <i class="fas fa-folder directory-icon"></i>
                   <div className="qdfsd-c__change-directory"> <span className="selected-workspace-name"> Workspace/ </span> <span className="selected-directory-name">Home</span></div>
                 </div>

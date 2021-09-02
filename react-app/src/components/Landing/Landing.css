@@ -1,6 +1,6 @@
 /* --------wrapper-------- */
 .landing-page-wrapper{
-  height: 100vh;
+  height: 90vh;
   width: 100%;
 }
 
@@ -78,5 +78,50 @@
 
 /* --------footer-------- */
 .landing-page__footer-container{
-  margin-top: 50px;
+
+
+}
+.plug-icon{
+  color: white;
+  font-size: 50px;
+
+}
+.plug{
+  color: white;
+
+  background-color: rgba(0, 0, 0, 0.719);
+  width: 100%;
+
+  height: 5vh;
+  position:absolute;
+  bottom:0;
+  margin:auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
+.plug-content{
+  display: flex;
+  justify-content: center;
+
+}
+
+.plug-made-by{
+  font-size: 14px;
+}
+
+.plug-link{
+  text-decoration: none;
+  color: white;
+  font-weight: bold;
+  font-size: 20px;
+}
+.plug-link:hover{
+  color: rgb(150, 150, 150);
+}
+.plug-wrapper{
+  display: flex;
+  flex-direction: column;
+  padding: 5px;
 }
