@@ -134,7 +134,7 @@ export const QuizDeckForm = ({editModeOn, quiz_id}) => {
             </div>
 
             {/* Select a directory */}
-            <div className="privacy-input-container">
+            {/* <div className="privacy-input-container">
               <label className="pic_switch">
                 Select Directory:
               </label>
@@ -144,9 +144,8 @@ export const QuizDeckForm = ({editModeOn, quiz_id}) => {
                   <div className="qdfsd-c__change-directory"> <span className="selected-workspace-name"> Workspace/ </span> <span className="selected-directory-name">Home</span></div>
                 </div>
 
-                {/* <div>current folder: Home(default) </div> */}
               </div>
-            </div>
+            </div> */}
 
           </div>
 

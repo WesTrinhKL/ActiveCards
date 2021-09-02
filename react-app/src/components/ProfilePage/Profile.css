@@ -21,10 +21,10 @@
   flex-direction: column;
   align-items: center;
 }
-.lp-hc__title{
+.lp-hc__title--profile{
   font-size: 36px;
   font-weight: bold;
-  color: #98ACF8;
+  color: #cd5d7dc0;
 }
 .lp-hc__description{
   text-align: center;

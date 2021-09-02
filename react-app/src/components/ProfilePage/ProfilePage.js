@@ -27,7 +27,7 @@ const ProfilePage = () => {
       <div className="lpw__landing-page">
 
         <div div div className="landing-page__header-container">
-          <div className="lp-hc__title">Your Sets</div>
+          <div className="lp-hc__title--profile">Your Sets</div>
           <div  className="lp-hc__description"> List of all sets that you own</div>
         </div>
 
