@@ -21,7 +21,7 @@ const EditDropDown = ({quiz_id, for_cards=false, for_banner=false}) => {
           </div>
 
           <div className="ellipse-navbar-content">
-            <div className="unc__item no-drop"><i class="fas fa-folder basic-style-icon no-drop"></i>Change Folder</div>
+            {/* <div className="unc__item no-drop"><i class="fas fa-folder basic-style-icon no-drop"></i>Change Folder</div> */}
             <QuizDeckFormModal quiz_id={quiz_id} editModeOn={true}/>
             <div className="unc_hr-container">
               <hr className="unc_hr" />

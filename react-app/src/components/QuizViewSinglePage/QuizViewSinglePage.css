@@ -230,12 +230,12 @@
   color: #98ACF8;
   font-size: 14px;
   margin-left: 5px;
-  cursor: pointer;
+  /* cursor: pointer; */
   font-weight: bold;
 }
-.td-a-ac__created-by span:hover{
+/* .td-a-ac__created-by span:hover{
   text-decoration: underline;
-}
+} */
 
 /* -------settings and icons--------- */
 .settings-and-icon{
