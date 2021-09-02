@@ -1,18 +1,20 @@
 import React ,{useEffect, useState} from 'react'
-import { useParams } from 'react-router-dom'
+import { useParams, useHistory } from 'react-router-dom'
 import './QuizViewSinglePage.css'
 import { useDispatch, useSelector } from 'react-redux';
 import { getSingleDeckWithCardsByIdThunk } from '../../store/quiz_deck';
 import Error404Page from '../Error404Page/Error404Page';
 import EditDropDown from '../DropDownComponent/EditDropDown';
 import QuizCardsView from './QuizCardsView';
+import { process_date } from '../utilities/util';
 
 const QuizViewSinglePage = () => {
   const dispatch = useDispatch();
-  const user_id = useSelector((state) => state.session.user?.id);
   const {quiz_id} = useParams();
+  const history = useHistory();
+
+  const user_id = useSelector((state) => state.session.user?.id);
   const single_deck_and_cards = useSelector(state=> state.quiz_deck.single_deck_with_cards?.quiz)
-  const single_deck_and_cards_errors= useSelector(state=> state.quiz_deck.single_deck_with_cards?.errors)
 
   const getQuizCardsArray = single_deck_and_cards?.quiz_card_relation;
   const getUserName = single_deck_and_cards?.username;
@@ -27,6 +29,13 @@ const QuizViewSinglePage = () => {
     dispatch(getSingleDeckWithCardsByIdThunk(quiz_id))
   }, [dispatch])
 
+
+
+  // send to edit
+  const send_to_edit = (quiz_id)=>{
+    history.push(`/edit/quizzes/${quiz_id}`)
+  }
+
   // count logic for preview question
   const setcountE = (count_result) => {
     const total_cards = getQuizCardsArray.length - 1;
@@ -36,9 +45,9 @@ const QuizViewSinglePage = () => {
   }
 
   // when recieving error from backend, return 404
-  if (single_deck_and_cards_errors){
+  if (!single_deck_and_cards){
     return (
-      <Error404Page errorMessage={single_deck_and_cards_errors} />
+      <Error404Page errorMessage={"404 Cannot be found"} />
     )
   }
 
@@ -81,9 +90,9 @@ const QuizViewSinglePage = () => {
             <div className="template-data__details">
               <div className="td-d__details-title"> Details </div>
               <div className="details-container">
-                <div className="td-d__amount-answered"> you've answered: <span> 0/{quiz_length}</span> </div>
+                <div className="td-d__amount-answered"> number of questions: <span> {quiz_length}</span> </div>
                 <div className="td-d__current-state"> current status: <span> {single_deck_and_cards.is_private ? "private" : "public"}</span> </div>
-                <div className="td-d__created-ago">created: <span>3 months ago </span> </div>
+                <div className="td-d__created-ago">created: <span>{process_date(single_deck_and_cards.date_age)}</span> </div>
               </div>
 
             </div>
@@ -91,15 +100,15 @@ const QuizViewSinglePage = () => {
               <div className="td-u__utilities-title"> Extensions </div>
               <div className="td-u__utilities-container">
                 <div className="td-u-uc__one"> Active Recall </div>
-                <div className="td-u-uc__two"> Multiple Choice </div>
-                <div className="td-u-uc__three"> Flash Cards </div>
+                <div className="td-u-uc__two"> Answers </div>
+                {/* <div className="td-u-uc__three"> Flash Cards </div> */}
               </div>
 
             </div>
             <div className="template-data__author">
               <div className="td-a__author-container" >
                 <i className="fas fa-user-circle td-a-ac__profile-icon"></i>
-                <div className="td-a-ac__created-by"> created by:  <span>{getUserName}</span> </div>
+                <div className="td-a-ac__created-by"> created by:  <span  className="no-drop">{getUserName}</span> </div>
               </div>
             </div>
           </div>
@@ -108,9 +117,9 @@ const QuizViewSinglePage = () => {
           <div className="settings-and-icon-container">
             <div className="settings-and-icon">
               {/* <i class="far fa-star sai__star"></i> */}
-              <i class="fas fa-star sai__star--selected"></i>
+              <i class="fas fa-star sai__star--selected no-drop"></i>
               {!belongs_to_user && <i class="fas fa-plus sai__plus"></i>}
-              <i class="fas fa-share sai__share"></i>
+              <i class="fas fa-share sai__share no-drop"></i>
               {belongs_to_user && <div>
                 <EditDropDown for_banner={true} quiz_id={quiz_id}/>
               </div>}
@@ -136,7 +145,7 @@ const QuizViewSinglePage = () => {
           <QuizCardsView allQuizCardsDataArray={getQuizCardsArray}/>
 
           {belongs_to_user && <div className="add-card-container">
-            <div className="qvsp-cw-cc__edit-button"> add / edit cards </div>
+            <div onClick={()=>send_to_edit(quiz_id)} className="qvsp-cw-cc__edit-button vanilla-button-1 vanilla-button-1--color"> add / edit cards </div>
           </div>}
         </div>
 

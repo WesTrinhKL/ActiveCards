@@ -26,8 +26,8 @@
 }
 .header-container__sub-title span{
   color: #CD5D7D;
-  text-decoration: underline;
-  cursor: pointer;
+  /* text-decoration: underline; */
+  /* cursor: pointer; */
 }
 .return-icon{
   padding-top: 3px;

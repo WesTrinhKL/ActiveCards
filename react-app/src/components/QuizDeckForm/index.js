@@ -6,7 +6,7 @@ import './CreateDeckButton.css';
 import { deleteFormQuizDeckTempThunk } from '../../store/quiz_deck';
 import { useDispatch } from 'react-redux';
 
-const QuizDeckFormModal = ({editModeOn, deleteModeOn, quiz_id}) => {
+const QuizDeckFormModal = ({editModeOn, deleteModeOn, quiz_id, fromEditPageButton}) => {
 
   const [errors, setErrors] = useState([])
   const [showModal, setShowModal] = useState(false);
@@ -36,8 +36,13 @@ const QuizDeckFormModal = ({editModeOn, deleteModeOn, quiz_id}) => {
   const instantCloseHandlerDeleteErrors = () => {
     setErrors([]);
     setShowModal(false);
-
   }
+
+  // display modal from editpagebutton when clicked
+  // if (fromEditPageButton){
+  //   setEditStateOn(true)
+  //   setShowModal(true);
+  // }
 
   return (
     <>

@@ -41,10 +41,10 @@ const NavBar = () => {
 
         {/* search + all buttons and their state */}
         <div className={user ?  "nc-l__middle--loggedin": "nc-l__middle"}>
-          <div className="nc-lm__search-container">
+          {/* <div className="nc-lm__search-container">
             <i class="fas fa-search navbar-search-icon"></i>
             <input className="navbar-search-input"type="text" placeholder="Search " />
-          </div>
+          </div> */}
         </div>
 
         <div className="nc-l__user-utilities" >

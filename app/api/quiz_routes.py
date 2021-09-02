@@ -5,6 +5,7 @@ from app.api.util.error_handlers import validation_errors_to_error_messages, aut
 from app.forms.quiz_template_form import QuizTemplateForm
 from app.forms.quiz_card_form import QuizCardForm
 from app.forms.active_recall_form import ActiveRecallCreateForm
+from sqlalchemy import desc
 
 quizzes_routes = Blueprint('quizzes', __name__)
 
@@ -47,20 +48,25 @@ def get_all_quizzes():
 
 @ quizzes_routes.route('/page/<int:page>', methods=['GET'])
 # get all quizzes (deck+cards) paginated
-def get_paginated_quizzes(page):
+def get_paginated_quizzes(page=1):
     per_page = 30
-    paged_quizzes = QuizTemplate.query.paginate(
+    paged_quizzes = QuizTemplate.query.filter_by(is_private=False).order_by(desc(QuizTemplate.created_at)).paginate(
         page, per_page, error_out=False)
-    return {'quizzes': [quizzes.get_quiz_cards_with_all_relationship() for quizzes in paged_quizzes]}
+    return {'quizzes': [quizzes.get_quizzes_deck_cover() for quizzes in paged_quizzes.items]}
 
 
 @ quizzes_routes.route('/<int:id>', methods=['GET'])
 # get a single quiz, if it's private, make sure current user is the correct one, else raise error.
 def get_single_quiz(id):
     quiz = QuizTemplate.query.get(id)
-    quiz = quiz.get_quiz_cards_with_all_relationship()
-    if quiz['is_private'] is False or (quiz['is_private'] is True and current_user.id == quiz['user_id']):
-        return {'quiz': quiz}
+    if quiz.is_private is False and not current_user.is_authenticated:
+        return {'quiz': quiz.get_quiz_for_not_logged_in_users()}
+    if quiz.is_private is False and current_user.is_authenticated:
+        return {'quiz': quiz.get_quiz_cards_with_all_relationship()}
+    if current_user.is_authenticated:
+        if quiz.is_private is True and current_user.id == quiz.user_id:
+            return {'quiz': quiz.get_quiz_cards_with_all_relationship()}
+
     return authorization_errors_to_error_messages("Can't be found!")
     # return {'quiz': quiz.get_quiz_cards_with_all_relationship()}
 
@@ -179,9 +185,16 @@ def update_quiz_card_edit_delete(id):
                 quiz_by_id.question = form.question.data
                 quiz_by_id.card_number = form.card_number.data
                 quiz_by_id.quiz_template_id = form.quiz_template_id.data
+
+                active_recall_to_update = ActiveRecallUtility.query.filter_by(
+                    quiz_card_id=id).first()
+                active_recall_to_update.correct_answer = form.correct_answer.data
+
                 db.session.add(quiz_by_id)
+                db.session.add(active_recall_to_update)
                 db.session.commit()
                 return quiz_by_id.to_dict()
+            return authorization_errors_to_error_messages("Unauthorized access.")
 
     elif request.method == 'DELETE':
         card_to_delete = QuizCard.query.get(id)
