@@ -1,7 +1,13 @@
 import React from 'react'
+import { useHistory } from 'react-router';
 
 import { NavLink } from 'react-router-dom';
 const ProfileDropDown= ({defaultavatar, LogoutButton, user}) => {
+
+  const history = useHistory();
+  const go_to_workspace = ()=>{
+    history.push('/users')
+  }
   return (
     <div>
       <div className="user-navbar-container">
@@ -14,8 +20,8 @@ const ProfileDropDown= ({defaultavatar, LogoutButton, user}) => {
           </div>
 
           <div className="user-navbar-content">
-            <div className="unc__item"><i class="fas fa-home home-icon"></i>Workspace</div>
-            <div className="unc__item no-drop"><i class="fas fa-cog settings-icon no-drop"></i>Settings</div>
+            <div onClick={go_to_workspace} className="unc__item"><i class="fas fa-home home-icon"></i>Workspace</div>
+            {/* <div className="unc__item no-drop"><i class="fas fa-cog settings-icon no-drop"></i>Settings</div> */}
             <div className="unc_hr-container">
               <hr className="unc_hr" />
             </div>

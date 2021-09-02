@@ -57,11 +57,11 @@ const QuizViewSinglePage = () => {
       {/* template header */}
       {single_deck_and_cards?.quiz_card_relation && <div className="qvspw__header-wrapper">
         {single_deck_and_cards && <div className="qvspw-hw__title"> {single_deck_and_cards.title} </div>}
-        <div className="qvspw-hw__categories-wrapper" >
+        {/* <div className="qvspw-hw__categories-wrapper" >
           {temp_categories.map(category => (
               <div className="qvspw-hw__categeories"> <span>{category}</span> </div>
           ))}
-        </div>
+        </div> */}
       </div>}
 
       {/* deck metadata + preview questions grid*/}
@@ -108,7 +108,7 @@ const QuizViewSinglePage = () => {
             <div className="template-data__author">
               <div className="td-a__author-container" >
                 <i className="fas fa-user-circle td-a-ac__profile-icon"></i>
-                <div className="td-a-ac__created-by"> created by:  <span  className="no-drop">{getUserName}</span> </div>
+                <div className="td-a-ac__created-by"> created by:  <span>{getUserName}</span> </div>
               </div>
             </div>
           </div>
@@ -117,9 +117,9 @@ const QuizViewSinglePage = () => {
           <div className="settings-and-icon-container">
             <div className="settings-and-icon">
               {/* <i class="far fa-star sai__star"></i> */}
-              <i class="fas fa-star sai__star--selected no-drop"></i>
-              {!belongs_to_user && <i class="fas fa-plus sai__plus"></i>}
-              <i class="fas fa-share sai__share no-drop"></i>
+              {/* <i class="fas fa-star sai__star--selected no-drop"></i> */}
+              {/* {!belongs_to_user && <i class="fas fa-plus sai__plus"></i>} */}
+              {/* <i class="fas fa-share sai__share no-drop"></i> */}
               {belongs_to_user && <div>
                 <EditDropDown for_banner={true} quiz_id={quiz_id}/>
               </div>}
