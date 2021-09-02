@@ -45,7 +45,7 @@ const Landing = () => {
 
       </div>
 
-      <div className="plug">
+      <div className="plug-item">
           <div className="plug-content">
             <i className="plug-icon fab fa-github-alt"></i>
               <div className="plug-wrapper">

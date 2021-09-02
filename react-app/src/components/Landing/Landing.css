@@ -1,7 +1,8 @@
 /* --------wrapper-------- */
 .landing-page-wrapper{
-  height: 90vh;
+  height: 100vh;
   width: 100%;
+  /* background-color: red; */
 }
 
 .lpw__landing-page{
@@ -87,7 +88,7 @@
 
 
 }
-.plug{
+.plug-item{
   color: white;
   background-color: #C8D9EB;
   width: 100%;
@@ -96,7 +97,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 105px;
+  margin-top: 125px;
 
 }
 .plug-content{
