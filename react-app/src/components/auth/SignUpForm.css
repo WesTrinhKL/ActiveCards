@@ -1,0 +1,82 @@
+.signup-form-container{
+  /* position: relative; */
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 90vh;
+
+}
+.form-background-sign-up{
+  display: flex;
+  flex-direction: column;
+  background-color: #d0e6ff;
+  align-items: center;
+  /* position: absolute; */
+  padding: 65px 40px;
+  border-radius: 3px;
+  /* top: 0; */
+  width: 30%;
+  border-bottom: 1px solid rgb(201, 201, 201);
+  border-right: 1px solid rgb(201, 201, 201);
+  box-shadow: 0 1px 2px rgba(0,0,0,0.24);
+}
+
+.redirect-signin{
+  border-style: none;
+  background-color: white;
+  padding-top: 10px;
+  /* margin-top: 10px; */
+  font-size: 12px;
+}
+
+.signup-button{
+  padding: 3px 5px;
+  width: 250px;
+  background-color: rgb(18, 143, 220);
+  border-style: none;
+  border-radius: 2px;
+  margin-top: 15px;
+  color: white;
+  font-size: 12px;
+  font-weight: bold;
+  height: 30px;
+}
+.signup-button:hover{
+  cursor: pointer;
+  box-shadow:0 4px 7px rgba(0,0,0,0.22);
+}
+
+.username-container, input{
+  width: 250px;
+}
+
+.username-container, .password-container{
+  margin: 8px;
+}
+
+.username-container input, .password-container input{
+  padding: 10px;
+  border: none;
+  border-radius: 4px;
+}
+.username-container input:focus, .password-container input:focus{
+
+    outline: none;
+}
+
+.placeholder{
+  font-size: small;
+  color: rgb(61, 61, 61)
+}
+/*
+.error-group{
+  margin-bottom: 15px;
+  margin-top:5px;
+  color: rgb(230, 63, 63);
+  width: 250px;
+  font-size: small;
+  text-align: center;
+} */

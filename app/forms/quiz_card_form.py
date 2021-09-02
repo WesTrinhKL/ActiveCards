@@ -13,6 +13,7 @@ def check_card_number_is_valid(form, field):
 
 
 def quiz_template_belongs_to_user(form, field):
+    # field is itself.
     quiz_template_id = field.data
     quiz_template = QuizTemplate.query.get(quiz_template_id)
     if not quiz_template.template_belongs_to_current_user():

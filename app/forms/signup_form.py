@@ -1,6 +1,6 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField
-from wtforms.validators import DataRequired, Email, ValidationError
+from wtforms import StringField, PasswordField
+from wtforms.validators import DataRequired, Email, ValidationError, EqualTo
 from app.models import User
 
 
@@ -22,8 +22,19 @@ def username_exists(form, field):
 # when users sign up we create a directory for them.
 
 
+def user_has_email(form, field):
+    email = field.data
+    user = User.query.filter(User.email == email).first()
+    if user:
+        raise ValidationError("Email is already taken")
+
+
 class SignUpForm(FlaskForm):
     username = StringField(
         'username', validators=[DataRequired(), username_exists])
-    email = StringField('email', validators=[DataRequired(), user_exists])
-    password = StringField('password', validators=[DataRequired()])
+    email = StringField('email', validators=[
+                        DataRequired(), Email(), user_has_email])
+    password = StringField('password', validators=[DataRequired(), EqualTo(
+        'repeatPassword', message="Passwords Requires Matching")])
+
+    repeatPassword = PasswordField()

@@ -45,7 +45,7 @@ const QuizViewSinglePage = () => {
   }
 
   // when recieving error from backend, return 404
-  if (!single_deck_and_cards){
+  if (single_deck_and_cards && single_deck_and_cards.errors){
     return (
       <Error404Page errorMessage={"404 Cannot be found"} />
     )

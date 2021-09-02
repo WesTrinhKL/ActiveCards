@@ -27,9 +27,9 @@ class QuizTemplate(db.Model):
         'QuizCard', back_populates='quiz_template_relation', cascade="all, delete-orphan")
 
     created_at = db.Column(db.DateTime, nullable=False,
-                           default=datetime.datetime.now(datetime.timezone.utc))
+                           default=datetime.datetime.utcnow)
     updated_at = db.Column(db.DateTime, nullable=False,
-                           default=datetime.datetime.now(datetime.timezone.utc))
+                           default=datetime.datetime.utcnow)
 
     def template_belongs_to_current_user(self):
         if current_user.is_authenticated:
