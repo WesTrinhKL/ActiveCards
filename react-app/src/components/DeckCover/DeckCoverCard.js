@@ -1,16 +1,17 @@
-import React ,{useEffect, useState} from 'react'
+import React ,{useState} from 'react'
 import { useParams, useHistory } from 'react-router-dom'
-import './QuizViewSinglePage.css'
-import { useDispatch, useSelector } from 'react-redux';
-import { getSingleDeckWithCardsByIdThunk } from '../../store/quiz_deck';
+import './DeckCoverCard.css'
+
 import Error404Page from '../Error404Page/Error404Page';
-import EditDropDown from '../DropDownComponent/EditDropDown';
-import QuizCardsView from './QuizCardsView';
 
-const DeckCoverCard = () => {
+
+
+const DeckCoverCard = ({deckCover}) => {
   return (
-    <div>
-
+    <div className="deck-cover-card-wrapper">
+      <div className="vanilla-card-cover-container-1 deck-card-container-size">
+        testing
+      </div>
     </div>
   )
 }

@@ -1,0 +1,12 @@
+.deck-cover-card-wrapper{
+  /* display: flex; */
+
+}
+
+
+/* card content */
+.deck-card-container-size{
+  width: 280px;
+  height: 280px;
+  margin: 10px;
+}

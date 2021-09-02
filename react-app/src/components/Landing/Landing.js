@@ -1,17 +1,42 @@
-import React from 'react'
+import React, {useState, useEffect}from 'react'
 import './Landing.css'
+import DeckCoverCard from '../DeckCover/DeckCoverCard'
+import { useDispatch, useSelector } from 'react-redux';
+import { useHistory } from 'react-router-dom';
+import { getAllDeckCoversPaginatedThunk } from '../../store/quiz_deck'
+import { getSingleDeckWithCardsByIdThunk } from '../../store/quiz_deck';
 
 const Landing = () => {
+
+  const dispatch = useDispatch();
+  const history = useHistory();
+
+  const [currentPage, setcurrentPage] = useState(1)
+
+  const user_id = useSelector((state) => state.session.user?.id);
+  const all_decks_cover_paginated= useSelector(state=> state.quiz_deck.all_deck_covers_paginated?.quizzes)
+  const belongs_to_user = user_id === all_decks_cover_paginated?.user_id;
+
+
+  useEffect(() => {
+    dispatch(getAllDeckCoversPaginatedThunk(currentPage))
+  }, [dispatch])
+
+  console.log("decks", all_decks_cover_paginated)
   return (
     <div className="landing-page-wrapper">
       <div className="lpw__landing-page">
 
-      <div className="landing-page__header-container">
-        <div className="lp-hc__title">
-          Active Cards
+        <div div div className="landing-page__header-container">
+          <div className="lp-hc__title">Active Cards</div>
+          <div> description goes here</div>
         </div>
-      </div>
-      <div className="landing-page__content-container">cards go here </div>
+        <div className="landing-page__content-container">
+          {all_decks_cover_paginated && all_decks_cover_paginated.map((deckCover) => (
+            < DeckCoverCard deckCover={deckCover} />
+          ))}
+        </div>
+
       </div>
 
       <div className="landing-page__footer-container">footer goes here </div>

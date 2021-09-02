@@ -6,6 +6,7 @@ const GET_SINGLE_QUIZ_DECK_TEMPLATE_WITH_CARDS = 'quizdeck/get/single-with-all-c
 // to add: get all deck (just template) for given directory
 // to add: get all deck (just template) for a given user
 const GET_ALL_QUIZ_DECK_TEMPLATE_FOR_GIVEN_USER = 'quizdeck/get/all-templatesonly-for-user'
+const GET_PAGINATED_DECK_COVER_DETAILS = 'quizdeck/get/deckcovers-paginated'
 
 const CREATE_RECALL_ANSWER_FOR_USER_ON_CARD = 'api/quizzes/active-recall/answer'
 
@@ -30,6 +31,10 @@ const GetQuizDeckTempById = (payload) => ({
 
 const GetAllTemplatesBelongToUser = (payload) => ({
   type: GET_ALL_QUIZ_DECK_TEMPLATE_FOR_GIVEN_USER,
+  payload,
+});
+const getPaginatedDeckCover = (payload) => ({
+  type: GET_PAGINATED_DECK_COVER_DETAILS,
   payload,
 });
 
@@ -110,6 +115,22 @@ export const getAllDecksForGivenUserIdThunk = (user_id) => async(dispatch) =>{
     }
 }
 
+export const getAllDeckCoversPaginatedThunk = (page) => async(dispatch) =>{
+  const response = await fetch(`/api/quizzes/page/${page}`);
+
+    if (!response.ok) {
+      const errorObj = await response.json();
+      if (errorObj){
+        return errorObj
+      }
+      return {'errors':'An error occurred. Please try again.'}
+    } else {
+        const data = await response.json();
+        await dispatch(getPaginatedDeckCover(data));
+        return data;
+    }
+}
+
 
 export const setNewActiveRecallAnswer = (payload) => async (dispatch) => {
   const response = await fetch(`/api/quizzes/active-recall/answer`, {
@@ -135,6 +156,9 @@ const initialState = {
   single_deck_with_cards: null,
   all_templates_belong_to_user: null,
   createdActiveRecallAnswer: null,
+
+  all_deck_covers_paginated: null,  // 'quizzes': [{},...]
+
 };
 export default function reducer (state=initialState, action){
   let newState = {...state};
@@ -158,6 +182,10 @@ export default function reducer (state=initialState, action){
     }
     case GET_ALL_QUIZ_DECK_TEMPLATE_FOR_GIVEN_USER:{
       newState.all_templates_belong_to_user = action.payload;
+      return newState;
+    }
+    case GET_PAGINATED_DECK_COVER_DETAILS:{
+      newState.all_deck_covers_paginated = action.payload;
       return newState;
     }
     case CREATE_RECALL_ANSWER_FOR_USER_ON_CARD:{
