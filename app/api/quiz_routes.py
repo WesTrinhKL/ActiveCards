@@ -51,7 +51,7 @@ def get_paginated_quizzes(page=1):
     per_page = 30
     paged_quizzes = QuizTemplate.query.paginate(
         page, per_page, error_out=False)
-    return {'quizzes': [quizzes.get_quiz_cards_with_all_relationship() for quizzes in paged_quizzes.items]}
+    return {'quizzes': [quizzes.get_quizzes_deck_cover() for quizzes in paged_quizzes.items]}
 
 
 @ quizzes_routes.route('/<int:id>', methods=['GET'])

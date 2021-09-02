@@ -1,15 +1,9 @@
 import React from 'react'
 import './ViewPreviousAnswers.css';
+import { process_date } from '../utilities/util';
 
 const ViewPreviousAnswers = ({previousAnswers}) => {
 
-  const process_date = ({difference_months,difference_days,difference_hours,difference_minutes}) =>{
-      if (difference_months > 0) return `${difference_months} months ago`
-      if (difference_days > 0) return `${difference_days} days ago`
-      if (difference_hours > 0) return `${difference_hours} hours ago`
-      if (difference_minutes > 0) return `${difference_minutes} minutes ago`
-      return `seconds ago`
-  }
 
   console.log("user prev answers:", previousAnswers)
   return (

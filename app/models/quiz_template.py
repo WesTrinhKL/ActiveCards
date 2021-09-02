@@ -2,6 +2,7 @@ import flask_login
 from .db import db
 from flask_login import current_user
 import datetime
+from app.models.utils import get_age_for_two_dates
 
 
 class QuizTemplate(db.Model):
@@ -50,10 +51,27 @@ class QuizTemplate(db.Model):
             'id': self.id,
             'title': self.title,
             'is_private': self.is_private,
-            # 'quiz_card_relation': sorted([card.to_dict() for card in self.quiz_card_relation], key=lambda i: i['id']),
+            'quiz_card_relation': sorted([card.to_dict() for card in self.quiz_card_relation], key=lambda i: i['id']),
             # example of sorting a diction by the key of age ---> sorted(lis, key = lambda i: i['age'])
             # 'user_active_recall_answer_relation': sorted([utility.to_dict() for utility in self.user_active_recall_answer_relation], key=lambda i: i['steps']),
             'user_id': self.user_id,
             'username': self.user_relation.username,
             'description': self.description
+        }
+
+    def get_age(self):
+        old_time = (self.created_at).replace(tzinfo=datetime.timezone.utc)
+        most_recent = datetime.datetime.now(datetime.timezone.utc)
+        return get_age_for_two_dates(old_time, most_recent)
+
+    def get_quizzes_deck_cover(self):
+        return {
+            'id': self.id,
+            'title': self.title,
+            'is_private': self.is_private,
+            'user_id': self.user_id,
+            'username': self.user_relation.username,
+            'description': self.description,
+            'number_of_cards': len(self.quiz_card_relation),
+            'date_age': self.get_age(),
         }
