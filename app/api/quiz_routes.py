@@ -35,7 +35,7 @@ def protect_private_templates(template_func):
 def get_all_templates(id):
     # if current_user.id is not id --> give 404 or unauthorized
     all_templates = QuizTemplate.query.filter_by(user_id=id).all()
-    return {'quiz_template_only': [template.to_dict() for template in all_templates]}
+    return {'quiz_template_only': [template.get_quizzes_deck_cover() for template in all_templates]}
 
 
 @ quizzes_routes.route('/', methods=['GET'])

@@ -12,6 +12,7 @@ import Landing from './components/Landing/Landing';
 import EditQuizCardsPage from './components/EditQuizCardsPage/EditQuizCardsPage';
 import QuizViewSinglePage from './components/QuizViewSinglePage/QuizViewSinglePage';
 import Error404Page from './components/Error404Page/Error404Page';
+import ProfilePage from './components/ProfilePage/ProfilePage';
 function App() {
   const [loaded, setLoaded] = useState(false);
   const dispatch = useDispatch();
@@ -41,7 +42,7 @@ function App() {
           <QuizViewSinglePage />
         </ProtectedRoute>
         <ProtectedRoute path='/users' exact={true} >
-          <UsersList/>
+          <ProfilePage/>
         </ProtectedRoute>
         <ProtectedRoute path='/edit/quizzes/:quiz_id' exact={true} >
           <EditQuizCardsPage/>
