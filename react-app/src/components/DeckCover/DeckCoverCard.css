@@ -1,12 +1,51 @@
 .deck-cover-card-wrapper{
-  /* display: flex; */
+
 
 }
-
-
-/* card content */
 .deck-card-container-size{
   width: 280px;
   height: 280px;
   margin: 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ----card cover content---- */
+
+/* title */
+.deck-cover-title-container{
+  width: 80%;
+  align-self: center;
+}
+/* metadata */
+
+
+/* author */
+.deck-cover-author-container{
+  display: flex;
+  margin-top: auto;
+  align-self: center;
+  padding-bottom: 10px;
+}
+.dcac__created-by{
+  margin-left: 10px;
+  display: flex;
+  align-items: center;
+  padding-bottom: 1px;
+  color: rgb(153, 153, 153);
+  font-size: 14px;
+}
+.dcac__created-by span{
+  color: #98ACF8;
+  font-size: 14px;
+  margin-left: 5px;
+  font-weight: bold;
+}
+.dcac__profile-icon{
+  font-size: 20px;
+  color: #d2d5da;
+  /* padding-top: 10px; */
+  /* margin-left: 25px; */
+  display: flex;
+  align-items: center;
 }

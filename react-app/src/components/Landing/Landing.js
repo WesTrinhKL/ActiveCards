@@ -31,11 +31,17 @@ const Landing = () => {
           <div className="lp-hc__title">Active Cards</div>
           <div> description goes here</div>
         </div>
+
         <div className="landing-page__content-container">
           {all_decks_cover_paginated && all_decks_cover_paginated.map((deckCover) => (
             < DeckCoverCard deckCover={deckCover} />
           ))}
         </div>
+
+        <div className="landing-page__load-more-container">
+          <div className="lmc__load-more-button">Load More</div>
+        </div>
+
 
       </div>
 
