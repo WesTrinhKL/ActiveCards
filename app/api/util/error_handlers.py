@@ -8,8 +8,8 @@ def validation_errors_to_error_messages(validation_errors):
 
 
 def authorization_errors_to_error_messages(message="unauthorized user"):
-    return {'errors': message}, 401
+    return {'errors': [message]}, 401
 
 
 def input_errors_to_error_messages(message="incorrect input"):
-    return {'errors': message}, 401
+    return {'errors': [message]}, 401

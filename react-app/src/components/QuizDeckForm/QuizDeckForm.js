@@ -98,11 +98,10 @@ export const QuizDeckForm = ({editModeOn, quiz_id}) => {
       <form onSubmit={onFormSubmit}>
 
         <div className="qdfc__header"> {editModeOn? 'Edit': 'Create'} Your Deck</div>
-          <div className="error-group-container">
             <ul className="error-group">
                 {errors.map((error, idx) => <li className="error-text" key={idx}>*{error}</li>)}
             </ul>
-          </div>
+
 
           {/* required inputs */}
           <div className="title-input-container">

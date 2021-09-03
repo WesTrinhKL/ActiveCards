@@ -161,8 +161,8 @@ def create_quiz_card_item():
             create_quiz_card.quiz_template_id = form.quiz_template_id.data
             create_quiz_card.card_number = form.card_number.data
             # create active recall utility and attach here
-            active_recall_extension = ActiveRecallUtility(correct_answer=form.correct_answer.data, user_id=form.user_id.data, quiz_card_relation=create_quiz_card
-                                                          )
+            active_recall_extension = ActiveRecallUtility(
+                correct_answer=form.correct_answer.data, user_id=form.user_id.data, quiz_card_relation=create_quiz_card)
 
             db.session.add(create_quiz_card)
             db.session.commit()
@@ -217,7 +217,7 @@ def create_answer_for_user():
     form['csrf_token'].data = request.cookies['csrf_token']
     # categories in future
     if form.validate_on_submit():
-        if ActiveRecallUtility.active_recall_quiz_is_public(form.active_recall_utility_id.data):
+        if ActiveRecallUtility.active_recall_quiz_is_public_or_user_owns(form.active_recall_utility_id.data):
             create_answer_for_active_recall = UserActiveRecallAnswer()
             create_answer_for_active_recall.user_id = current_user.id
             create_answer_for_active_recall.user_active_answer = form.user_active_answer.data
@@ -227,5 +227,5 @@ def create_answer_for_user():
             db.session.add(create_answer_for_active_recall)
             db.session.commit()
             return create_answer_for_active_recall.to_dict()
-        return authorization_errors_to_error_messages("Sorry, what you're looking for can't be found")
+        return authorization_errors_to_error_messages("Sorry, this is not accessible")
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401

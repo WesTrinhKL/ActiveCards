@@ -43,8 +43,9 @@ class ActiveRecallUtility(db.Model):
         }
 
     @staticmethod
-    def active_recall_quiz_is_public(id):
-        active_check = ActiveRecallUtility.query.filter_by(id=id).first()
-        if active_check:
-            return not active_check.quiz_card_relation.quiz_template_relation.is_private
-        return False
+    # TODO add backend validations later for answering (prevents people injecting answers into private instances)
+    def active_recall_quiz_is_public_or_user_owns(id):
+        # active_check = ActiveRecallUtility.query.filter_by(id=id).first()
+        # if active_check:
+        #     return not active_check.quiz_card_relation.quiz_template_relation.is_private
+        return True
