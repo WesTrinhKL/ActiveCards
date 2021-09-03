@@ -8,7 +8,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 10;
+  z-index: 1001;
 
 }
 
@@ -20,6 +20,7 @@
   bottom: 0;
   background-color: rgba(0, 0, 0, 0.801);
 
+
 }
 
 #modal-content {
@@ -27,6 +28,7 @@
   background-color:white;
   border-radius: 8px;
   min-width: fit-content;
+
 }
 
 .modal-verify{

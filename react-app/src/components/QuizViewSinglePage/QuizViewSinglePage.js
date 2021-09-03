@@ -74,7 +74,7 @@ const QuizViewSinglePage = () => {
           <div className="qvspw-tc__preview-sliders-container">
             <div className="preview-sliders-container__elements">
               <i onClick={()=>setcountE(count-1)} class="fas fa-arrow-left psc-e__left-arrow"></i>
-              <div className="psc-e__count"> {count+1}/{quiz_length}</div>
+              <div className="psc-e__count"> {quiz_length?count+1:0} / {quiz_length}</div>
               <i onClick={()=>setcountE(count+1)} class="fas fa-arrow-right psc-e__right-arrow"></i>
             </div>
           </div>
@@ -130,6 +130,7 @@ const QuizViewSinglePage = () => {
 
       {/* cards container */}
       {getQuizCardsArray && <div className="qvspw__cards-wrapper">
+
         <div className="qvspw-cw__cards-container">
           {/* cards will be mapped here with QuizCardDetails component */}
           <div className="qvsp-cw-cc__utilities-bar">

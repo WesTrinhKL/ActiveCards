@@ -11,8 +11,15 @@
 body {
     padding-top: 60px;
     background-color: #fffcfc;
+    background-color: #faf4ef;
+    /* background-color: #f8fcff; */
+    /* background-color: #fcf0f09f; */
+    /* background-color: #F7D59C; */
+    /* background-color: #F4DFD0; */
+    /* background-color: #F8E2CF; */
     /* background-color: rgb(243, 245, 246); */
     /* min-height: 100vh; */
+    height: 100%;
 }
 
 /* .container-app{
@@ -35,7 +42,7 @@ body {
     display: flex;
     justify-content: center;
     margin-top: 5px;
-    margin-right: 25px;
+    /* margin-right: 25px; */
 
 }
 .vanilla-button-1{

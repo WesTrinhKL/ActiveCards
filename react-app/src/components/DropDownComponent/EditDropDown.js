@@ -40,7 +40,7 @@ const EditDropDown = ({quiz_id, for_cards=false, for_banner=false}) => {
 
           <div className="ellipse-navbar-content">
             {<div className="unc__item" onClick={() => send_to_edit(quiz_id)}><i className="fas fa-edit basic-style-icon"></i>Edit Cards</div>}
-            {<div className="unc__item" onClick={() => send_to_edit(quiz_id)}><i className="fas fa-plus basic-style-icon"></i> <span>Add Card</span> </div>}
+            {/* {<div className="unc__item" onClick={() => send_to_edit(quiz_id)}><i className="fas fa-plus basic-style-icon"></i> <span>Add Card</span> </div>} */}
             {/* <div className="unc__item"><i class="fas fa-folder basic-style-icon"></i>Change Folder</div> */}
 
 

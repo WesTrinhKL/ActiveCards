@@ -84,9 +84,13 @@
   /* background-color: #fffcfc; */
   /* background-color: #cbdafa; */
   /* background-color: #C8D9EB; */
-  background-color: #ECF2F9;
+
   /* background-color: #f3f0f0; */
   /* background-color: #DEEDF0; */
+  /* background-color: #ECF2F9;
+  background-color: #f8fcff; */
+  background-color: #faf4ef;
+
   padding-top: 70px;
   /* padding-bottom: 50px; */
 }
@@ -107,6 +111,7 @@
   border-bottom: 1px solid rgb(201, 201, 201);
   border-right: 1px solid rgb(201, 201, 201);
   border-radius: 5px;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.24);
   /* height: 50%; */
 }
 
@@ -236,6 +241,10 @@
 /* .td-a-ac__created-by span:hover{
   text-decoration: underline;
 } */
+.hr-view-page{
+  width: 10%;
+  margin: auto;
+}
 
 /* -------settings and icons--------- */
 .settings-and-icon{
@@ -265,7 +274,8 @@
 /* -------------Quiz Cards Component----------- */
 .qvspw__cards-wrapper{
   /* wrapper's width is 100% */
-  /* background-color:rgb(249, 253, 255); */
+  background-color: #faf4ef;
+  height: 50vh;
 }
 
 .qvspw-cw__cards-container{

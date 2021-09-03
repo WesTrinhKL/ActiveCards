@@ -42,18 +42,18 @@ const Landing = () => {
           {/* <div className="lmc__load-more-button">Load More</div> */}
         </div>
 
-
       </div>
 
       <div className="plug-item">
-          <div className="plug-content">
-            <i className="plug-icon fab fa-github-alt"></i>
-              <div className="plug-wrapper">
-              <div className="plug-made-by">Made By: </div>
-                <a className="plug-link" target="_blank" rel="noopener noreferrer" href="https://github.com/WesTrinhKL/ActiveCards">Wes Trinh <i className="fas fa-external-link-alt"></i></a>
-            </div>
+        <div className="plug-content">
+          <i className="plug-icon fab fa-github-alt"></i>
+          <div className="plug-wrapper">
+            <div className="plug-made-by">Made By: </div>
+              <a className="plug-link" target="_blank" rel="noopener noreferrer" href="https://github.com/WesTrinhKL/ActiveCards">Wes Trinh <i className="fas fa-external-link-alt"></i></a>
           </div>
         </div>
+      </div>
+
       </div>
 
   )

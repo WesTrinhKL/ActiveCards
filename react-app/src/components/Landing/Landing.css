@@ -1,6 +1,6 @@
 /* --------wrapper-------- */
 .landing-page-wrapper{
-  height: 100vh;
+  min-height: 100%;
   width: 100%;
   /* background-color: red; */
 }
@@ -97,7 +97,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 125px;
+  /* margin-top: 125px; */
 
 }
 .plug-content{

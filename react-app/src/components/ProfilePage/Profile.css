@@ -1,17 +1,4 @@
 /* --------wrapper-------- */
-.landing-page-wrapper{
-  height: 90vh;
-  width: 100%;
-}
-
-.lpw__landing-page{
-  width: 80%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin: auto;
-  min-height: 90%;
-}
 
 /* --------header------- */
 .landing-page__header-container{

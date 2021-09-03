@@ -169,7 +169,7 @@ const QuizCardDetails = ({singleCardData, editMode=false, quizMetadata, addMode=
             <div className="scs-cc-ac__author-title"> Author's Answer:</div>
             <div className="scs-cc-ac__author-answer">{singleCardData.active_recall_utility_answer?.correct_answer}</div>
             <div className="scs-cc-ac__icons-view">
-              <div className="scs-cc-ac-iv__view-others"> VIEW OTHERS</div>
+              {/* <div className="scs-cc-ac-iv__view-others"> VIEW OTHERS</div> */}
               {/* <div className="scs-cc-ac-iv__icons-container"> <i className="fas fa-thumbs-up thumbs-up-card-answer"></i></div> */}
             </div>
           </div>}

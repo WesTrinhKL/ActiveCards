@@ -15,6 +15,7 @@
   min-height: 55vh;
   padding: 50px;
   /* background-color: white; */
+  z-index: 1001;
 }
 .quiz-deck-form-title{
   outline: none;
