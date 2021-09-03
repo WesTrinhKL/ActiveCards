@@ -305,6 +305,8 @@
   align-items: center;
   margin-top: 61px;
   margin-bottom: 1px;
+  margin-right: 18px;
+  position: absolute;
 }
 
 .utilities-bar__view-options{
