@@ -51,12 +51,17 @@ export const setFormQuizDeckTemp = (payload) => async (dispatch) => {
     body: JSON.stringify(payload),
   });
 
-  if (response.ok) {
-      const payload = await response.json();
-      await dispatch(createQuizDeckTemp(payload));
-      return payload;
+  if (!response.ok) {
+    const errorObj = await response.json();
+    if (errorObj){
+      console.log(errorObj)
+      return errorObj
+    }
+    return {'errors':'An error occurred. Please try again.'}
   } else {
-      return ['An error occurred. Cannot create. Please try again.']
+    const payload = await response.json();
+    await dispatch(createQuizDeckTemp(payload));
+    return payload;
   }
 }
 
@@ -66,12 +71,17 @@ export const updateFormQuizDeckTempThunk = (payload) => async(dispatch) =>{
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(payload)
   });
-    if (response.ok) {
-        const payload = await response.json();
-        await dispatch(updateQuizDeckTemp(payload));
-        return payload;
+    if (!response.ok) {
+      const errorObj = await response.json();
+      if (errorObj){
+        console.log(errorObj)
+        return errorObj
+      }
+      return {'errors':'An error occurred. Please try again.'}
     } else {
-        return ['An error occurred. Please try again.'];
+      const payload = await response.json();
+      await dispatch(updateQuizDeckTemp(payload));
+      return payload;
     }
 }
 
@@ -80,12 +90,17 @@ export const deleteFormQuizDeckTempThunk = (id) => async(dispatch) =>{
     method: 'DELETE',
 
   });
-    if (response.ok) {
+    if (!response.ok) {
+      const errorObj = await response.json();
+      if (errorObj){
+        console.log(errorObj)
+        return errorObj
+      }
+      return {'errors':'An error occurred. Please try again.'}
+    } else {
         const data = await response.json();
         await dispatch(deleteQuizDeckTemp(data));
         return data;
-    } else {
-        return {'error': ['An error occurred. Cannot delete, please try again later.']}
     }
 }
 export const getSingleDeckWithCardsByIdThunk = (id) => async(dispatch) =>{
@@ -106,12 +121,17 @@ export const getSingleDeckWithCardsByIdThunk = (id) => async(dispatch) =>{
 }
 export const getAllDecksForGivenUserIdThunk = (user_id) => async(dispatch) =>{
   const response = await fetch(`/api/quizzes/templates/users/${user_id}`);
-    if (response.ok) {
-        const data = await response.json();
-        await dispatch(GetAllTemplatesBelongToUser(data));
-        return data;
+    if (!response.ok) {
+      const errorObj = await response.json();
+      if (errorObj){
+        console.log(errorObj)
+        return errorObj
+      }
+      return {'errors':'An error occurred. Please try again.'}
     } else {
-        return ['An server error occurred and your request could not be processed. Please try again.'];
+      const data = await response.json();
+      await dispatch(GetAllTemplatesBelongToUser(data));
+      return data;
     }
 }
 
@@ -139,12 +159,16 @@ export const setNewActiveRecallAnswer = (payload) => async (dispatch) => {
     body: JSON.stringify(payload),
   });
 
-  if (response.ok) {
-      const payload = await response.json();
-      await dispatch(createRecallAnswerForUser(payload));
-      return payload;
+  if (!response.ok) {
+    const errorObj = await response.json();
+    if (errorObj){
+      return errorObj
+    }
+    return {'errors':'An error occurred. Please try again.'}
   } else {
-      return ['An error occurred. Cannot create answer. Please try again.']
+    const payload = await response.json();
+    await dispatch(createRecallAnswerForUser(payload));
+    return payload;
   }
 }
 

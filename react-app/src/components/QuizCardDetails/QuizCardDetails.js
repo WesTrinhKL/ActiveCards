@@ -150,6 +150,12 @@ const QuizCardDetails = ({singleCardData, editMode=false, quizMetadata, addMode=
          // history.push(`/view/quizzes/${data.id}`);
         // window.location.reload();
       }
+      else if(data && data.errors){
+        setErrors(data.errors);
+      }
+      else{
+        setErrors(['something went wrong, please try again.'])
+      }
     }).catch(async (res) =>{
       console.log("error hit")
       const data = res
@@ -180,6 +186,10 @@ const QuizCardDetails = ({singleCardData, editMode=false, quizMetadata, addMode=
           {tab==='active-recall' && <div className="scs-cc__active-recall-container" >
             {/* in each tab, we'll have a button to add extension. Once clicked, you can select an extension from the collapsible on the right. Adding an extension will then add the component for that extension in the list that will be mapped. for each extension in extensions, render template and pass in extension data (or make individual extension components*/}
             {/* active-recall content */}
+
+            <ul className="error-group">
+                {errors.map((error, idx) => <li className="error-text" key={idx}>*{error}</li>)}
+            </ul>
             <div className="scs-cc-arc__text-area-title"> Enter Answer Here:</div>
             <textarea value={answer} onChange={(e)=>setAnswerE(e)} className="scs-cc-arc__text-area-content"></textarea>
             <div className="scs-cc-arc__save-prev-container">
