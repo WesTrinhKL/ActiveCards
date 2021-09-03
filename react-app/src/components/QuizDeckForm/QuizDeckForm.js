@@ -55,8 +55,15 @@ export const QuizDeckForm = ({editModeOn, quiz_id}) => {
         dispatch(updateFormQuizDeckTempThunk(payload)).then( (data)=>{
           if(data && data.id){
             console.log("time to reload", data)
-            history.push(`/view/quizzes/${data.id}`);
+            // history.push(`/view/quizzes/${data.id}`);
+            alert("updated successfully!");
             window.location.reload();
+          }
+          else if(data && data.errors){
+            setErrors(data.errors);
+          }
+          else{
+            setErrors(['something went wrong, please try again.'])
           }
         }).catch(async (res) =>{
           console.log("error hit")
@@ -68,8 +75,14 @@ export const QuizDeckForm = ({editModeOn, quiz_id}) => {
         dispatch(setFormQuizDeckTemp(payload)).then( (data)=>{
           if(data && data.id){
             console.log("time to reload", data)
-            history.push(`/view/quizzes/${data.id}`);
+            history.push(`/edit/quizzes/${data.id}`);
             window.location.reload();
+          }
+          else if(data && data.errors){
+            setErrors(data.errors);
+          }
+          else{
+            setErrors(['something went wrong, please try again.'])
           }
         }).catch(async (res) =>{
           console.log("error hit")
@@ -85,9 +98,11 @@ export const QuizDeckForm = ({editModeOn, quiz_id}) => {
       <form onSubmit={onFormSubmit}>
 
         <div className="qdfc__header"> {editModeOn? 'Edit': 'Create'} Your Deck</div>
-          <ul className="error-group">
-              {errors.map((error, idx) => <li key={idx}>*{error}</li>)}
-          </ul>
+          <div className="error-group-container">
+            <ul className="error-group">
+                {errors.map((error, idx) => <li className="error-text" key={idx}>*{error}</li>)}
+            </ul>
+          </div>
 
           {/* required inputs */}
           <div className="title-input-container">

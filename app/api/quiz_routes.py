@@ -112,7 +112,7 @@ def create_quiz_template():
 
 @ quizzes_routes.route('/<int:id>', methods=['PUT', 'DELETE'])
 @ login_required
-def create_quiz_template_edit_delete(id):
+def quiz_template_edit_delete(id):
     form = QuizTemplateForm()
     form['csrf_token'].data = request.cookies['csrf_token']
     if request.method == 'PUT':

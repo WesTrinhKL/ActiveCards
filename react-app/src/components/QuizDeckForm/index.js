@@ -5,6 +5,7 @@ import { QuizDeckForm } from './QuizDeckForm';
 import './CreateDeckButton.css';
 import { deleteFormQuizDeckTempThunk } from '../../store/quiz_deck';
 import { useDispatch } from 'react-redux';
+import { useHistory } from 'react-router';
 
 const QuizDeckFormModal = ({editModeOn, deleteModeOn, quiz_id, fromEditPageButton}) => {
 
@@ -15,6 +16,7 @@ const QuizDeckFormModal = ({editModeOn, deleteModeOn, quiz_id, fromEditPageButto
   const [deleteStateOn, setdeleteStateOn] = useState(deleteModeOn)
 
   const dispatch = useDispatch()
+  const history = useHistory()
 
   const setCreateFormModal = () => {
     setEditStateOn(false);
@@ -27,10 +29,11 @@ const QuizDeckFormModal = ({editModeOn, deleteModeOn, quiz_id, fromEditPageButto
 
     if (data?.error) setErrors(data.error)
     else{
-      setShowModal(false);
-      // or wherever they deleted the item from
       setErrors([]);
-      window.location.reload();
+      setShowModal(false);
+      alert("deleted successfully!");
+      history.push('/')
+
     }
   }
   const instantCloseHandlerDeleteErrors = () => {

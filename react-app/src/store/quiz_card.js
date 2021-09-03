@@ -84,7 +84,7 @@ export const updateQuizCardThunk = (payload) => async(dispatch) =>{
     }
 }
 
-export const deleteFormQuizDeckTempThunk = (id) => async(dispatch) =>{
+export const deleteFormQuizCardTempThunk = (id) => async(dispatch) =>{
   const response = await fetch(`/api/quizzes/cards/${id}`, {
     method: 'DELETE',
   });

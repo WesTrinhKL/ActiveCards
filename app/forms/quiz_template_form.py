@@ -29,7 +29,7 @@ class ListField(Field):
 
 class QuizTemplateForm(FlaskForm):
     title = StringField(validators=[DataRequired(), Length(max=255)])
-    description = StringField()
+    description = StringField(validators=[Length(max=1000)])
 
     # ensure user_id input belongs to user
     user_id = IntegerField(

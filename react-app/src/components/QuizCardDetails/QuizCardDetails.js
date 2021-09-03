@@ -4,12 +4,13 @@ import ViewPreviousModal from '../ViewPreviousModal'
 import { setNewActiveRecallAnswer } from '../../store/quiz_deck'
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router';
-import { createQuizCardThunk, updateQuizCardThunk } from '../../store/quiz_card';
+import { createQuizCardThunk, updateQuizCardThunk, deleteFormQuizCardTempThunk} from '../../store/quiz_card';
 import { getSingleDeckWithCardsByIdThunk } from '../../store/quiz_deck';
+import CardDeleteModal from '../CardDeleteModal';
 
 const QuizCardDetails = ({singleCardData, editMode=false, quizMetadata, addMode=false}) => {
   console.log("metadata for quiz deck", singleCardData)
-  console.log("metadata for quiz deck", singleCardData?.active_recall_utility_answer?.correct_answer)
+  // console.log("metadata for quiz deck", singleCardData?.active_recall_utility_answer?.correct_answer)
 
   const user_id = useSelector((state) => state.session.user?.id);
   const history = useHistory();
@@ -106,7 +107,32 @@ const QuizCardDetails = ({singleCardData, editMode=false, quizMetadata, addMode=
       if(data && data.errors) setErrors(data.errors);
     })
   }
-
+  // ----delete card-----
+  const delete_card_in_edit = () => {
+      setErrors([]);
+      dispatch(deleteFormQuizCardTempThunk(singleCardData?.id)).then( (data)=>{
+        if(data && !data.errors){
+          alert("deleted card successfully!");
+          // dispatch(getSingleDeckWithCardsByIdThunk(singleCardData?.quiz_template_id))
+          history.push('/temp');
+          history.goBack();
+          console.log("deleted card 1")
+        }
+        else if(data && data.errors){
+          setErrors(data.errors);
+        }
+        else{
+          setErrors(['something went wrong, please try again.'])
+        }
+      }).catch(async (res) =>{
+        console.log("error hit")
+        const data = res
+        if(data && data.errors) setErrors(data.errors);
+        else{
+          setErrors(['something went wrong, please try again.'])
+        }
+      })
+  }
   // ----saving answers in the view-----
   const onSaveAnswer = ()=>{
     const payload = {
@@ -184,6 +210,7 @@ const QuizCardDetails = ({singleCardData, editMode=false, quizMetadata, addMode=
         <div className="scs__buttons-container">
           <div className={`${tab==='question'? 'scs-bc__tab-button--active': ""} scs-bc__tab-button`} onClick={()=>setTab('question')}>Question</div>
           <div className={`${tab==='active-recall'? 'scs-bc__tab-button--active': ""} scs-bc__tab-button`} onClick={()=>setTab('active-recall')}>Active Recall</div>
+          <CardDeleteModal delete_card_set={delete_card_in_edit}/>
         </div>
 
         <div className="scs__content-container">

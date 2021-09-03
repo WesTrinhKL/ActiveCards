@@ -28,6 +28,20 @@
   background-color: white;
 }
 
+.scs-bc__delete-card{
+  color: #8F8F8F;
+  margin-left: auto;
+  margin-top: auto;
+  margin-bottom: auto;
+  padding: 10px;
+  margin-right: 10px;
+}
+.scs-bc__delete-card:hover{
+  background-color: #ebc0cc;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
 .single-card-container{
   /* min-width: 50vw;
   max-width: 50vw;
