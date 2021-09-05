@@ -11,7 +11,7 @@ const ViewPreviousModal = ({previousAnswers}) => {
   const [verifyClose, setVerifyClose] = useState(false);
   return (
     <>
-      <div onClick={() => setShowModal(true)}>VIEW YOUR ANSWERS </div>
+      <div className="scs-cc-arc__previous-answers" onClick={() => setShowModal(true)}>VIEW YOUR ANSWERS </div>
 
       {showModal && (
         <Modal onClose={() => setShowModal(false)} >

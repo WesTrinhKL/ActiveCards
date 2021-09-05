@@ -193,7 +193,7 @@ const QuizCardDetails = ({singleCardData, editMode=false, quizMetadata, addMode=
             <div className="scs-cc-arc__text-area-title"> Enter Answer Here:</div>
             <textarea value={answer} onChange={(e)=>setAnswerE(e)} className="scs-cc-arc__text-area-content"></textarea>
             <div className="scs-cc-arc__save-prev-container">
-              <div className="scs-cc-arc__previous-answers"> <ViewPreviousModal previousAnswers={singleCardData.current_user_answers}/> </div>
+              <div className=""> <ViewPreviousModal previousAnswers={singleCardData.current_user_answers}/> </div>
               <div onClick={onSaveAnswer} className="scs-cc-arc__save-answer"> save answer</div>
             </div>
           </div>}
