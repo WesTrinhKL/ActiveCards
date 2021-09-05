@@ -70,7 +70,7 @@ const QuizDeckFormModal = ({editModeOn, deleteModeOn, quiz_id, fromEditPageButto
           {/* delete confirm modal */}
           {deleteStateOn &&
             <div className="delete-confirm-wrapper">
-              <div className="delete-text"> Are you sure you want to <span>delete</span>? This includes <span> all your cards</span></div>
+              <div className="delete-text"> Are you sure you want to <span>delete</span>? This includes <span> all your cards in this set</span></div>
 
               <div>
               {/* add a general error component later */}

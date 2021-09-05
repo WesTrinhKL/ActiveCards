@@ -8,7 +8,7 @@ const ViewPreviousAnswers = ({previousAnswers}) => {
   console.log("user prev answers:", previousAnswers)
   return (
     <div className="view-previous-container">
-      <div className="vpc__previous-answers-content"> Your Previous Answers</div>
+      <div className="vpc__previous-answers-content"> Your Previous Answers <span>(only visible to you)</span> </div>
       <div className="vpc__wrapper">
         <div className="vpc__all-comments-container">
           {previousAnswers && previousAnswers.map(answer=>(<>

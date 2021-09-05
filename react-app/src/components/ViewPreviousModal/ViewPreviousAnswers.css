@@ -17,6 +17,10 @@
   color: #CD5D7D;
   font-weight: bold;
 }
+.vpc__previous-answers-content span{
+  font-size: 14px;
+  color: rgb(196, 196, 196);
+}
 
 /* comments component*/
 .vpc__all-comments-container{

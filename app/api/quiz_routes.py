@@ -81,8 +81,6 @@ def get_single_card(id):
 
 
 # ---------------QuizTemplate CRUD Routes-----------------
-
-
 @ quizzes_routes.route('/', methods=['POST'])
 @ login_required
 def create_quiz_template():

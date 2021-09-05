@@ -284,7 +284,7 @@ const QuizCardDetails = ({singleCardData, editMode=false, quizMetadata, addMode=
           {/* active-recall edit extension */}
           {tab==='active-recall' && <div className="scs-cc__active-recall-container" >
             {<div className={`edit-required-containers ${correctAnswer &&'edit-required-containers--invisble'}`}> *required </div>}
-            <div className="edit-correct-answer-title"> Current Answer:</div>
+            <div className="edit-correct-answer-title"> Author's (your) Answer:</div>
             <textarea value={correctAnswer} onChange={(e)=>setCorrectAnswerE(e)} className="recall-correct-answer-textarea"></textarea>
           </div>}
         </div>
