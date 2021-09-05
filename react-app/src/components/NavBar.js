@@ -1,6 +1,6 @@
 
 import React, {useState} from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useHistory } from 'react-router-dom';
 import LogoutButton from './auth/LogoutButton';
 import './NavBar.css'
 import { useSelector, useDispatch } from 'react-redux';
@@ -15,12 +15,19 @@ const NavBar = () => {
   const [errors, setErrors] = useState([]);
 
   const dispatch = useDispatch();
+  const history = useHistory();
 
   const demo = async () => {
     const data = await dispatch(login('demo@aa.io', 'password'));
     if (data) {
       setErrors(data);
     }
+  }
+
+  const goToHome = () =>{
+    history.push('/');
+    window.location.reload();
+
   }
 
   const user = useSelector(state => state.session.user);
@@ -33,9 +40,9 @@ const NavBar = () => {
       <ul className="nc__unordered-list">
         <div className="nc-l__logo">
           <li className="nc-l-logo__name">
-            <NavLink className="nc-l-logo__name" to='/' exact={true} activeClassName='active'>
+            <div className="" onClick={goToHome} exact={true} activeClassName='active'>
               ActiveCards
-            </NavLink>
+            </div>
           </li>
         </div>
 

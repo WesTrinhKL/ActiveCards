@@ -9,9 +9,15 @@ const DeckCoverCard = ({deckCover}) => {
   const history = useHistory();
 
   const send_to_view_deck = ()=>{
-    if(user_id) history.push(`/view/quizzes/${deckCover.id}`)
+    if(user_id){
+
+      history.push(`/view/quizzes/${deckCover.id}`)
+
+    }
+
     else{
       history.push(`/sign-up`)
+
     }
   }
 
