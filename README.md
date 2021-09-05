@@ -1,14 +1,64 @@
-# Flask React Project
 
-This is the starter for the Flask React project.
+# ActiveCards
+ActiveCards is a flashcards based app that allows you to practice learning concepts through active recalling and also the ability to share your cards with others. It is a fullstack React App made with a Redux state manager and a backend using Python, Flask, SQL-Alchemy, and PostgresSQL. 
+
+* Reference to the Hotpotato <a href='https://www.github.com/WesTrinhKL/ActiveCards/wiki'>Wiki Docs</a>
+
+| Table of Contents |
+| ----------------- |
+| 1. [Features](#features) |
+| 2. [Installation](#installation) |
+| 3. [Technical Implementation Details](#technical-implementation-details) |
+| 4. [Future Features](#future-features) |
+| 5. [Contact](#contact) |
+| 6. [Other Setup](#getting-started) |
+
+
+## Technologies
+* <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript"><img src="https://img.shields.io/badge/-JavaScript-F7DF1E?logo=JavaScript&logoColor=333333" /></a>
+* <a href="https://www.postgresql.org/"><img src="https://img.shields.io/badge/-PostgreSQL-336791?logo=PostgreSQL&logoColor=white" /></a>
+* <a href="https://nodejs.org/"><img src="https://img.shields.io/badge/Node.js-43853D?style=flat&logo=node.js&logoColor=white"></a>
+* <a href="https://reactjs.org/"><img src="https://img.shields.io/badge/react-%2320232a.svg?style=flat&logo=react&logoColor=%2361DAFB"></a>
+* <a href="https://redux.js.org/"><img src="https://img.shields.io/badge/redux-%23593d88.svg?style=flat&logo=redux&logoColor=white"></a>
+* <a href="https://developer.mozilla.org/en-US/docs/Web/CSS"><img src="https://img.shields.io/badge/-CSS3-1572B6?logo=CSS3" /></a>
+* <a href="https://www.python.org/"><img src="https://img.shields.io/badge/Python-3776AB?style=flat&logo=python&logoColor=white" /></a>
+* <a href="https://flask.palletsprojects.com/"><img src="https://img.shields.io/badge/Flask-000000?style=flat&logo=flask&logoColor=white" /></a>
+* <a href="https://www.heroku.com/home"><img src="https://img.shields.io/badge/Heroku-430098?style=flat&logo=heroku&logoColor=white" /></a>
+
+
+## Features
+
+### Sign In and Sign Up
+General authentication and authorization feature
+
+
+## Installation
+
+
+## Technical Implementation Details
+
+### Answers
+
+
+
+## Future Features
+
+1. __Search__ - ability to search 
+
+2. __Workspace__ - a workspace area containing a collection of your sorted decks
+
+3. __Extensions__ - ability to add other extensions to your active cards(i.e. multiple choice)
+
+
+## Contact
+
+### Wes Trinh
+westrinh00@gmail.com
+
 
 ## Getting started
 
-1. Clone this repository (only this branch)
-
-   ```bash
-   git clone https://github.com/appacademy-starters/python-project-starter.git
-   ```
+1. Clone this repository 
 
 2. Install dependencies
 
@@ -108,27 +158,3 @@ hurt to run it again.
 variables.
 
 12. profit
-
-### For M1 Mac users
-
-(Replaces **Step 8**)
-
-1. Build image with linux platform for heroku servers. Replace
-{NAME_OF_HEROKU_APP} with your own tag:
-
-   ```bash=
-   docker buildx build --platform linux/amd64 -t {NAME_OF_HEROKU_APP} .
-   ```
-
-2. Tag your app with the url for your apps registry. Make sure to use the name
-of your Heroku app in the url and tag name:
-
-   ```bash=2
-   docker tag {NAME_OF_HEROKU_APP} registry.heroku.com/{NAME_OF_HEROKU_APP}/web
-   ```
-
-3. Use docker to push the image to the Heroku container registry:
-
-   ```bash=3
-   docker push registry.heroku.com/{NAME_OF_HEROKU_APP}/web
-   ```
