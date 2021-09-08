@@ -34,7 +34,6 @@ class ActiveRecallUtility(db.Model):
             'active_recall_id': self.id,
             'correct_answer': self.correct_answer,
             'user_relation': self.user_relation.to_dict_basic_user_info(),
-
         }
 
     def to_dict_author_answer(self):

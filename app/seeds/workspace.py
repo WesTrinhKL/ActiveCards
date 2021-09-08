@@ -6,6 +6,12 @@ def seed_workspace():
     workspace1 = Workspace(
         name="Workspace", user_id=1
     )
+    workspace2_init_directory = Workspace(
+        name="Workspace", user_id=1
+    )
+    workspace3_init_directory = Workspace(
+        name="Workspace", user_id=1
+    )
     workspace2 = Workspace(
         name="Software Interviews", user_id=1
     )
@@ -25,6 +31,8 @@ def seed_workspace():
         name="Math", user_id=3
     )
     db.session.add(workspace1)
+    db.session.add(workspace2_init_directory)
+    db.session.add(workspace3_init_directory)
     db.session.add(workspace2)
     db.session.add(workspace3)
     db.session.add(workspace4)
