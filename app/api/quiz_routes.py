@@ -11,6 +11,7 @@ from sqlalchemy import desc
 quizzes_routes = Blueprint('quizzes', __name__)
 
 # api/quizzes
+
 # ---------------Queries-----------------
 
 
@@ -18,7 +19,6 @@ quizzes_routes = Blueprint('quizzes', __name__)
 # @ protect_private_templates
 # get all templates for given user id (for user, so get all even private)
 def get_all_templates(id):
-    # if current_user.id is not id --> give 404 or unauthorized
     all_templates = QuizTemplate.query.filter_by(user_id=id).all()
     return {'quiz_template_only': [template.get_quizzes_deck_cover() for template in all_templates]}
 
