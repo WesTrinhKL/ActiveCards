@@ -5,27 +5,12 @@ from app.api.util.error_handlers import validation_errors_to_error_messages, aut
 from app.forms.quiz_template_form import QuizTemplateForm
 from app.forms.quiz_card_form import QuizCardForm
 from app.forms.active_recall_form import ActiveRecallCreateForm
+
 from sqlalchemy import desc
 
 quizzes_routes = Blueprint('quizzes', __name__)
 
 # api/quizzes
-
-# ---------------Helpers-----------------
-
-
-def protect_private_templates(template_func):
-    # decorator warpper method to only get public
-    def private_quiz_wrapper():
-        all_templates = template_func()
-        key = ''
-        if 'quiz_template_only' in all_templates:
-            key = 'quiz_template_only'
-        elif 'quizzes' in all_templates:
-            key = 'quizzes'
-        all_templates = all_templates[key]
-        return {key: [private_template for private_template in all_templates if private_template['is_private'] is False]}
-    return private_quiz_wrapper
 # ---------------Queries-----------------
 
 
