@@ -37,7 +37,6 @@ class QuizCard(db.Model):
     def card_is_public(self):
         return not self.quiz_template_relation.is_private
 
-    # @login_required
     def user_owns_card(self):
         if current_user.is_authenticated:
             return current_user.id == self.user_id

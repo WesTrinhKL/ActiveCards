@@ -1,7 +1,7 @@
 from flask_wtf import FlaskForm
-from wtforms import IntegerField, StringField, Field, BooleanField
+from wtforms import IntegerField, StringField, Field
 from wtforms.validators import DataRequired, ValidationError, Length
-from app.models import QuizTemplate, QuizDirectory, QuizCard
+from app.models import QuizTemplate
 from flask_login import current_user
 from app.forms.quiz_template_form import user_id_belongs_to_user
 
@@ -9,11 +9,12 @@ from app.forms.quiz_template_form import user_id_belongs_to_user
 def check_card_number_is_valid(form, field):
     # validate that card number is one number above the actually one and not anything else.
     # user_id = form.data['user_id']
+    # NOTE change later
     return True
 
 
 def quiz_template_belongs_to_user(form, field):
-    # field is itself.
+    # field is itself. form is the whole
     quiz_template_id = field.data
     quiz_template = QuizTemplate.query.get(quiz_template_id)
     if not quiz_template.template_belongs_to_current_user():
