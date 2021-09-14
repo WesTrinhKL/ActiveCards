@@ -6,7 +6,7 @@ const ProfileDropDown= ({defaultavatar, LogoutButton, user}) => {
 
   const history = useHistory();
   const go_to_workspace = ()=>{
-    history.push('/users')
+    history.push('/workspace')
   }
   return (
     <div>
