@@ -10,21 +10,24 @@ const Workspace = () => {
   return (
     <>
       <div className="workspace-container">
-        <div>
+        <div className="wc__directories-nav">
           Navigation / Directories
           {/* onClick, set directoryView true and setDirectory to selected  */}
         </div>
-        <div>
-          Content Container changes depending on selected
-          <div>
+        <div className="wc__content-container">
+          {/* Content Container changes depending on selected */}
+          <div className="wc-cc__header">
             content header
           </div>
-          <div>
-            content folders or files
+          <div className="wc-cc__files-container">
+            <div className="wc-cc-fc__content">
+              content folders or files
+            </div>
+            <div className="wc-cc-fc__metadata">
+              metadata
+            </div>
           </div>
-          <div>
-            metadata
-          </div>
+
         </div>
       </div>
 
