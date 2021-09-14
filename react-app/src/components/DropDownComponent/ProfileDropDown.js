@@ -20,8 +20,8 @@ const ProfileDropDown= ({defaultavatar, LogoutButton, user}) => {
           </div>
 
           <div className="user-navbar-content">
-            {/* <div onClick={go_to_workspace} className="unc__item"><i class="fas fa-home home-icon"></i>Workspace</div> */}
-            {/* <div className="unc__item no-drop"><i class="fas fa-cog settings-icon no-drop"></i>Settings</div> */}
+            <div onClick={go_to_workspace} className="unc__item"><i class="fas fa-home home-icon"></i>Workspace</div>
+            <div className="unc__item no-drop"><i class="fas fa-cog settings-icon no-drop"></i>Settings</div>
             <div className="unc_hr-container">
               <hr className="unc_hr" />
             </div>

@@ -148,7 +148,7 @@ export const QuizDeckForm = ({editModeOn, quiz_id}) => {
             </div>
 
             {/* Select a directory */}
-            {/* <div className="privacy-input-container">
+            <div className="privacy-input-container">
               <label className="pic_switch">
                 Select Directory:
               </label>
@@ -159,7 +159,7 @@ export const QuizDeckForm = ({editModeOn, quiz_id}) => {
                 </div>
 
               </div>
-            </div> */}
+            </div>
 
           </div>
 
