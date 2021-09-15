@@ -53,10 +53,7 @@ export const setFormQuizDeckTemp = (payload) => async (dispatch) => {
 
   if (!response.ok) {
     const errorObj = await response.json();
-    if (errorObj){
-      console.log(errorObj)
-      return errorObj
-    }
+    if (errorObj) return errorObj
     return {'errors':'An error occurred. Please try again.'}
   } else {
     const payload = await response.json();
@@ -74,7 +71,6 @@ export const updateFormQuizDeckTempThunk = (payload) => async(dispatch) =>{
     if (!response.ok) {
       const errorObj = await response.json();
       if (errorObj){
-        console.log(errorObj)
         return errorObj
       }
       return {'errors':'An error occurred. Please try again.'}
@@ -93,7 +89,6 @@ export const deleteFormQuizDeckTempThunk = (id) => async(dispatch) =>{
     if (!response.ok) {
       const errorObj = await response.json();
       if (errorObj){
-        console.log(errorObj)
         return errorObj
       }
       return {'errors':'An error occurred. Please try again.'}
@@ -109,7 +104,6 @@ export const getSingleDeckWithCardsByIdThunk = (id) => async(dispatch) =>{
     if (!response.ok) {
         const errorObj = await response.json();
         if (errorObj){
-          console.log(errorObj)
           return errorObj
         }
         return {'errors':'An error occurred. Please try again.'}
@@ -124,7 +118,6 @@ export const getAllDecksForGivenUserIdThunk = (user_id) => async(dispatch) =>{
     if (!response.ok) {
       const errorObj = await response.json();
       if (errorObj){
-        console.log(errorObj)
         return errorObj
       }
       return {'errors':'An error occurred. Please try again.'}

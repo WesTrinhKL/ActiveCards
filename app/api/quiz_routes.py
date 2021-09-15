@@ -170,6 +170,7 @@ def update_quiz_card_edit_delete(id):
                 quiz_by_id.question = form.question.data
                 quiz_by_id.card_number = form.card_number.data
                 quiz_by_id.quiz_template_id = form.quiz_template_id.data
+                quiz_by_id.update_time()
 
                 active_recall_to_update = ActiveRecallUtility.query.filter_by(
                     quiz_card_id=id).first()

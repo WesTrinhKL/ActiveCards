@@ -42,8 +42,16 @@ class QuizCard(db.Model):
             return current_user.id == self.user_id
         return False
 
+    def update_time(self):
+        self.updated_at = datetime.datetime.utcnow()
+
     def get_age(self):
         old_time = (self.created_at).replace(tzinfo=datetime.timezone.utc)
+        most_recent = datetime.datetime.now(datetime.timezone.utc)
+        return get_age_for_two_dates(old_time, most_recent)
+
+    def get_age_updated_at(self):
+        old_time = (self.updated_at).replace(tzinfo=datetime.timezone.utc)
         most_recent = datetime.datetime.now(datetime.timezone.utc)
         return get_age_for_two_dates(old_time, most_recent)
 
@@ -68,6 +76,7 @@ class QuizCard(db.Model):
             'current_user_answers': UserActiveRecallAnswer.get_current_user_active_recall_answers(current_user.id, self.id),
             # 'all_users_answer':
             'date_age': self.get_age(),
+            # 'date_updated_at': self.get_age_updated_at(),
         }
 
     def to_dict_not_logged_in(self):
