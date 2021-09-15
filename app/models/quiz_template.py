@@ -19,7 +19,7 @@ class QuizTemplate(db.Model):
         'User', back_populates='quiz_template_relation')
 
     quiz_directory_id = db.Column(db.Integer, db.ForeignKey(
-        'quiz_directories.id'), nullable=False)
+        'quiz_directories.id'), nullable=True)
     directory_relation = db.relationship(
         'QuizDirectory', back_populates='quiz_template_relation')
 

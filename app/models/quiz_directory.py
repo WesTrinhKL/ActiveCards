@@ -8,6 +8,7 @@ class QuizDirectory(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(100), nullable=True)
+    description = db.Column(db.String(255), nullable=True, default=None)
     user_id = db.Column(db.Integer, db.ForeignKey(
         'users.id'), nullable=False)
     user_relation = db.relationship(
@@ -30,13 +31,23 @@ class QuizDirectory(db.Model):
         return {
             'id': self.id,
             'name': self.name,
+            'description': self.description,
             'user_relation': self.user_relation.to_dict(),
         }
 
     def to_dict_without_user(self):
         return {
             'id': self.id,
+            'description': self.description,
             'name': self.name,
+        }
+
+    def to_dict_all_directory_children(self):
+        return {
+            'id': self.id,
+            'name': self.name,
+            'description': self.description,
+            'user_relation': self.user_relation.to_dict(),
         }
 
     @staticmethod

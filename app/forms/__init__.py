@@ -4,3 +4,4 @@ from .quiz_template_form import QuizTemplateForm
 from .quiz_card_form import QuizCardForm
 from .active_recall_form import ActiveRecallCreateForm
 from .workspace_form import WorkspaceForm
+from .directory_form import DirectoryForm
