@@ -9,6 +9,7 @@ class Workspace(db.Model):
     name = db.Column(db.String(100), nullable=True)
     user_id = db.Column(db.Integer, db.ForeignKey(
         'users.id'), nullable=False)
+
     user_relation = db.relationship(
         'User', back_populates='workspace_relation')
     directory_relation = db.relationship(

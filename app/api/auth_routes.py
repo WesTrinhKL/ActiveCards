@@ -68,10 +68,10 @@ def sign_up():
             password=form.data['password']
         )
         intial_workspace = Workspace(
-            name="Workspace", user_relation=user
+            name="default", user_relation=user
         )
         initial_home_directory = QuizDirectory(
-            name="Home", user_relation=user, workspace_relation=intial_workspace)
+            name="Recent", user_relation=user, workspace_relation=intial_workspace)
 
         db.session.add(user)
 

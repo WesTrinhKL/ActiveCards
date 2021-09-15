@@ -6,25 +6,28 @@ const Workspace = () => {
     // get all users directory for each workspace
     // get all deck cover templates for each workspace
   let workspaceAndDirectories = [
-    {home:
+    {default:
       [
-        {first: ['deck1', 'deck2']}
-      ]
-    },
-    {interviews:
+        {default: ['deck1', 'deck2']}
+      ]},
+    {workspace2:
       [
         {javascript: ['deck1', 'deck2']},
         {python: ['deck1', 'deck2']},
         {software: ['deck1', 'deck2']},
-      ]
-    },
-    {art:
+      ]},
+    {workspace3:
       [
         {french: ['deck1', 'deck2']},
         {american: ['deck1', 'deck2, deck3']}
-      ]
-    }, ]
+      ]}
+    ]
     console.log("example of workspace", workspaceAndDirectories)
+
+  const [workspaceViewOn, setworkspaceViewOn] = useState(true)
+  const [workspaceSelectedName, setworkspaceSelectedName] = useState('default')
+
+
 
   return (
     <>
@@ -32,18 +35,25 @@ const Workspace = () => {
         <div className="wc__directories-nav">
           Navigation / Directories
           {/* onClick, set directoryView true and setDirectory to selected  */}
+          {/* {workspaceAndDirectories.map(workspace => )} */}
+          <div>
+          </div>
+
         </div>
+
+
         <div className="wc__content-container">
           {/* Content Container changes depending on selected */}
           <div className="wc-cc__header">
             <div className="cc-header__bread-crumbs">content header / breadcrumbs...</div>
-
           </div>
           <div className="wc-cc__files-container">
             <div className="wc-cc-fc__content">
               <div className="wc-cc-fc-content__wrapper">
                 <div className="content_wrapper__header">
-                  Interviews
+                  {workspaceViewOn && <div className="content__workspace-component"> {workspaceSelectedName} </div>}
+
+                  <div className="content__directory-component"> directory </div>
                 </div>
               </div>
             </div>
