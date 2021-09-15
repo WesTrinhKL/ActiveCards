@@ -5,6 +5,7 @@ from app.api.util.error_handlers import validation_errors_to_error_messages, aut
 from app.forms.quiz_template_form import QuizTemplateForm
 from app.forms.quiz_card_form import QuizCardForm
 from app.forms.active_recall_form import ActiveRecallCreateForm
+import datetime
 
 from sqlalchemy import desc
 
@@ -106,6 +107,7 @@ def quiz_template_edit_delete(id):
                 quiz_by_id.title = form.title.data
                 quiz_by_id.description = form.description.data
                 quiz_by_id.quiz_directory_id = form.quiz_directory_id.data
+                quiz_by_id.update_time()
 
                 if str(form.is_private.data[0]).lower() == 'false':
                     quiz_by_id.is_private = False

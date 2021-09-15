@@ -19,6 +19,7 @@ app = Flask(__name__)
 
 # Setup login manager
 login = LoginManager(app)
+# custom error handler for auth route from auth route,
 login.login_view = 'auth.unauthorized'
 
 

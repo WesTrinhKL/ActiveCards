@@ -1,6 +1,6 @@
 from flask import Blueprint, request
 from flask_login import login_required, current_user
-from app.models import db, User, Workspace, QuizDirectory
+from app.models import db, User, Workspace, QuizDirectory, QuizTemplate
 from app.api.util.error_handlers import validation_errors_to_error_messages, authorization_errors_to_error_messages
 from app.api.util.general import this_model_belongs_to_user
 from app.forms import WorkspaceForm, DirectoryForm
@@ -18,10 +18,55 @@ def get_first_available_directory_for_user():
 
 
 @ directories_routes.route('/workspace', methods=['GET'])
+# all workspace and all directories
 @ login_required
 def get_all_users_workspaces_and_children():
-    return {'user_workspace': Workspace.get_all_users_workspaces_and_children()}
+    return {'user_workspaces': Workspace.get_all_users_workspaces_and_children()}
 
+
+@ directories_routes.route('/directory/default', methods=['GET'])
+# route to get all decks that belong to user for DEFAULT (draft)
+@ login_required
+def get_users_decks_by_default():
+    return QuizTemplate.get_all_quiz_decks_simple_for_user()
+
+
+@ directories_routes.route('/directory/recent', methods=['GET'])
+# route to get all decks that belong to user for RECENT (recent)
+@ login_required
+def get_users_decks_by_recent():
+    return QuizTemplate.get_all_quiz_decks_by_recent_simple_for_user()
+
+
+@ directories_routes.route('/directory/<int:id>', methods=['GET'])
+# get decks in directory for given id
+@ login_required
+def get_users_directory_by_id_and_children(id):
+    # ensure directory belongs to user
+    directory_by_id = QuizDirectory.query.get(id)
+    if this_model_belongs_to_user(directory_by_id):
+        return {'decks_in_directory': directory_by_id.to_dict_all_directory_children()}
+    return authorization_errors_to_error_messages("Directory doesn't exist or belong to user.")
+
+
+@ directories_routes.route('/workspace/<int:id>', methods=['GET'])
+# single workspace and all its directories
+@ login_required
+def get_users_workspace_by_id_and_children(id):
+    workspace_by_id = Workspace.query.get(id)
+    if this_model_belongs_to_user(workspace_by_id):
+        return {'workspace_selected': workspace_by_id.to_dict_all_workspace_children()}
+    return authorization_errors_to_error_messages("Workspace doesn't exist or belong to user.")
+
+
+@ directories_routes.route('/directory/<int:id>', methods=['GET'])
+@ login_required
+def get_users_directory_all_children(id):
+    # ensure directory belongs to user
+    directory_by_id = QuizDirectory.query.get(id)
+    if this_model_belongs_to_user(directory_by_id):
+        return {'decks_in_directory': directory_by_id.to_dict_all_directory_children()}
+    return authorization_errors_to_error_messages("Directory doesn't exist or belong to user.")
 
 # ---------------Workspace CRUD Routes-----------------
 

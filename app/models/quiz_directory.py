@@ -35,6 +35,14 @@ class QuizDirectory(db.Model):
             'user_relation': self.user_relation.to_dict(),
         }
 
+    def to_dict_simple_directory(self):
+        return {
+            'id': self.id,
+            'name': self.name,
+            'description': self.description,
+            'decks': [deck.to_dict_simple_workspace() for deck in self.quiz_template_relation]
+        }
+
     def to_dict_without_user(self):
         return {
             'id': self.id,
@@ -57,4 +65,4 @@ class QuizDirectory(db.Model):
                 first_directory = QuizDirectory.query.filter_by(
                     user_id=userId).first()
                 return first_directory.to_dict()
-        return "Unavailable. Please try a different directory"
+        return {'errors': 'unavailable. please try again.'}, 401
