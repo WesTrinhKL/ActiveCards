@@ -22,6 +22,7 @@ def get_first_available_directory_for_user():
 def get_all_users_workspaces_and_children():
     return {'user_workspace': Workspace.get_all_users_workspaces_and_children()}
 
+
 # ---------------Workspace CRUD Routes-----------------
 
 
@@ -41,7 +42,7 @@ def create_workspace():
         db.session.commit()
         return workspace_to_create.to_dict()
 
-    return {'errors': validation_errors_to_error_messages(form.errors)}, 401
+    return {'errors': validation_errors_to_error_messages(form.errors)}, 400
 
 
 @ directories_routes.route('/workspace/<int:id>', methods=['PUT', 'DELETE'])
@@ -91,7 +92,7 @@ def create_directory():
             db.session.commit()
             return directory_to_create.to_dict()
         return authorization_errors_to_error_messages("Directory doesn't exist or belong to user.")
-    return {'errors': validation_errors_to_error_messages(form.errors)}, 401
+    return {'errors': validation_errors_to_error_messages(form.errors)}, 400
 
 
 @ directories_routes.route('/directory/<int:id>', methods=['PUT', 'DELETE'])
@@ -102,13 +103,16 @@ def update_delete_directory(id):
     if request.method == 'PUT':
         if form.validate_on_submit():
             directory_by_id = QuizDirectory.query.get(id)
+            workspace_by_id = Workspace.query.get(form.workspace_id.data)
 
-            if this_model_belongs_to_user(directory_by_id):
+            if this_model_belongs_to_user(directory_by_id) and this_model_belongs_to_user(workspace_by_id):
                 directory_by_id.name = form.name.data
                 directory_by_id.description = form.description.data
+                directory_by_id.workspace_id = form.workspace_id.data
                 db.session.add(directory_by_id)
                 db.session.commit()
-                return directory_by_id.to_dict()
+                return directory_by_id.to_dict(), 200
+            return authorization_errors_to_error_messages("Unauthorized access.")
 
     elif request.method == 'DELETE':
         directory_to_delete = QuizDirectory.query.get(id)
@@ -118,4 +122,4 @@ def update_delete_directory(id):
             db.session.commit()
             return {'message': f'{directory_name} Deleted'}
         return authorization_errors_to_error_messages("Unauthorized access.")
-    return {'errors': validation_errors_to_error_messages(form.errors)}, 401
+    return {'errors': validation_errors_to_error_messages(form.errors)}, 400
