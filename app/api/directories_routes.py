@@ -17,7 +17,14 @@ def get_first_available_directory_for_user():
     return {'first_directory': QuizDirectory.get_first_available_directory_for(current_user.id)}
 
 
+@ directories_routes.route('/workspace', methods=['GET'])
+@ login_required
+def get_all_users_workspaces_and_children():
+    return {'user_workspace': Workspace.get_all_users_workspaces_and_children()}
+
 # ---------------Workspace CRUD Routes-----------------
+
+
 @ directories_routes.route('/workspace', methods=['POST'])
 @ login_required
 def create_workspace():

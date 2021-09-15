@@ -86,3 +86,15 @@ class QuizTemplate(db.Model):
             'number_of_cards': len(self.quiz_card_relation),
             'date_age': self.get_age(),
         }
+
+    def get_quizzes_deck_for_workspace(self):
+        return {
+            'id': self.id,
+            'title': self.title,
+            'is_private': self.is_private,
+            'user_id': self.user_id,
+            'username': self.user_relation.username,
+            'description': self.description,
+            'number_of_cards': len(self.quiz_card_relation),
+            # 'date_age': self.get_age(),
+        }
