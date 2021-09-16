@@ -23,10 +23,15 @@ const Workspace = () => {
   const [directoriesViewOn, setdirectoriesViewOn] = useState(true)
   const [directoriesSelectedId, setdirectoriesSelectedId] = useState('default') //will be default, until a directory is clicked on, then set Id to that.
 
+
+  const [directorySelectedData, setdirectorySelectedData] = useState('default')
+
   const selectDirectoryE = (directory_id)=> {
     setdirectoriesSelectedId(directory_id)
   }
 
+
+  // if selected workspace: display, else if selected frontend: display, ...
 
   return (
     <>

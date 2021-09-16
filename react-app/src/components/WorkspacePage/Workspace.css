@@ -16,7 +16,8 @@
   grid-row: 1;
   border-bottom: 1px solid rgb(201, 201, 201);
   border-right: 1px solid rgb(201, 201, 201);
-  padding-top: 15px;
+  /* padding-top: 50px; */
+  padding-left: 10px;
 }
 /* ---------------workspace-content-------------- */
 .wc__content-container{
@@ -65,47 +66,41 @@
 
 
 /* --------------Workspace directories nav--------------- */
-.workspace-directories__default{
+.workspace-directories__default, .workspace-nav{
   padding: 10px;
-  /* background-color: #EBEBEB; */
-  /* border-bottom: 1px solid rgb(201, 201, 201);
-  border-right: 1px solid rgb(201, 201, 201); */
-  border-left: 5px solid #00000086;
+  /* background-color: #f1f1f1; */
+  border-bottom: 1px solid rgb(201, 201, 201);
+  /* border-top: 1px solid rgb(201, 201, 201); */
+  border-left: 7px solid #d3d3d3;
   /* box-shadow: 0 1px 2px rgba(0,0,0,0.24); */
   cursor: pointer;
-}
 
-.workspace-nav{
-  padding: 10px;
-  border-left: 5px solid #00000086;
-  cursor: pointer;
-  margin: 10px 0px;
+  margin: 3px 0px 0px 5px;
 }
 
 .directory-nav{
   padding: 10px;
-  /* border-left: 5px solid #00000086; */
   cursor: pointer;
-  margin: 10px 0px;
-  margin-left: 25px;
+  margin: 2px 0px;
+  margin-left: 32px;
+  border-left: 7px solid #d3d3d3;
+  border-bottom: 1px solid rgb(201, 201, 201);
+  border-top: 1px solid #f1f1f1;
+  color: #505050;
 }
 
 .workspace-directories__default:hover, .workspace-nav:hover, .directory-nav:hover{
   background-color: #EBEBEB;
-  /* border-bottom: 1px solid rgb(201, 201, 201); */
-  /* border-right: 1px solid rgb(201, 201, 201); */
-
 }
-
 .workspace-selected{
   padding: 10px;
-  border-left: 5px solid #00000086;
+  border-left: 7px solid #98ACF8;
   cursor: pointer;
   background-color: #EBEBEB;
 }
 .directory-selected{
   padding: 10px;
-  border-left: 5px solid #00000086;
-  cursor: pointer;
+  border-left: 7px solid #98ACF8;
   background-color: #EBEBEB;
+  /* border-top: 1px solid rgb(201, 201, 201); */
 }
