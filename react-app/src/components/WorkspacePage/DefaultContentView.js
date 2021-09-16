@@ -16,8 +16,9 @@ const DefaultContentView = ({default_decks}) => {
     console.log("deleted", deckSelected.id)
     const data = await dispatch(deleteFormQuizDeckTempThunk(deckSelected.id));
     // if (data?.error) setErrors(data.error)
-    // else{
-      // setErrors([]);
+    // setErrors([]); //set errors as banner
+      setDeckSelected("")
+      setshowDeleteModal(false)
       alert("deleted successfully!");
       // dispatch(getAllWorkspaceThunk())
       dispatch(getAllUsersDecksDefaultDirectoryThunk())
@@ -40,7 +41,7 @@ const DefaultContentView = ({default_decks}) => {
                 {/* <div>Draft</div> */}
 
                 <div className="default-repo-wrapper">
-                  {default_decks.map(deck=> <div onClick={()=>setDeckSelected(deck)} ><RepoDeckCover selected={deckSelected?.id && deckSelected.id === deck.id? true: false  } deck={deck}/></div>  )}
+                  {default_decks.map(deck=> <div onClick={()=>setDeckSelected(deck)} onDoubleClick={()=> window.open(`/view/quizzes/${deckSelected.id}`, "_blank")}><RepoDeckCover selected={deckSelected?.id && deckSelected.id === deck.id? true: false  } deck={deck}/></div>  )}
                 </div>
 
 

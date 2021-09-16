@@ -65,6 +65,7 @@ const Workspace = () => {
               })
             )}
           </div>
+          <div className="workspace-directories__create vanilla-button-1">create workspace</div>
         </div>
 
         {defaultDirectoryDecks && dirOrWorkspaceSelectedId === 'default' && <div className="content__directory-component">
