@@ -19,50 +19,6 @@
   /* padding-top: 50px; */
   padding-left: 10px;
 }
-/* ---------------workspace-content-------------- */
-.wc__content-container{
-  grid-column: 2;
-  grid-row: 1;
-  width: 100%;
-}
-.wc-cc__header{
-  min-height: 60px;
-  display: flex;
-  align-items: flex-end;
-  padding-bottom: 8px;
-}
-.cc-header__bread-crumbs{
-  margin-left: 50px;
-  font-size: 12px;
-}
-
-/* files and metadata */
-.wc-cc__files-container{
-  display: flex;
-  min-height: calc(100vh - 120px);
-}
-.wc-cc-fc__content{
-  width: 100%;
-
-}
-.wc-cc-fc__metadata{
-  width: 350px;
-  display: flex;
-  justify-content: center;
-}
-
-/* inside content and files */
-.wc-cc-fc-content__wrapper{
-  margin: 0 0 50px 50px;
-  border: 1px solid rgb(201, 201, 201);
-  min-height: calc(100vh - 175px);
-  border-radius: 4px;
-}
-.content_wrapper__header{
-  margin: 20px;
-}
-
-
 
 
 /* --------------Workspace directories nav--------------- */
@@ -102,4 +58,57 @@
   border-left: 7px solid #98ACF8;
   background-color: #EBEBEB;
   /* border-top: 1px solid rgb(201, 201, 201); */
+}
+/* ---------------workspace-content-------------- */
+.wc__content-container{
+  grid-column: 2;
+  grid-row: 1;
+  width: 100%;
+}
+.wc-cc__header{
+  min-height: 60px;
+  display: flex;
+  align-items: flex-end;
+  padding-bottom: 8px;
+}
+.cc-header__bread-crumbs{
+  margin-left: 50px;
+  font-size: 12px;
+}
+
+/* files and metadata */
+.wc-cc__files-container{
+  display: flex;
+  min-height: calc(100vh - 120px);
+}
+.wc-cc-fc__content{
+  width: 100%;
+
+}
+.wc-cc-fc__metadata{
+  width: 350px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+}
+
+/* inside content and files */
+.wc-cc-fc-content__wrapper{
+  margin: 0 0 50px 50px;
+  border: 1px solid rgb(201, 201, 201);
+  min-height: calc(100vh - 175px);
+  border-radius: 4px;
+}
+.content_wrapper__header{
+  margin: 20px;
+}
+
+/* ----default deck content----- */
+.repo-deck-cover-container{
+  background-color: white;
+  border-bottom: 1px solid rgb(201, 201, 201);
+  border-right: 1px solid rgb(201, 201, 201);
+  width: 200px;
+  height: 200px;
 }
