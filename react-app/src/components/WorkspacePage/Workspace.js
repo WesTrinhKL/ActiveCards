@@ -1,28 +1,26 @@
 import React, {useState, useEffect} from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import './Workspace.css'
+import { getAllWorkspaceThunk, getAllUsersDecksDefaultDirectoryThunk } from '../../store/workspace_directories'
 const Workspace = () => {
   // use single fetch call to:
     // get all users workspace
     // get all users directory for each workspace
     // get all deck cover templates for each workspace
-  let workspaceAndDirectories = [
-    {default:
-      [
-        {default: ['deck1', 'deck2']}
-      ]},
-    {workspace2:
-      [
-        {javascript: ['deck1', 'deck2']},
-        {python: ['deck1', 'deck2']},
-        {software: ['deck1', 'deck2']},
-      ]},
-    {workspace3:
-      [
-        {french: ['deck1', 'deck2']},
-        {american: ['deck1', 'deck2, deck3']}
-      ]}
-    ]
-    console.log("example of workspace", workspaceAndDirectories)
+
+  const currentUser = useSelector((state)=>state.session.user?.id)
+  // const allWorkspace = useSelector((state)=>)
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    if(currentUser){
+      dispatch(getAllWorkspaceThunk())
+      dispatch(getAllUsersDecksDefaultDirectoryThunk())
+    }
+
+  }, [dispatch])
+
+  console.log("example of workspace")
 
   const [workspaceViewOn, setworkspaceViewOn] = useState(true)
   const [workspaceSelectedName, setworkspaceSelectedName] = useState('default')

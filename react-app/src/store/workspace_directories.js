@@ -39,6 +39,11 @@ const createWorkspace = (payload) => ({
   payload,
 })
 
+const getAllUsersDecksDefaultDirectory = (payload) =>({
+  type: GET_ALL_USERS_DECKS_DEFAULT,
+  payload,
+})
+
 
 export const GetMainWorkspaceByIdThunk = (id) => async(dispatch) =>{
 
@@ -70,7 +75,21 @@ export const getAllWorkspaceThunk = () => async(dispatch) =>{
         return data;
     }
 }
+export const getAllUsersDecksDefaultDirectoryThunk = () => async(dispatch) =>{
 
+  const response = await fetch(`/api/directories/directory/default`);
+    if (!response.ok) {
+        const errorObj = await response.json();
+        if (errorObj){
+          return errorObj
+        }
+        return {'errors':'An error occurred. Please try again.'}
+    } else {
+        const data = await response.json();
+        await dispatch(getAllUsersDecksDefaultDirectory(data));
+        return data;
+    }
+}
 
 export const createWorkspaceThunk = (payload) => async (dispatch) => {
   const response = await fetch(`/api/directories/workspace`, {
@@ -93,6 +112,7 @@ export const createWorkspaceThunk = (payload) => async (dispatch) => {
 const initialState = {
   all_workspace_and_children: null,
   single_workspace_and_children: null,
+  default_deck: null,
 
 
 };
@@ -109,6 +129,10 @@ export default function reducer (state=initialState, action){
     }
     case CREATE_WORKSPACE:{
       newState.single_workspace_and_children = action.payload;
+      return newState;
+    }
+    case GET_ALL_USERS_DECKS_DEFAULT:{
+      newState.default_deck = action.payload;
       return newState;
     }
     default:
