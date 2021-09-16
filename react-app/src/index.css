@@ -137,3 +137,25 @@ div span .no-drop{
 div span .no-drop:hover{
     cursor: no-drop;
 }
+
+/*---- custom scroll bar ----*/
+::-webkit-scrollbar {
+    width: 10px;
+}
+::-webkit-scrollbar-button {
+    width: 6px;
+    height:4px;
+}
+::-webkit-scrollbar-track {
+    background:#eee;
+    /* border: thin solid lightgray; */
+    border-radius:10px;
+}
+::-webkit-scrollbar-thumb {
+    background:#aab6e5;
+    border: thin solid #98ACF8;
+    border-radius:10px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background:#7d7d7d;
+}
