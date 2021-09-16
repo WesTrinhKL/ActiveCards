@@ -18,18 +18,20 @@ const Workspace = () => {
 
   // console.log("example", defaultDirectory)
 
-  // const [workspaceViewOn, setworkspaceViewOn] = useState(true)
-  // const [workspaceSelectedName, setworkspaceSelectedName] = useState('default')
   const [directoriesViewOn, setdirectoriesViewOn] = useState(true)
-  const [directoriesSelectedId, setdirectoriesSelectedId] = useState('default') //will be default, until a directory is clicked on, then set Id to that.
+  const [dirOrWorkspaceSelectedId, setdirOrWorkspaceSelectedId] = useState('default') //will be default, until a directory is clicked on, then set Id to that.
 
 
-  const [directorySelectedData, setdirectorySelectedData] = useState('default')
+  const [navSelectedData, setnavSelectedData] = useState('default')
 
   const selectDirectoryE = (directory_id)=> {
-    setdirectoriesSelectedId(directory_id)
+    setdirOrWorkspaceSelectedId(directory_id)
+    setdirectoriesViewOn(true)
   }
-
+  const selectWorkspaceE = (workspace_id)=> {
+    setdirOrWorkspaceSelectedId(workspace_id)
+    setdirectoriesViewOn(false)
+  }
 
   // if selected workspace: display, else if selected frontend: display, ...
 
@@ -40,15 +42,18 @@ const Workspace = () => {
           {/* <div className="directories-nav__title">Navigation / Directories</div> */}
           <div className="directories-nav__workspace-directories">
             {/* default */}
-            <div onClick={()=>setdirectoriesSelectedId('default')} className={directoriesSelectedId === 'default'?'workspace-directories__default workspace-selected':  'workspace-directories__default'}> default</div>
+            {defaultDirectory && <div onClick={()=>setdirOrWorkspaceSelectedId('default')} className={dirOrWorkspaceSelectedId === 'default'?'workspace-directories__default workspace-selected':  'workspace-directories__default'}> Draft</div>}
 
             {/* map workspace and directories*/}
             {allUserWorkspaces && (
               allUserWorkspaces.map((workspace)=>{
                 return (
                   <>
-                    <div className="workspace-nav">{workspace.name}</div>
-                    {workspace.directories.map(directory=> <div onClick={()=>selectDirectoryE(directory.id)} className={directoriesSelectedId === directory.id?'directory-nav directory-selected':  'directory-nav'}>{directory.name}</div> )}
+                    {/* selecting workspace */}
+                    <div onClick={()=>selectWorkspaceE(workspace.id)} className={dirOrWorkspaceSelectedId === workspace.id && !directoriesViewOn?'workspace-nav workspace-selected': 'workspace-nav'} >{workspace.name}</div>
+
+                    {/* selecting directories */}
+                    {workspace.directories.map(directory=> <div onClick={()=>selectDirectoryE(directory.id)} className={dirOrWorkspaceSelectedId === directory.id && directoriesViewOn?'directory-nav directory-selected':  'directory-nav'}>{directory.name}</div> )}
                   </>)
               })
             )}
@@ -70,11 +75,12 @@ const Workspace = () => {
           <div className="wc-cc__files-container">
             <div className="wc-cc-fc__content">
               <div className="wc-cc-fc-content__wrapper">
-                <div className="content_wrapper__header">
-                  {directoriesViewOn && <div className="content__workspace-component"> {directoriesSelectedId} </div>}
 
-                  <div className="content__directory-component"></div>
-                </div>
+                  {directoriesViewOn && <div className="content__directory-component"> viewing directories: {dirOrWorkspaceSelectedId} </div>}
+                  {/* if directory is 'default' pass prop of the default data instead of dir id */}
+
+                  {!directoriesViewOn && <div className="content__workspace-component"> viewing workspace: {dirOrWorkspaceSelectedId} </div>}
+
               </div>
             </div>
             <div className="wc-cc-fc__metadata">
