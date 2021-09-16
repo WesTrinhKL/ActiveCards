@@ -1,8 +1,28 @@
 import React, {useState, useEffect} from 'react'
 import RepoDeckCover from './RepoDeckCover'
 import { reduceStringIfLongThan, process_date } from '../utilities/util'
+import DeckDeleteModal from '../DeckDeleteModal'
+import { deleteFormQuizDeckTempThunk } from '../../store/quiz_deck'
+import { getAllWorkspaceThunk, getAllUsersDecksDefaultDirectoryThunk } from '../../store/workspace_directories'
+import { useDispatch } from 'react-redux'
+
 const DefaultContentView = ({default_decks}) => {
+  const dispatch = useDispatch();
   const [deckSelected, setDeckSelected] = useState("")
+  const [showDeleteModal, setshowDeleteModal] = useState(false)
+
+
+  const delete_deck_handler = async ()=>{
+    console.log("deleted", deckSelected.id)
+    const data = await dispatch(deleteFormQuizDeckTempThunk(deckSelected.id));
+    // if (data?.error) setErrors(data.error)
+    // else{
+      // setErrors([]);
+      alert("deleted successfully!");
+      // dispatch(getAllWorkspaceThunk())
+      dispatch(getAllUsersDecksDefaultDirectoryThunk())
+    // }
+  }
 
   console.log("deckSelected", deckSelected)
   return (
@@ -61,21 +81,14 @@ const DefaultContentView = ({default_decks}) => {
                 </div>
 
                 <div className="decks__content-box decks__meta-tool" >
-
                   <div onClick={()=> window.open(`/edit/quizzes/${deckSelected.id}`, "_blank")} className="meta-tool__edit">
                     <i class="fas fa-edit"> </i> <span>Edit Deck</span>
                   </div>
-                  <div className="meta-tool__delete">
+                  <div onClick={()=>setshowDeleteModal(true)} className="meta-tool__delete">
                     <i class="fas fa-trash"></i>  <span>Delete Deck</span>
                   </div>
-
-
+                  {showDeleteModal && <DeckDeleteModal delete_deck_handler={delete_deck_handler}/>}
                 </div>
-
-
-
-
-
               </div>}
 
 
