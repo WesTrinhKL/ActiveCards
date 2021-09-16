@@ -10,7 +10,7 @@ const WorkspaceContentView = ({directory_id}) => {
         <div className="wc__content-container">
           {/* Content Container changes depending on selected */}
           <div className="wc-cc__header">
-            <div className="cc-header__bread-crumbs">bread / crumbs</div>
+            <div className="cc-header__bread-crumbs"> <i class="fas fa-home"></i> / Workspace</div>
           </div>
           <div className="wc-cc__files-container">
             <div className="wc-cc-fc__content">

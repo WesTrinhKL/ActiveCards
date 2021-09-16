@@ -112,8 +112,9 @@ class QuizTemplate(db.Model):
             'username': self.user_relation.username,
             'description': self.description,
             'number_of_cards': len(self.quiz_card_relation),
-            # 'date_age_last_updated': self.get_age_updated_at(),
-            'date_updated_at': self.updated_at
+            'date_age': self.get_age(),
+            'date_age_last_updated': self.get_age_updated_at(),
+            # 'date_updated_at': self.updated_at
 
         }
 

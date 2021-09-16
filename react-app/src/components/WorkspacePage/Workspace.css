@@ -51,18 +51,19 @@
 }
 
 .workspace-directories__default:hover, .workspace-nav:hover, .directory-nav:hover{
-  background-color: #EBEBEB;
+  background-color: #bec3ee6b;
+  border-left-color: #98ACF8;
 }
 .workspace-selected{
   padding: 10px;
   border-left: 7px solid #98ACF8;
   cursor: pointer;
-  background-color: #EBEBEB;
+  background-color: #bec3ee6b;
 }
 .directory-selected{
   padding: 10px;
   border-left: 7px solid #98ACF8;
-  background-color: #EBEBEB;
+  background-color: #bec3ee6b;
   /* border-top: 1px solid rgb(201, 201, 201); */
 }
 /* ---------------workspace-content-------------- */
@@ -80,8 +81,12 @@
 .cc-header__bread-crumbs{
   margin-left: 50px;
   font-size: 14px;
-  color: #505050;
-
+  color: #7c7c7c;
+}
+.cc-header__bread-crumbs span{
+  color: #98ACF8;
+  /* font-size: 20px; */
+  font-weight: bold;
 }
 
 /* files and metadata */
@@ -104,10 +109,11 @@
 /* inside content and files */
 .wc-cc-fc-content__wrapper{
   margin: 0 0 50px 50px;
-  border: 1px solid rgb(224, 224, 224);
+  border: 1.5px solid rgb(199, 199, 199);
   height: calc(100vh - 175px);
-  border-radius: 4px;
+  border-radius: 2px;
   overflow: auto;
+
 }
 .content_wrapper__header{
   margin: 20px;
@@ -116,9 +122,9 @@
 /* ----DefaultContentView----- */
 .wc-cc-fc-content__wrapper-default{
   margin: 0 0 50px 50px;
-  border: 1px solid rgb(224, 224, 224);
+  border: 1.5px solid rgb(199, 199, 199);
   height: calc(100vh - 175px);
-  border-radius: 4px;
+  border-radius: 2px;
   overflow: auto;
 }
 .default-repo-wrapper{
@@ -193,5 +199,14 @@
 }
 
 .dc-bottom--selected{
-  background-color: #adb4ee81;
+  background-color: #bec3ee6b;
+}
+
+/* ----metadata----- */
+.metadata__content-decks{
+  width: 80%;
+}
+
+.decks__content-box{
+  margin-bottom: 20px;
 }
