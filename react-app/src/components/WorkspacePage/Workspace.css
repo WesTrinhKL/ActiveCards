@@ -210,3 +210,30 @@
 .decks__content-box{
   margin-bottom: 20px;
 }
+
+.decks__meta-tool{
+  height: 70px;
+  display: flex;
+  flex-direction: column;
+  /* justify-content: space-between; */
+}
+
+.meta-tool__delete, .meta-tool__edit{
+  color: #CD5D7D;
+  margin-bottom: 10px;
+  cursor: pointer;
+  border-bottom: 2px solid #faf4ef;
+  width: fit-content;
+}
+.meta-tool__delete:hover, .meta-tool__edit:hover{
+  border-bottom: 2px solid #98ACF8;
+}
+
+.meta-tool__delete span, .meta-tool__edit span{
+  color: #000000;
+  font-size: 14px;
+  /* font-weight: bold; */
+}
+.meta-tool__delete i, .meta-tool__edit i{
+  width: 20px;
+}

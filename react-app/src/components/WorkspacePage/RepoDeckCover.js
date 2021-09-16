@@ -1,5 +1,5 @@
 import React, {useState} from 'react'
-import { reduceStringIfLongThan } from '../utilities/util'
+import { reduceStringIfLongThan} from '../utilities/util'
 
 const RepoDeckCover = ({deck, selected}) => {
 

@@ -43,8 +43,8 @@ body {
     justify-content: center;
     margin-top: 5px;
     /* margin-right: 25px; */
-
 }
+
 .vanilla-button-1{
     box-shadow: 0 4px 8px rgba(0,0,0,0.22);
     cursor: pointer;
@@ -158,4 +158,25 @@ div span .no-drop:hover{
 }
 ::-webkit-scrollbar-thumb:hover {
     background:#7d7d7d;
+}
+
+
+
+.basic-title{
+    margin: 0px 15px 3px 0;
+    font-size: 14px;
+    /* font-style: normal; */
+    color: #98ACF8;
+    font-weight: bold;
+  }
+
+.basic-answer{
+    /* margin-top: 3px; */
+    /* margin-left: 10px; */
+    padding: 4px;
+    width: 90%;
+    border: none;
+    border-left: 2px solid #CD5D7D;
+    transition: all 0.1s ease-in-out;
+    font-size: 14px;
 }

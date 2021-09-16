@@ -1,7 +1,6 @@
 import React, {useState, useEffect} from 'react'
 import RepoDeckCover from './RepoDeckCover'
-import { reduceStringIfLongThan } from '../utilities/util'
-
+import { reduceStringIfLongThan, process_date } from '../utilities/util'
 const DefaultContentView = ({default_decks}) => {
   const [deckSelected, setDeckSelected] = useState("")
 
@@ -32,34 +31,47 @@ const DefaultContentView = ({default_decks}) => {
               <div></div>
             {deckSelected && <div className="metadata__content-decks">
                 <div className="decks__content-box">
-                  <div>Title</div>
-                  <div>{deckSelected.title}</div>
+                  <div className="basic-title">Title</div>
+                  <div className="basic-answer">{deckSelected.title}</div>
                 </div>
 
                 <div className="decks__content-box">
-                  <div>Visibility</div>
-                  <div> {deckSelected.is_private ? 'Private': 'Public'}</div>
+                  <div className="basic-title">Visibility</div>
+                  <div className="basic-answer"> {deckSelected.is_private ? 'Private': 'Public'}</div>
                 </div>
 
                 <div className="decks__content-box">
-                  <div>Description</div>
-                  <div> {reduceStringIfLongThan(deckSelected.description, 144, 144)}</div>
+                  <div className="basic-title">Description</div>
+                  <div className="basic-answer"> {reduceStringIfLongThan(deckSelected.description, 144, 144)}</div>
                 </div>
 
                 <div className="decks__content-box">
-                  <div># of cards</div>
-                  <div> {deckSelected.number_of_cards}</div>
+                  <div className="basic-title"># of cards</div>
+                  <div className="basic-answer"> {deckSelected.number_of_cards}</div>
                 </div>
 
                 <div className="decks__content-box">
-                  <div>Updated</div>
-                  <div> {'24 hours ago'}</div>
+                  <div className="basic-title">Updated</div>
+                  <div className="basic-answer"> {process_date(deckSelected.date_age_last_updated)}</div>
                 </div>
 
                 <div className="decks__content-box">
-                  <div>Created</div>
-                  <div> {'14 days ago'}</div>
+                  <div className="basic-title">Created</div>
+                  <div className="basic-answer"> {process_date(deckSelected.date_age)}</div>
                 </div>
+
+                <div className="decks__content-box decks__meta-tool" >
+
+                  <div onClick={()=> window.open(`/edit/quizzes/${deckSelected.id}`, "_blank")} className="meta-tool__edit">
+                    <i class="fas fa-edit"> </i> <span>Edit Deck</span>
+                  </div>
+                  <div className="meta-tool__delete">
+                    <i class="fas fa-trash"></i>  <span>Delete Deck</span>
+                  </div>
+
+
+                </div>
+
 
 
 
