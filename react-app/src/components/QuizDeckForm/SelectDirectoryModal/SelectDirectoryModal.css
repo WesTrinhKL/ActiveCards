@@ -16,4 +16,13 @@
 
 .select-directory-container__title{
   margin-bottom: 15px;
+  font-size: 16px;
+  /* font-style: normal; */
+  color: #98ACF8;
+  font-weight: bold;
+}
+
+.borders-custom{
+  border-right: 1px solid rgb(201, 201, 201);
+  border-top: 1px solid rgba(236, 236, 236, 0.479);
 }

@@ -2,16 +2,15 @@ import React , { useState}from 'react';
 import { Modal } from '../../../context/Modal';
 import { useDispatch } from 'react-redux';
 import './SelectDirectoryModal.css'
+
 // import {  getAllUsersDecksDefaultDirectoryThunk} from '../../../store/workspace_directories';
 
 const SelectDirectoryModal = ({setopenSelectDirModal, allUserWorkspaces, setdirSelected}) => {
   console.log("all workspace", allUserWorkspaces)
   const dispatch = useDispatch();
 
-  // const [selectDir, setselectDir] = useState('')
   const [errors, setErrors] = useState([]);
   const [selectedWorkspace, setselectedWorkspace] = useState('')
-  const [selectDirectory, setselectDirectory] = useState('')
 
   const workspaceCollapsibleDetect = (workspace)=>{
     if(selectedWorkspace === workspace) setselectedWorkspace('')
@@ -20,8 +19,8 @@ const SelectDirectoryModal = ({setopenSelectDirModal, allUserWorkspaces, setdirS
     }
   }
   const setDirectoryHandler = (directory)=>{
-    setselectDirectory(directory);
-    console.log("directory", directory)
+    setdirSelected(directory);
+    setopenSelectDirModal(false);
   }
 
   return (
@@ -39,10 +38,10 @@ const SelectDirectoryModal = ({setopenSelectDirModal, allUserWorkspaces, setdirS
                 return (
                   <>
                     {/* selecting workspace */}
-                    <div onClick={()=>workspaceCollapsibleDetect(workspace)} className={selectedWorkspace.id === workspace.id ?'workspace-nav workspace-selected': 'workspace-nav'} >{workspace.name}</div>
+                    {workspace.directories.length > 0 && <div onClick={()=>workspaceCollapsibleDetect(workspace)} className={selectedWorkspace.id === workspace.id ?'workspace-nav workspace-selected borders-custom': 'workspace-nav borders-custom'} >{workspace.name}</div>}
 
                     {/* selecting directories */}
-                    {workspace.id === selectedWorkspace.id && workspace.directories.map(directory=> <div onClick={()=>setDirectoryHandler(directory)} className='directory-nav' >{directory.name}</div> )}
+                    {workspace.id === selectedWorkspace.id && workspace.directories.map(directory=> <div onClick={()=>setDirectoryHandler(directory)} className='directory-nav borders-custom' >{directory.name}</div> )}
                   </>)
               })
             )}

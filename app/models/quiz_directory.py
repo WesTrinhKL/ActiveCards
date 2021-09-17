@@ -68,6 +68,7 @@ class QuizDirectory(db.Model):
             'description': self.description,
             'decks': [deck.get_quizzes_deck_for_workspace() for deck in self.quiz_template_relation],
             'workspace_id': self.workspace_id,
+            'workspace_name': self.workspace_relation.name,
             'date_age': self.get_age(),
             'date_age_last_updated': self.get_age_updated_at(),
             'date_created': self.created_at,
