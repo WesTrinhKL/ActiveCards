@@ -86,7 +86,7 @@ const Workspace = () => {
         </div>}
 
         {directoriesViewOn && dirOrWorkspaceSelectedId !== 'default' && selectedData && <div className="content__directory-component">
-          <DirectoryContentView directory_decks={selectedData} dir_title={dirTitle}/>
+          <DirectoryContentView directory_decks={selectedData} dir_title={dirTitle} dir_id={dirOrWorkspaceSelectedId}/>
         </div>}
 
         {!directoriesViewOn && dirOrWorkspaceSelectedId !== 'default' && <div className="content__workspace-component">

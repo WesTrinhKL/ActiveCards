@@ -85,17 +85,30 @@
   grid-row: 1;
   width: 100%;
 }
+.wc-cc__header-wrapper{
+  display: flex;
+}
 .wc-cc__header{
   min-height: 60px;
   display: flex;
   align-items: flex-end;
   padding-bottom: 8px;
+  justify-content: space-between;
+  /* width: 80%; */
+  margin: 0 0 0 50px;
+  width: 95%;
 }
+.wc-cc__header-right{
+  width: 350px;
+}
+
+
 .cc-header__bread-crumbs{
-  margin-left: 50px;
+  /* margin-left: 50px; */
   font-size: 14px;
   color: #7c7c7c;
 }
+
 .cc-header__bread-crumbs span{
   color: #98ACF8;
   /* font-size: 20px; */
@@ -120,12 +133,13 @@
 }
 
 /* inside content and files */
-.wc-cc-fc-content__wrapper{
+.wc-cc-fc-content__wrapper, .wc-cc-fc-content__wrapper-default{
   margin: 0 0 50px 50px;
   border: 1.5px solid rgb(199, 199, 199);
   height: calc(100vh - 175px);
   border-radius: 2px;
   overflow: auto;
+
 
 }
 .content_wrapper__header{
@@ -133,21 +147,14 @@
 }
 
 /* ----DefaultContentView----- */
-.wc-cc-fc-content__wrapper-default{
-  margin: 0 0 50px 50px;
-  border: 1.5px solid rgb(199, 199, 199);
-  height: calc(100vh - 175px);
-  border-radius: 2px;
-  overflow: auto;
-}
 .default-repo-wrapper{
   display: grid;
   grid-template-columns: repeat(auto-fill, 180px);
   justify-content: center;
   row-gap: 20px;
   column-gap: 40px;
-  margin-top: 30px;
-  cursor: pointer;
+  margin: 30px 30px;
+  /* cursor: pointer; */
 }
 
 /* -----deck cover----- */
@@ -162,6 +169,7 @@
   display: flex;
   flex-direction: column;
   /* background-color: rgb(233, 233, 233); */
+  cursor: pointer;
 }
 
 .deck-cover__middle{

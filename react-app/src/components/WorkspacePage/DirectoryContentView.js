@@ -1,15 +1,18 @@
 import React, {useState, useEffect} from 'react'
 import { reduceStringIfLongThan } from '../utilities/util'
 import { deleteFormQuizDeckTempThunk } from '../../store/quiz_deck'
-import { getAllWorkspaceThunk, getAllUsersDecksDefaultDirectoryThunk } from '../../store/workspace_directories'
+import { getAllWorkspaceThunk, getAllUsersDecksDefaultDirectoryThunk, deleteDirectoryThunk} from '../../store/workspace_directories'
 import { useDispatch } from 'react-redux'
 import DeckMetadata from './DeckMetadata/DeckMetadata'
 import RepoDeckCover from './RepoDeckCover'
+import EditDropDown from '../DropDownComponent/EditDropDown'
 
-const DirectoryContentView = ({directory_decks, dir_title}) => {
+const DirectoryContentView = ({directory_decks, dir_title, dir_id}) => {
   const dispatch = useDispatch();
   const [deckSelected, setDeckSelected] = useState("")
   const [showDeleteModal, setshowDeleteModal] = useState(false)
+
+  console.log("dir id", dir_id)
 
   useEffect(() => {
     setDeckSelected("")
@@ -23,7 +26,13 @@ const DirectoryContentView = ({directory_decks, dir_title}) => {
       alert("deleted successfully!");
       dispatch(getAllWorkspaceThunk())
   }
-  console.log("directory_decks", directory_decks)
+
+  const delete_directory_handler = async ()=>{
+      const data = await dispatch(deleteDirectoryThunk(dir_id))
+      console.log("error?", data);
+      alert("deleted successfully!");
+      window.location.reload();
+  }
 
 
 
@@ -32,9 +41,17 @@ const DirectoryContentView = ({directory_decks, dir_title}) => {
       {directory_decks &&
       <div>
         <div className="wc__content-container">
-          <div className="wc-cc__header">
-            <div className="cc-header__bread-crumbs"> <i class="fas fa-home"></i> / {dir_title} / <span> {deckSelected? reduceStringIfLongThan(deckSelected.title, 20, 20): ''} </span> </div>
+          <div className="wc-cc__header-wrapper">
+            <div className="wc-cc__header">
+              <div className="cc-header__bread-crumbs"> <i class="fas fa-home"></i> / {dir_title} / <span> {deckSelected? reduceStringIfLongThan(deckSelected.title, 20, 20): ''} </span> </div>
+              <div>
+                <EditDropDown for_directory={true} delete_handler={delete_directory_handler}/>
+              </div>
+            </div>
+            <div className="wc-cc__header-right"></div>
           </div>
+
+
           <div className="wc-cc__files-container">
             <div className="wc-cc-fc__content">
               <div className="wc-cc-fc-content__wrapper">
@@ -55,6 +72,7 @@ const DirectoryContentView = ({directory_decks, dir_title}) => {
 
             </div>
           </div>
+
         </div>
       </div>}
     </>

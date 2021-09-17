@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react'
+import React, {useState} from 'react'
 import RepoDeckCover from './RepoDeckCover'
 import { reduceStringIfLongThan } from '../utilities/util'
 
@@ -38,7 +38,7 @@ const DefaultContentView = ({default_decks}) => {
           </div>
           <div className="wc-cc__files-container">
             <div className="wc-cc-fc__content">
-              <div className="wc-cc-fc-content__wrapper-default">
+              <div className="wc-cc-fc-content__wrapper">
                 {/* <div>Draft</div> */}
 
                 <div className="default-repo-wrapper">
