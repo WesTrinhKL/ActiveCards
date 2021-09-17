@@ -88,7 +88,7 @@ const DefaultContentView = ({default_decks}) => {
                   <div onClick={()=>setshowDeleteModal(true)} className="meta-tool__delete">
                     <i class="fas fa-trash"></i>  <span>Delete Deck</span>
                   </div>
-                  {showDeleteModal && <DeckDeleteModal delete_deck_handler={delete_deck_handler}/>}
+                  {showDeleteModal && <DeckDeleteModal delete_deck_handler={delete_deck_handler} setshowDeleteModal={setshowDeleteModal}/>}
                 </div>
               </div>}
 

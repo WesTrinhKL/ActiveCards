@@ -5,7 +5,7 @@ import { getAllWorkspaceThunk, getAllUsersDecksDefaultDirectoryThunk } from '../
 import DirectoryContentView from './DirectoryContentView'
 import WorkspaceContentView from './WorkspaceContentView'
 import DefaultContentView from './DefaultContentView'
-
+import CreateWorkspaceModal from './CreateWorkspaceModal/CreateWorkspaceModal'
 const Workspace = () => {
   const dispatch = useDispatch()
 
@@ -24,6 +24,7 @@ const Workspace = () => {
   const [directoriesViewOn, setdirectoriesViewOn] = useState(true)
   const [dirOrWorkspaceSelectedId, setdirOrWorkspaceSelectedId] = useState('default') //will be default, until a directory is clicked on, then set Id to that.
   const [selectedData, setselectedData] = useState(null)
+  const [showCreateWorkspace, setshowCreateWorkspace] = useState(false)
 
   const selectDefaultE = (directory_id)=> {
     setdirOrWorkspaceSelectedId(directory_id)
@@ -40,7 +41,12 @@ const Workspace = () => {
     setdirectoriesViewOn(false)
   }
 
-  // console.log("selectedData", selectedData)
+  const createNewWorkspace = ()=>{
+
+  }
+  const closeModalHandler =()=>{
+    setshowCreateWorkspace(false)
+  }
 
   return (
     <>
@@ -65,7 +71,8 @@ const Workspace = () => {
               })
             )}
           </div>
-          <div className="workspace-directories__create vanilla-button-1">create workspace</div>
+          <div onClick={()=>setshowCreateWorkspace(true)} className="workspace-directories__create vanilla-button-1">create workspace</div>
+          {showCreateWorkspace && <CreateWorkspaceModal closeModalHandler={closeModalHandler}/>}
         </div>
 
         {defaultDirectoryDecks && dirOrWorkspaceSelectedId === 'default' && <div className="content__directory-component">

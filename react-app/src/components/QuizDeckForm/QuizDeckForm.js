@@ -98,70 +98,70 @@ export const QuizDeckForm = ({editModeOn, quiz_id}) => {
       <form onSubmit={onFormSubmit}>
 
         <div className="qdfc__header"> {editModeOn? 'Edit': 'Create'} Your Deck</div>
-            <ul className="error-group">
-                {errors.map((error, idx) => <li className="error-text" key={idx}>*{error}</li>)}
-            </ul>
+        <ul className="error-group">
+            {errors.map((error, idx) => <li className="error-text" key={idx}>*{error}</li>)}
+        </ul>
 
 
-          {/* required inputs */}
-          <div className="title-input-container">
-            {/* title */}
-            <div>
-              <label className="">
-                Title:
-              </label>
-            </div>
-            <input className="quiz-deck-form-title"
-                placeholder="ex: Algebra 2 Final Exam"
-                required
-                value={title}
-                onChange={setTitleE}
-                type="text" />
-
-
-            {/* description */}
-            <div className="description-input-container">
-              <label className="">
-                Description (optional):
-              </label>
-              <div>
-              <textarea className="quiz-deck-form-text-area"
-                  placeholder="It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout."
-                  value={description}
-                  onChange={setDescriptionE}
-                  type="text" />
-              </div>
-            </div>
-
-
-            {/* private or public */}
-            <div className="privacy-input-container">
-              <label className="pic_switch">
-                Is Private:
-              </label>
-              <div class="quiz-deck-form-toggle-private">
-                <input type="radio" id="radio-one" name="switch-one" value='true' onChange={setPrivateE}  checked={isPrivate==='true'}/>
-                <label for="radio-one">Yes</label>
-                <input type="radio" id="radio-two" name="switch-one" value='false' onChange={setPrivateE} checked={isPrivate==='false'} />
-                <label for="radio-two">No</label>
-              </div>
-            </div>
-
-            {/* Select a directory */}
-            <div className="privacy-input-container">
-              <label className="pic_switch">
-                Select Directory:
-              </label>
-              <div className="quiz-deck-form-select-directory no-drop">
-                <div className="qdfsd__container no-drop">
-                  <i class="fas fa-folder directory-icon"></i>
-                  <div className="qdfsd-c__change-directory"> <span className="selected-workspace-name"> Workspace/ </span> <span className="selected-directory-name">Home</span></div>
-                </div>
-
-              </div>
-            </div>
-
+        {/* required inputs */}
+        <div className="title-input-container">
+          {/* title */}
+          <div>
+            <label className="">
+              Title:
+            </label>
           </div>
+          <input className="quiz-deck-form-title"
+              placeholder="ex: Algebra 2 Final Exam"
+              required
+              value={title}
+              onChange={setTitleE}
+              type="text" />
+        </div>
+
+          {/* description */}
+          <div className="description-input-container">
+            <label className="">
+              Description (optional):
+            </label>
+            <div>
+            <textarea className="quiz-deck-form-text-area"
+                placeholder="It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout."
+                value={description}
+                onChange={setDescriptionE}
+                type="text" />
+            </div>
+          </div>
+
+
+          {/* private or public */}
+          <div className="privacy-input-container">
+            <label className="pic_switch">
+              Is Private:
+            </label>
+            <div class="quiz-deck-form-toggle-private">
+              <input type="radio" id="radio-one" name="switch-one" value='true' onChange={setPrivateE}  checked={isPrivate==='true'}/>
+              <label for="radio-one">Yes</label>
+              <input type="radio" id="radio-two" name="switch-one" value='false' onChange={setPrivateE} checked={isPrivate==='false'} />
+              <label for="radio-two">No</label>
+            </div>
+          </div>
+
+          {/* Select a directory */}
+          <div className="privacy-input-container">
+            <label className="pic_switch">
+              Select Directory:
+            </label>
+            <div className="quiz-deck-form-select-directory no-drop">
+              <div className="qdfsd__container no-drop">
+                <i class="fas fa-folder directory-icon"></i>
+                <div className="qdfsd-c__change-directory"> <span className="selected-workspace-name"> Workspace/ </span> <span className="selected-directory-name">Home</span></div>
+              </div>
+
+            </div>
+          </div>
+
+
 
           <div className="create-deck-button-container">
             <button className="create-deck-form-button" type="submit">{editModeOn? 'Update Banner': 'Start Deck'} <i class="fas fa-long-arrow-alt-right start-deck-arrow"></i></button>

@@ -104,7 +104,7 @@ export const createWorkspaceThunk = (payload) => async (dispatch) => {
     return {'errors':'An error occurred. Please try again.'}
   } else {
     const payload = await response.json();
-    await dispatch(GetMainWorkspaceByIdThunk(payload.id));
+    await dispatch(getAllWorkspaceThunk());
     return payload;
   }
 }
