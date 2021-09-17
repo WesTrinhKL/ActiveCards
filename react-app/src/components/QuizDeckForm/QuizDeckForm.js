@@ -4,6 +4,8 @@ import './QuizDeckForm.css';
 import { useHistory } from 'react-router';
 import { getUserFirstDirectory } from '../../store/directory';
 import { setFormQuizDeckTemp, getSingleDeckWithCardsByIdThunk, updateFormQuizDeckTempThunk } from '../../store/quiz_deck';
+import SelectDirectoryModal from './SelectDirectoryModal/SelectDirectoryModal';
+import { getAllUsersDecksDefaultDirectoryThunk } from '../../store/workspace_directories';//gets all workspace data for user
 
 
 export const QuizDeckForm = ({editModeOn, quiz_id}) => {
@@ -13,8 +15,8 @@ export const QuizDeckForm = ({editModeOn, quiz_id}) => {
 
   const user_id = useSelector((state) => state.session.user?.id);
   const user_first_directory_id = useSelector(state => state.directory.userFirstDirectory?.first_directory?.id)
-  // console.log("edit mode" , editModeOn)
   const single_deck_and_cards = useSelector(state=> state.quiz_deck.single_deck_with_cards?.quiz);
+  const allUserWorkspaces = useSelector((state)=>state.workspace_directories.all_workspace_and_children?.user_workspaces)
 
   const current_title =  editModeOn ? single_deck_and_cards?.title : '';
   const current_description =  editModeOn ? single_deck_and_cards?.description : '';
@@ -25,6 +27,8 @@ export const QuizDeckForm = ({editModeOn, quiz_id}) => {
   const [description, setDescription] = useState(current_description);
   const [isPrivate, setIsPrivate] = useState(current_is_private);
   const [errors, setErrors] = useState([]);
+  const [openSelectDirModal, setopenSelectDirModal] = useState(false);
+  const [dirSelected, setdirSelected] = useState('')
 
   const setTitleE = (e) => setTitle(e.target.value);
   const setDescriptionE = (e) => setDescription(e.target.value);
@@ -35,10 +39,14 @@ export const QuizDeckForm = ({editModeOn, quiz_id}) => {
 
   useEffect(() => {
     dispatch(getUserFirstDirectory())
+    dispatch(getAllUsersDecksDefaultDirectoryThunk())
+
     if (editModeOn && quiz_id){
       dispatch(getSingleDeckWithCardsByIdThunk(quiz_id))
     }
   }, [dispatch])
+
+  console.log("all workspace", allUserWorkspaces)
 
   const onFormSubmit = (e)=>{
     e.preventDefault();
@@ -93,7 +101,6 @@ export const QuizDeckForm = ({editModeOn, quiz_id}) => {
   }
 
   return (
-
     <div className="quiz-deck-form-container">
       <form onSubmit={onFormSubmit}>
 
@@ -152,13 +159,13 @@ export const QuizDeckForm = ({editModeOn, quiz_id}) => {
             <label className="pic_switch">
               Select Directory:
             </label>
-            <div className="quiz-deck-form-select-directory no-drop">
-              <div className="qdfsd__container no-drop">
+            <div onClick={()=>setopenSelectDirModal(true)}className="quiz-deck-form-select-directory">
+              <div className="qdfsd__container">
                 <i class="fas fa-folder directory-icon"></i>
                 <div className="qdfsd-c__change-directory"> <span className="selected-workspace-name"> Workspace/ </span> <span className="selected-directory-name">Home</span></div>
               </div>
-
             </div>
+            {openSelectDirModal && <SelectDirectoryModal allUserWorkspaces={allUserWorkspaces} setdirSelected={setdirSelected} setopenSelectDirModal={setopenSelectDirModal}/>}
           </div>
 
 

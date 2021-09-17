@@ -1,0 +1,19 @@
+.select-directory-wrapper{
+  width: 35vw;
+  height: 60vh;
+  display: flex;
+  justify-content: center;
+}
+
+.select-directory-container{
+  width: 80%;
+  height: 80%;
+  align-self: center;
+  text-align: center;
+  overflow: auto;
+
+}
+
+.select-directory-container__title{
+  margin-bottom: 15px;
+}
