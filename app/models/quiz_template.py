@@ -1,8 +1,8 @@
-import flask_login
 from .db import db
 from flask_login import current_user
 import datetime
 from app.models.utils import get_age_for_two_dates
+from sqlalchemy import desc
 
 
 class QuizTemplate(db.Model):
@@ -19,7 +19,7 @@ class QuizTemplate(db.Model):
         'User', back_populates='quiz_template_relation')
 
     quiz_directory_id = db.Column(db.Integer, db.ForeignKey(
-        'quiz_directories.id'), nullable=False)
+        'quiz_directories.id'), nullable=True)
     directory_relation = db.relationship(
         'QuizDirectory', back_populates='quiz_template_relation')
 
@@ -36,8 +36,16 @@ class QuizTemplate(db.Model):
             return current_user.id == self.user_id
         return False
 
+    def update_time(self):
+        self.updated_at = datetime.datetime.utcnow()
+
     def get_age(self):
         old_time = (self.created_at).replace(tzinfo=datetime.timezone.utc)
+        most_recent = datetime.datetime.now(datetime.timezone.utc)
+        return get_age_for_two_dates(old_time, most_recent)
+
+    def get_age_updated_at(self):
+        old_time = (self.updated_at).replace(tzinfo=datetime.timezone.utc)
         most_recent = datetime.datetime.now(datetime.timezone.utc)
         return get_age_for_two_dates(old_time, most_recent)
 
@@ -50,6 +58,14 @@ class QuizTemplate(db.Model):
             'user_relation': self.user_relation.to_dict(),
             'directory_relation': self.directory_relation.to_dict_without_user(),
             'date_age': self.get_age(),
+        }
+
+    def to_dict_simple_workspace(self):
+        return {
+            'id': self.id,
+            'title': self.title,
+            'description': self.description,
+            'is_private': self.is_private,
         }
 
     def get_quiz_cards_with_all_relationship(self):
@@ -86,3 +102,36 @@ class QuizTemplate(db.Model):
             'number_of_cards': len(self.quiz_card_relation),
             'date_age': self.get_age(),
         }
+
+    def get_quizzes_deck_for_workspace(self):
+        return {
+            'id': self.id,
+            'title': self.title,
+            'is_private': self.is_private,
+            'user_id': self.user_id,
+            'username': self.user_relation.username,
+            'description': self.description,
+            'number_of_cards': len(self.quiz_card_relation),
+            'date_age': self.get_age(),
+            'date_age_last_updated': self.get_age_updated_at(),
+            # 'date_updated_at': self.updated_at
+
+        }
+
+    @staticmethod
+    # get all by order id
+    def get_all_quiz_decks_simple_for_user():
+        if current_user.is_authenticated:
+            user_decks_all = QuizTemplate.query.filter_by(
+                user_id=current_user.id).all()
+            return {'all_user_decks': [deck.get_quizzes_deck_for_workspace() for deck in user_decks_all]}
+        return {'errors': 'Unavailable. please try again.'}, 401
+
+    @staticmethod
+    # get most recent
+    def get_all_quiz_decks_by_recent_simple_for_user():
+        if current_user.is_authenticated:
+            user_decks_all = QuizTemplate.query.filter_by(
+                user_id=current_user.id).order_by(desc(QuizTemplate.updated_at)).all()
+            return {'all_user_decks': [deck.get_quizzes_deck_for_workspace() for deck in user_decks_all]}
+        return {'errors': 'Unavailable. please try again.'}, 401

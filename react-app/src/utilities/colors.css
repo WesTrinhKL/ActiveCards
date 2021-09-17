@@ -20,7 +20,6 @@
   color: #B088F9;
   color: #DA9FF9;
 
-
   color: #fffcfc;
   color: #f7f3f3;
   color: #31326F;
@@ -28,19 +27,16 @@
   color: #9A8194;
   color: #DEEDF0;
 
-
   color: #8fa0e4;
   color: #98ACF8;
   color: #7868E6;
   color: #BEDCFA;
-
 
   color: #949CDF;
   color: #A7C5EB;
   color: #F6ECF0;
   color: #CD5D7D;
   color: rgb(249, 253, 255);
-  /* rgb(243, 245, 246); */
 
   /* grays */
   color: #8F8F8F;
@@ -48,19 +44,22 @@
   color: rgb(175, 175, 175);
   color: #969696;
   color: #F5F5F5;
-  /* CURRENT */
-  color: #fffcfc;
+
+  /* darks */
   color: #98ACF8;
   color: #98abf83a;
   color: #CD5D7D;
   color: #e6b8c47e;
   color: #cd5d7dc0;
-  color: #eeeeee;;
 
+  /* lights */
+  color: #eeeeee;;
+  color: #fffcfc;
   color: #C8D9EB;
   color: #ECF2F9;
   color: #b9f1ad;
   color: #96f583;
   color: #8fdbee;
   color: #faf4ef;
+  color: #EBEBEB;
 }

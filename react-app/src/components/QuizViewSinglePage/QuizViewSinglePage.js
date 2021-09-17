@@ -21,15 +21,13 @@ const QuizViewSinglePage = () => {
   const quiz_length = getQuizCardsArray?.length ? getQuizCardsArray.length: 0;
   const belongs_to_user = user_id === single_deck_and_cards?.user_id;
 
-  const temp_categories = ['Datastructures', 'Algorithms', 'Python', 'Systems Design', 'Computer Science']
+  // const temp_categories = ['Datastructures', 'Algorithms', 'Python', 'Systems Design', 'Computer Science']
+  const temp_categories = ['Category One', 'Category Two', 'Category Three', 'Category Four', 'Category Five']
   const [count, setcount] = useState(0)
-  // state for: is_edit_mode
 
   useEffect(() => {
     dispatch(getSingleDeckWithCardsByIdThunk(quiz_id))
   }, [dispatch])
-
-
 
   // send to edit
   const send_to_edit = (quiz_id)=>{
@@ -57,11 +55,11 @@ const QuizViewSinglePage = () => {
       {/* template header */}
       {single_deck_and_cards?.quiz_card_relation && <div className="qvspw__header-wrapper">
         {single_deck_and_cards && <div className="qvspw-hw__title"> {single_deck_and_cards.title} </div>}
-        {/* <div className="qvspw-hw__categories-wrapper" >
+        <div className="qvspw-hw__categories-wrapper" >
           {temp_categories.map(category => (
               <div className="qvspw-hw__categeories"> <span>{category}</span> </div>
           ))}
-        </div> */}
+        </div>
       </div>}
 
       {/* deck metadata + preview questions grid*/}
@@ -116,10 +114,10 @@ const QuizViewSinglePage = () => {
           {/* settings and buttons */}
           <div className="settings-and-icon-container">
             <div className="settings-and-icon">
-              {/* <i class="far fa-star sai__star"></i> */}
+              <i class="far fa-star sai__star no-drop"></i>
               {/* <i class="fas fa-star sai__star--selected no-drop"></i> */}
-              {/* {!belongs_to_user && <i class="fas fa-plus sai__plus"></i>} */}
-              {/* <i class="fas fa-share sai__share no-drop"></i> */}
+              {!belongs_to_user && <i class="fas fa-plus sai__plus"></i>}
+              <i class="fas fa-share sai__share no-drop"></i>
               {belongs_to_user && <div>
                 <EditDropDown for_banner={true} quiz_id={quiz_id}/>
               </div>}

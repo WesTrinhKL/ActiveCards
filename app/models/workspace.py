@@ -1,5 +1,7 @@
 from .db import db
 import datetime
+from flask_login import current_user
+from app.models.utils import get_age_for_two_dates
 
 
 class Workspace(db.Model):
@@ -7,8 +9,10 @@ class Workspace(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(100), nullable=True)
+    description = db.Column(db.String(255), nullable=True)
     user_id = db.Column(db.Integer, db.ForeignKey(
         'users.id'), nullable=False)
+
     user_relation = db.relationship(
         'User', back_populates='workspace_relation')
     directory_relation = db.relationship(
@@ -23,5 +27,35 @@ class Workspace(db.Model):
         return {
             'id': self.id,
             'name': self.name,
+            'description': self.description,
             'user_relation': self.user_relation.to_dict(),
         }
+
+    def to_dict_all_workspace_children(self):
+        return {
+            'id': self.id,
+            'name': self.name,
+            'description': self.description,
+            'user_relation': self.user_relation.to_dict(),
+            'directories': [directory.to_dict_all_directory_children() for directory in self.directory_relation],
+            'date_age': self.get_age(),
+            'date_age_last_updated': self.get_age_updated_at(),
+        }
+
+    def get_age(self):
+        old_time = (self.created_at).replace(tzinfo=datetime.timezone.utc)
+        most_recent = datetime.datetime.now(datetime.timezone.utc)
+        return get_age_for_two_dates(old_time, most_recent)
+
+    def get_age_updated_at(self):
+        old_time = (self.updated_at).replace(tzinfo=datetime.timezone.utc)
+        most_recent = datetime.datetime.now(datetime.timezone.utc)
+        return get_age_for_two_dates(old_time, most_recent)
+
+    @staticmethod
+    def get_all_users_workspaces_and_children():
+        if current_user.is_authenticated:
+            workspaces = Workspace.query.filter_by(
+                user_id=current_user.id).all()
+            return [workspace.to_dict_all_workspace_children() for workspace in workspaces]
+        return {'errors': 'workspace unavailable. please try again.'}, 401

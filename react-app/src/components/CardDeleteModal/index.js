@@ -23,7 +23,7 @@ const CardDeleteModal = ({delete_card_set}) => {
 
   return (
     <>
-     <div  onClick={() => setShowModal(true)}className="scs-bc__delete-card"> <i class="fas fa-trash"></i> </div>
+     <div onClick={() => setShowModal(true)}className="scs-bc__delete-card"> <i class="fas fa-trash"></i> </div>
 
 
       {showModal && (
@@ -36,6 +36,7 @@ const CardDeleteModal = ({delete_card_set}) => {
                 <div className="button-style-stay" onClick={instantCloseHandlerDeleteErrors}>Don't Delete</div>
 
                 <div className="button-style-exit" onClick={delete_card_handler}>Delete Card</div>
+
               </div>
 
             </div>

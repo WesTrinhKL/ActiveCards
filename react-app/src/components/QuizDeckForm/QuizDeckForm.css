@@ -123,6 +123,8 @@
   /* font-weight: 660; */
   /* text-decoration: underline; */
   /* text-decoration-color: #e6b8c47e; */
+  color: #8fa0e4;
+  font-weight: bold;
 
 }
 .selected-workspace-name{
@@ -173,8 +175,8 @@
   margin-top: 5px;
   margin-right: 25px;
   position: absolute;
-  right:20px;
-  bottom: 40px;
+  right:10px;
+  bottom: 25px;
 }
 
 .create-deck-form-button:hover{

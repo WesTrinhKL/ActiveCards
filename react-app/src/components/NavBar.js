@@ -25,8 +25,7 @@ const NavBar = () => {
   }
 
   const goToHome = () =>{
-    history.push('/');
-    window.location.reload();
+    window.location.href = '/'
 
   }
 

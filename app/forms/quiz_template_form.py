@@ -40,6 +40,6 @@ class QuizTemplateForm(FlaskForm):
 
     # ensure directory belongs to user
     quiz_directory_id = IntegerField(
-        validators=[DataRequired(), directory_belongs_to_user_and_exists])
+        validators=[directory_belongs_to_user_and_exists])
 
     # add categories in the future

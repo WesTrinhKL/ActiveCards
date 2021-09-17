@@ -5,6 +5,16 @@ export const reduceStringIfLongThan = (string_to_reduce, longer_than_amount=50, 
   return string_to_reduce.length > longer_than_amount ? string_to_reduce.slice(0,amount_to_reduce) + '...': string_to_reduce;
 }
 
+export const getDateOnlyFromString = (date_string) => {
+  let new_date_string = ''
+  const date_string_array = date_string.split(' ');
+  for (let i=0; i<4; i++){
+    new_date_string += date_string_array[i] + ' ';
+  }
+  return new_date_string;
+
+}
+
 export const handleScrollTopUtil = ()=> {
   setTimeout(()=>{
     window.scroll({

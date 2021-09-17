@@ -12,8 +12,8 @@ const QuizDeckFormModal = ({editModeOn, deleteModeOn, quiz_id, fromEditPageButto
   const [errors, setErrors] = useState([])
   const [showModal, setShowModal] = useState(false);
   const [verifyClose, setVerifyClose] = useState(false);
-  const [editStateOn, setEditStateOn] = useState(editModeOn)
-  const [deleteStateOn, setdeleteStateOn] = useState(deleteModeOn)
+  const [editStateOn, setEditStateOn] = useState(editModeOn || false)
+  const [deleteStateOn, setdeleteStateOn] = useState(deleteModeOn || false)
 
   const dispatch = useDispatch()
   const history = useHistory()

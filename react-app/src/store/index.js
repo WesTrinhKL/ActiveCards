@@ -4,12 +4,15 @@ import session from './session';
 import quiz_deck from './quiz_deck';
 import quiz_card from './quiz_card';
 import directory from './directory';
+import workspace_directories from './workspace_directories';
 
 const rootReducer = combineReducers({
   session,
   quiz_deck,
   directory,
-  quiz_card
+  quiz_card,
+  workspace_directories,
+
 
 });
 
