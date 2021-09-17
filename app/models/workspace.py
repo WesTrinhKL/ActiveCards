@@ -36,7 +36,7 @@ class Workspace(db.Model):
             'name': self.name,
             'description': self.description,
             'user_relation': self.user_relation.to_dict(),
-            'directories': [directory.to_dict_simple_directory() for directory in self.directory_relation]
+            'directories': [directory.to_dict_all_directory_children() for directory in self.directory_relation]
         }
 
     @staticmethod

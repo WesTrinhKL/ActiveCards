@@ -45,9 +45,6 @@ const CreateWorkspaceModal = ({closeModalHandler}) => {
 
   }
 
-
-
-
   return (
     <>
       <Modal onClose={() => closeModalHandler()} >

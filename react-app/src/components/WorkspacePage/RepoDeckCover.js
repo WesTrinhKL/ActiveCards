@@ -1,10 +1,8 @@
-import React, {useState} from 'react'
+import React from 'react'
 import { reduceStringIfLongThan} from '../utilities/util'
 
 const RepoDeckCover = ({deck, selected}) => {
 
-  // const [selectedDeck, setselectedDeck] = useState('')
-  console.log("deck selected: ", selected)
   return (
     <div className="repo-deck-cover-container">
 
