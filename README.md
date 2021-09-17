@@ -1,6 +1,7 @@
 
 # ActiveCards
-ActiveCards is a flashcards based app that allows you to practice learning concepts through active recalling and also the ability to share your cards with others. It is a fullstack React App made with a Redux state manager and a backend using Python, Flask, SQL-Alchemy, and PostgresSQL. 
+ActiveCards is a flashcards based app that allows you to practice learning concepts through active recalling and also the ability to share your cards with others. It is a fullstack React App made with a Redux state manager and a backend using:
+Python, Flask, SQL-Alchemy, PostgresSQL, React Hooks w/ vanilla CSS (no libraries),
 
 * Reference to the ActiveCards Wiki <a href='https://www.github.com/WesTrinhKL/ActiveCards/wiki'>Wiki Docs</a>
 
