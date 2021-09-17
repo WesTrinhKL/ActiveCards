@@ -4,7 +4,7 @@ import './QuizDeckForm.css';
 import { useHistory } from 'react-router';
 import { getUserFirstDirectory } from '../../store/directory';
 import { setFormQuizDeckTemp, getSingleDeckWithCardsByIdThunk, updateFormQuizDeckTempThunk } from '../../store/quiz_deck';
-import SelectDirectoryModal from './SelectDirectoryModal/SelectDirectoryModal';
+import SelectDirectoryModal from './SelectDirectoryModal/SelectDirectoryModal.js';
 import { getAllWorkspaceThunk } from '../../store/workspace_directories';//gets all workspace data for user
 import { reduceStringIfLongThan } from '../utilities/util';
 
