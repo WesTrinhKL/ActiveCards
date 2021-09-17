@@ -180,3 +180,8 @@ div span .no-drop:hover{
     transition: all 0.1s ease-in-out;
     font-size: 14px;
 }
+
+/* font size */
+.font-size-small-medium{
+    font-size: 14px;
+}

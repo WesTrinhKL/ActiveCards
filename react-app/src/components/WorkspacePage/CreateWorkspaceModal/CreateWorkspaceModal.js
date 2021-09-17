@@ -1,14 +1,13 @@
 import React , { useState, useEffect }from 'react';
 import { Modal } from '../../../context/Modal';
 import { useDispatch } from 'react-redux';
-import { createWorkspaceThunk } from '../../../store/workspace_directories';
 import './CreateWorkspaceModal.css'
+import { createWorkspaceThunk, createDirThunk } from '../../../store/workspace_directories';
 
-const CreateWorkspaceModal = ({closeModalHandler}) => {
+const CreateWorkspaceModal = ({closeModalHandler, createDir=false, workspace_id}) => {
 
   const dispatch = useDispatch();
 
-  // const [showModal, setShowModal] = useState(true);
   const [name, setname] = useState('')
   const [description, setdescription] = useState('')
   const [errors, setErrors] = useState([]);
@@ -24,12 +23,41 @@ const CreateWorkspaceModal = ({closeModalHandler}) => {
       description,
     }
     setErrors([]);
-    dispatch(createWorkspaceThunk(payload)).then( (data)=>{
-      if(data && data.id){
+    if(!createDir){
+      dispatch(createWorkspaceThunk(payload)).then( (data)=>{
+        if(data && data.id){
 
-        // setShowModal(false);
-        closeModalHandler();
-        alert("created workspace successfully!");
+          // setShowModal(false);
+          closeModalHandler();
+          alert("created workspace successfully!");
+        }
+        else if(data && data.errors){
+          setErrors(data.errors);
+        }
+        else{
+          setErrors(['something went wrong, please try again.'])
+        }
+      }).catch(async (res) =>{
+        console.log("error hit")
+        const data = res
+        if(data && data.errors) setErrors(data.errors);
+      })
+    }
+
+  }
+
+  const createDirectorySubmit = (e)=>{
+    e.preventDefault();
+    const payload = {
+      name,
+      description,
+      workspace_id: workspace_id,
+    }
+    setErrors([]);
+    dispatch(createDirThunk(payload)).then( (data)=>{
+      if(data && data.id){
+        closeModalHandler(false);
+        alert("created directory successfully!");
       }
       else if(data && data.errors){
         setErrors(data.errors);
@@ -42,8 +70,8 @@ const CreateWorkspaceModal = ({closeModalHandler}) => {
       const data = res
       if(data && data.errors) setErrors(data.errors);
     })
-
   }
+
 
   return (
     <>
@@ -63,7 +91,7 @@ const CreateWorkspaceModal = ({closeModalHandler}) => {
                   </label>
                 </div>
                 <input className="quiz-deck-form-title"
-                    placeholder="Workspace name"
+                    placeholder={createDir?'name of directory':'name of workspace'}
                     required
                     value={name}
                     onChange={setnameE}
@@ -84,7 +112,7 @@ const CreateWorkspaceModal = ({closeModalHandler}) => {
                 </div>
               </div>
 
-              <div className="create-workspace__button" onClick={createWorkspaceSubmit}>Create Workspace</div>
+              <div className="create-workspace__button" onClick={createDir && workspace_id?createDirectorySubmit: createWorkspaceSubmit}>Create {createDir?'directory':'workspace'}</div>
             </div>
 
           </div>

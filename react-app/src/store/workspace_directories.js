@@ -48,7 +48,10 @@ const deleteDirectory = (payload) => ({
   type: DELETE_DIRECTORY,
   payload,
 })
-
+const createDir = (payload) => ({
+  type: CREATE_DIRECTORY,
+  payload,
+})
 
 export const GetMainWorkspaceByIdThunk = (id) => async(dispatch) =>{
 
@@ -125,6 +128,24 @@ export const deleteDirectoryThunk = (id) => async () => {
     return {'errors':'An error occurred. Please try again.'}
   } else {
     return {'success': `deleted directory successfully`};
+  }
+}
+
+export const createDirThunk = (payload) => async (dispatch) => {
+  const response = await fetch(`/api/directories/directory`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(payload),
+  });
+
+  if (!response.ok) {
+    const errorObj = await response.json();
+    if (errorObj) return errorObj
+    return {'errors':'An error occurred. Please try again.'}
+  } else {
+    const payload = await response.json();
+    await dispatch(getAllWorkspaceThunk());
+    return payload;
   }
 }
 

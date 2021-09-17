@@ -23,13 +23,12 @@ const DirectoryContentView = ({directory_decks, dir_title, dir_id}) => {
     const data = await dispatch(deleteFormQuizDeckTempThunk(deckSelected.id));
       setDeckSelected("")
       setshowDeleteModal(false)
-      alert("deleted successfully!");
+      alert("deleted directory successfully!");
       dispatch(getAllWorkspaceThunk())
   }
 
   const delete_directory_handler = async ()=>{
       const data = await dispatch(deleteDirectoryThunk(dir_id))
-      console.log("error?", data);
       alert("deleted successfully!");
       window.location.reload();
   }

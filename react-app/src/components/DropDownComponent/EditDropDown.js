@@ -4,7 +4,7 @@ import QuizDeckFormModal from '../QuizDeckForm';
 import { useHistory } from 'react-router';
 import DirectoryDeleteModal from '../WorkspacePage/DirectoryDeleteModal/DirectoryDeleteModal';
 
-const EditDropDown = ({quiz_id, for_cards=false, for_banner=false, for_directory=false, workspace=false, delete_handler}) => {
+const EditDropDown = ({quiz_id, for_cards=false, for_banner=false, for_directory=false, title='Directory', delete_handler}) => {
   // on click edit, send user to edit page
   const history = useHistory();
   const [showDeleteModal, setshowDeleteModal] = useState(false)
@@ -24,11 +24,11 @@ const EditDropDown = ({quiz_id, for_cards=false, for_banner=false, for_directory
 
           <div className="ellipse-navbar-content">
 
-           <div className="unc__item"><i className="fas fa-edit basic-style-icon"></i>Edit Directory</div>
+           <div className="unc__item font-size-small-medium"><i className="fas fa-edit basic-style-icon"></i>Edit {title}</div>
             <div className="unc_hr-container">
               <hr className="unc_hr" />
             </div>
-            <div className="unc__item" onClick={() => setshowDeleteModal(true)}><i class="fas fa-window-close basic-style-icon"></i>Delete Directory</div>
+            <div className="unc__item font-size-small-medium" onClick={() => setshowDeleteModal(true)}><i class="fas fa-window-close basic-style-icon"></i>Delete {title}</div>
             {showDeleteModal && <DirectoryDeleteModal delete_handler={delete_handler} setshowDeleteModal={setshowDeleteModal}/>}
           </div>
         </div>

@@ -17,7 +17,7 @@ const DeckMetadata = ({deckSelected, delete_deck_handler, showDeleteModal, setsh
 
                 <div className="decks__content-box">
                   <div className="basic-title">Description</div>
-                  <div className="basic-answer"> {reduceStringIfLongThan(deckSelected.description, 144, 144)}</div>
+                  <div className="basic-answer"> {deckSelected.description? reduceStringIfLongThan(deckSelected.description, 144, 144): ''}</div>
                 </div>
 
                 <div className="decks__content-box">
@@ -36,12 +36,16 @@ const DeckMetadata = ({deckSelected, delete_deck_handler, showDeleteModal, setsh
                 </div>
 
                 <div className="decks__content-box decks__meta-tool" >
+                  <div onClick={()=> window.open(`/view/quizzes/${deckSelected.id}`, "_blank")} className="meta-tool__edit">
+                    <i class="fas fa-external-link-alt"></i> <span>Open</span>
+                  </div>
                   <div onClick={()=> window.open(`/edit/quizzes/${deckSelected.id}`, "_blank")} className="meta-tool__edit">
                     <i class="fas fa-edit"> </i> <span>Edit Deck</span>
                   </div>
                   <div onClick={()=>setshowDeleteModal(true)} className="meta-tool__delete">
                     <i class="fas fa-trash"></i>  <span>Delete Deck</span>
                   </div>
+
                   {showDeleteModal && <DeckDeleteModal delete_deck_handler={delete_deck_handler} setshowDeleteModal={setshowDeleteModal}/>}
                 </div>
               </div>}

@@ -41,8 +41,9 @@ const Workspace = () => {
     setDirTitle(title)
     setdirectoriesViewOn(true)
   }
-  const selectWorkspaceE = (workspace_id)=> {
+  const selectWorkspaceE = (workspace_id, workspace_data)=> {
     setdirOrWorkspaceSelectedId(workspace_id)
+    setselectedData(workspace_data)
     setdirectoriesViewOn(false)
   }
 
@@ -69,7 +70,7 @@ const Workspace = () => {
                 return (
                   <>
                     {/* selecting workspace */}
-                    <div onClick={()=>selectWorkspaceE(workspace.id)} className={dirOrWorkspaceSelectedId === workspace.id && !directoriesViewOn?'workspace-nav workspace-selected': 'workspace-nav'} >{workspace.name}</div>
+                    <div onClick={()=>selectWorkspaceE(workspace.id, workspace)} className={dirOrWorkspaceSelectedId === workspace.id && !directoriesViewOn?'workspace-nav workspace-selected': 'workspace-nav'} >{workspace.name}</div>
 
                     {/* selecting directories */}
                     {workspace.directories.map(directory=> <div onClick={()=>selectDirectoryE(directory.id, directory.decks, directory.name)} className={dirOrWorkspaceSelectedId === directory.id && directoriesViewOn?'directory-nav directory-selected':  'directory-nav'}>{directory.name}</div> )}
@@ -77,8 +78,11 @@ const Workspace = () => {
               })
             )}
           </div>
+
           <div onClick={()=>setshowCreateWorkspace(true)} className="workspace-directories__create vanilla-button-1">create workspace</div>
           {showCreateWorkspace && <CreateWorkspaceModal closeModalHandler={closeModalHandler}/>}
+
+
         </div>
 
         {defaultDirectoryDecks && dirOrWorkspaceSelectedId === 'default' && <div className="content__directory-component">
@@ -90,7 +94,7 @@ const Workspace = () => {
         </div>}
 
         {!directoriesViewOn && dirOrWorkspaceSelectedId !== 'default' && <div className="content__workspace-component">
-          <WorkspaceContentView directory_id={dirOrWorkspaceSelectedId}/>
+          <WorkspaceContentView selectedData={selectedData} directory_id={dirOrWorkspaceSelectedId}/>
         </div>}
 
       </div>

@@ -1,6 +1,7 @@
 from .db import db
 import datetime
 from flask_login import current_user
+from app.models.utils import get_age_for_two_dates
 
 
 class Workspace(db.Model):
@@ -36,8 +37,20 @@ class Workspace(db.Model):
             'name': self.name,
             'description': self.description,
             'user_relation': self.user_relation.to_dict(),
-            'directories': [directory.to_dict_all_directory_children() for directory in self.directory_relation]
+            'directories': [directory.to_dict_all_directory_children() for directory in self.directory_relation],
+            'date_age': self.get_age(),
+            'date_age_last_updated': self.get_age_updated_at(),
         }
+
+    def get_age(self):
+        old_time = (self.created_at).replace(tzinfo=datetime.timezone.utc)
+        most_recent = datetime.datetime.now(datetime.timezone.utc)
+        return get_age_for_two_dates(old_time, most_recent)
+
+    def get_age_updated_at(self):
+        old_time = (self.updated_at).replace(tzinfo=datetime.timezone.utc)
+        most_recent = datetime.datetime.now(datetime.timezone.utc)
+        return get_age_for_two_dates(old_time, most_recent)
 
     @staticmethod
     def get_all_users_workspaces_and_children():

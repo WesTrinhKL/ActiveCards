@@ -55,7 +55,8 @@ class QuizDirectory(db.Model):
             'id': self.id,
             'name': self.name,
             'description': self.description,
-            'decks': [deck.get_quizzes_deck_for_workspace() for deck in self.quiz_template_relation]
+            'decks': [deck.get_quizzes_deck_for_workspace() for deck in self.quiz_template_relation],
+            'workspace_id': self.workspace_id
         }
 
     @staticmethod
