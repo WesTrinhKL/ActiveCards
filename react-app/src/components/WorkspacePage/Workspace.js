@@ -25,9 +25,11 @@ const Workspace = () => {
 
 
   const [directoriesViewOn, setdirectoriesViewOn] = useState(true)
-  const [dirOrWorkspaceSelectedId, setdirOrWorkspaceSelectedId] = useState('default') //will be default, until a directory is clicked on, then set Id to that.
+  const [dirOrWorkspaceSelectedId, setdirOrWorkspaceSelectedId] = useState('default')
   const [dirTitle, setDirTitle] = useState('')
   const [selectedData, setselectedData] = useState(null)
+
+
   const [showCreateWorkspace, setshowCreateWorkspace] = useState(false)
 
   const selectDefaultE = (directory_id)=> {
@@ -94,7 +96,7 @@ const Workspace = () => {
         </div>}
 
         {!directoriesViewOn && dirOrWorkspaceSelectedId !== 'default' && <div className="content__workspace-component">
-          <WorkspaceContentView selectedData={selectedData} directory_id={dirOrWorkspaceSelectedId}/>
+          <WorkspaceContentView selectedData={selectedData} workspace_id={dirOrWorkspaceSelectedId}/>
         </div>}
 
       </div>

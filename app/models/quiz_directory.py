@@ -1,6 +1,7 @@
 from .db import db
 from flask_login import current_user
 import datetime
+from app.models.utils import get_age_for_two_dates
 
 
 class QuizDirectory(db.Model):
@@ -26,6 +27,16 @@ class QuizDirectory(db.Model):
                            default=datetime.datetime.utcnow)
     updated_at = db.Column(db.DateTime, nullable=False,
                            default=datetime.datetime.utcnow)
+
+    def get_age(self):
+        old_time = (self.created_at).replace(tzinfo=datetime.timezone.utc)
+        most_recent = datetime.datetime.now(datetime.timezone.utc)
+        return get_age_for_two_dates(old_time, most_recent)
+
+    def get_age_updated_at(self):
+        old_time = (self.updated_at).replace(tzinfo=datetime.timezone.utc)
+        most_recent = datetime.datetime.now(datetime.timezone.utc)
+        return get_age_for_two_dates(old_time, most_recent)
 
     def to_dict(self):
         return {
@@ -56,7 +67,10 @@ class QuizDirectory(db.Model):
             'name': self.name,
             'description': self.description,
             'decks': [deck.get_quizzes_deck_for_workspace() for deck in self.quiz_template_relation],
-            'workspace_id': self.workspace_id
+            'workspace_id': self.workspace_id,
+            'date_age': self.get_age(),
+            'date_age_last_updated': self.get_age_updated_at(),
+            'date_created': self.created_at,
         }
 
     @staticmethod

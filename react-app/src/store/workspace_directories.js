@@ -39,6 +39,11 @@ const createWorkspace = (payload) => ({
   payload,
 })
 
+const deleteWorkspace = (payload) => ({
+  type: DELETE_WORKSPACE,
+  payload,
+});
+
 const getAllUsersDecksDefaultDirectory = (payload) =>({
   type: GET_ALL_USERS_DECKS_DEFAULT,
   payload,
@@ -114,6 +119,20 @@ export const createWorkspaceThunk = (payload) => async (dispatch) => {
     const payload = await response.json();
     await dispatch(getAllWorkspaceThunk());
     return payload;
+  }
+}
+
+export const deleteWorkspaceThunk = (id) => async () => {
+  const response = await fetch(`/api/directories/workspace/${id}`, {
+    method: 'DELETE'
+  });
+
+  if (!response.ok) {
+    const errorObj = await response.json();
+    if (errorObj) return errorObj
+    return {'errors':'An error occurred. Please try again.'}
+  } else {
+    return {'success': `deleted workspace successfully`};
   }
 }
 

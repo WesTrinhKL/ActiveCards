@@ -261,3 +261,25 @@
 }
 
 /* ----------workspace content view------------- */
+/* header */
+.wc-cc-fc-content__header-container{
+  display: flex;
+}
+.header-container__head{
+  width: 33.3%;
+  margin: 20px 20px 10px 20px;
+  color: #858585;
+  font-size: 14px;
+  text-decoration: underline;
+}
+/* body */
+.wc-cc-fc-content__content-container{
+  display: flex;
+}
+.content-container__data{
+  width: 33.3%;
+  margin: 7px 20px;
+  font-size: 14px;
+  color: #464646;
+  /* border-left: 2px solid #CD5D7D; */
+}

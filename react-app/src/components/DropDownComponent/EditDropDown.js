@@ -29,7 +29,7 @@ const EditDropDown = ({quiz_id, for_cards=false, for_banner=false, for_directory
               <hr className="unc_hr" />
             </div>
             <div className="unc__item font-size-small-medium" onClick={() => setshowDeleteModal(true)}><i class="fas fa-window-close basic-style-icon"></i>Delete {title}</div>
-            {showDeleteModal && <DirectoryDeleteModal delete_handler={delete_handler} setshowDeleteModal={setshowDeleteModal}/>}
+            {showDeleteModal && <DirectoryDeleteModal title={title} delete_handler={delete_handler} setshowDeleteModal={setshowDeleteModal}/>}
           </div>
         </div>
       </div>}

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Modal } from '../../../context/Modal';
 
-const DirectoryDeleteModal = ({delete_handler, setshowDeleteModal}) => {
+const DirectoryDeleteModal = ({delete_handler, setshowDeleteModal, title}) => {
 
   const instantCloseHandlerDeleteErrors = () => {
     setshowDeleteModal(false);
@@ -18,10 +18,10 @@ const DirectoryDeleteModal = ({delete_handler, setshowDeleteModal}) => {
         <Modal onClose={() => setshowDeleteModal(false)} >
           {/* delete confirm modal */}
             <div className="delete-confirm-wrapper">
-              <div className="delete-text"> Are you sure you want to <span>delete</span> this directory?</div>
+              <div className="delete-text"> Are you sure you want to <span>delete</span> this {title}?</div>
               <div className="delete-options-container">
                 <div className="button-style-stay" onClick={instantCloseHandlerDeleteErrors}>Don't Delete</div>
-                <div className="button-style-exit" onClick={delete_card_handler}>Delete Deck</div>
+                <div className="button-style-exit" onClick={delete_card_handler}>Delete</div>
               </div>
             </div>
         </Modal>
