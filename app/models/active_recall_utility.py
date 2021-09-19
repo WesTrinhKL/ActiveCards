@@ -14,20 +14,18 @@ class ActiveRecallUtility(db.Model):
     user_relation = db.relationship(
         'User', back_populates='active_recall_relation')
 
+    # active recall utility is a one to one with quiz_cards, so their id should always match
     quiz_card_id = db.Column(db.Integer, db.ForeignKey(
         'quiz_cards.id'), nullable=False)
     quiz_card_relation = db.relationship(
         'QuizCard', back_populates='active_recall_relation')
 
-    # child
     user_active_recall_answer_relation = db.relationship(
         'UserActiveRecallAnswer', back_populates='active_recall_utilities_relation', cascade='all ,delete-orphan')
     created_at = db.Column(db.DateTime, nullable=False,
                            default=datetime.datetime.utcnow)
     updated_at = db.Column(db.DateTime, nullable=False,
                            default=datetime.datetime.utcnow)
-
-    # active recall utility is a one to one with quiz_cards, so their id should always match
 
     def to_dict(self):
         return {

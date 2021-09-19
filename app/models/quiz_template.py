@@ -1,7 +1,7 @@
 from .db import db
 from flask_login import current_user
 import datetime
-from app.models.utils import get_age_for_two_dates
+from app.models.utils import get_age_for_two_dates, get_age_type
 from sqlalchemy import desc
 
 
@@ -37,20 +37,11 @@ class QuizTemplate(db.Model):
     def update_time(self):
         self.updated_at = datetime.datetime.utcnow()
 
-    def get_age_type(self, type):
-        old_time = datetime.datetime.utcnow()
-        if type == 'created':
-            old_time = (self.created_at).replace(tzinfo=datetime.timezone.utc)
-        elif type == 'updated':
-            old_time = (self.updated_at).replace(tzinfo=datetime.timezone.utc)
-        most_recent = datetime.datetime.now(datetime.timezone.utc)
-        return get_age_for_two_dates(old_time, most_recent)
-
     def get_age(self):
-        return self.get_age_type('created')
+        return get_age_type(self, 'created')
 
     def get_age_updated_at(self):
-        return self.get_age_type('updated')
+        return get_age_type(self, 'updated')
 
     def to_dict_base(self):
         return {

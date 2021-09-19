@@ -23,7 +23,6 @@ class QuizCard(db.Model):
     quiz_template_relation = db.relationship(
         'QuizTemplate', back_populates='quiz_card_relation')
 
-    # children (one card has many of these)
     active_recall_relation = db.relationship(
         'ActiveRecallUtility', back_populates='quiz_card_relation', cascade="all, delete-orphan")
     user_active_recall_answer_relation = db.relationship(
@@ -38,22 +37,25 @@ class QuizCard(db.Model):
         return not self.quiz_template_relation.is_private
 
     def user_owns_card(self):
-        if current_user.is_authenticated:
-            return current_user.id == self.user_id
-        return False
+        return current_user.is_authenticated and current_user.id == self.user_id
 
     def update_time(self):
         self.updated_at = datetime.datetime.utcnow()
 
-    def get_age(self):
-        old_time = (self.created_at).replace(tzinfo=datetime.timezone.utc)
+    def get_age_type(self, type):
+        old_time = datetime.datetime.utcnow()
+        if type == 'created':
+            old_time = (self.created_at).replace(tzinfo=datetime.timezone.utc)
+        elif type == 'updated':
+            old_time = (self.updated_at).replace(tzinfo=datetime.timezone.utc)
         most_recent = datetime.datetime.now(datetime.timezone.utc)
         return get_age_for_two_dates(old_time, most_recent)
 
+    def get_age(self):
+        return self.get_age_type('created')
+
     def get_age_updated_at(self):
-        old_time = (self.updated_at).replace(tzinfo=datetime.timezone.utc)
-        most_recent = datetime.datetime.now(datetime.timezone.utc)
-        return get_age_for_two_dates(old_time, most_recent)
+        return self.get_age_type('updated')
 
     def to_dict_after_created(self):
         return {
