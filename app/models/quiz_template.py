@@ -120,18 +120,15 @@ class QuizTemplate(db.Model):
 
     @staticmethod
     # get all by order id
-    def get_all_quiz_decks_simple_for_user():
-        if current_user.is_authenticated:
-            user_decks_all = QuizTemplate.query.filter_by(
-                user_id=current_user.id).all()
-            return {'all_user_decks': [deck.get_quizzes_deck_for_workspace() for deck in user_decks_all]}
-        return {'errors': 'Unavailable. please try again.'}, 401
+    def get_all_quiz_decks_simple_for_user(order='none'):
 
-    @staticmethod
-    # get most recent
-    def get_all_quiz_decks_by_recent_simple_for_user():
         if current_user.is_authenticated:
-            user_decks_all = QuizTemplate.query.filter_by(
-                user_id=current_user.id).order_by(desc(QuizTemplate.updated_at)).all()
+            user_decks_all = None
+            if order == 'recent':
+                user_decks_all = QuizTemplate.query.filter_by(
+                    user_id=current_user.id).order_by(desc(QuizTemplate.updated_at)).all()
+            else:
+                user_decks_all = QuizTemplate.query.filter_by(
+                    user_id=current_user.id).all()
             return {'all_user_decks': [deck.get_quizzes_deck_for_workspace() for deck in user_decks_all]}
         return {'errors': 'Unavailable. please try again.'}, 401

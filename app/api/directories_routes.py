@@ -45,7 +45,7 @@ def get_users_decks_by_default():
 # route to get all decks that belong to user for RECENT (recent)
 @ login_required
 def get_users_decks_by_recent():
-    return QuizTemplate.get_all_quiz_decks_by_recent_simple_for_user()
+    return QuizTemplate.get_all_quiz_decks_simple_for_user('recent')
 
 
 @ directories_routes.route('/directory/<int:id>', methods=['GET'])
