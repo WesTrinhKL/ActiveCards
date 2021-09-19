@@ -1,7 +1,7 @@
 from .db import db
 from flask_login import current_user
 import datetime
-from app.models.utils import get_age_for_two_dates, get_age_type
+from app.models.utils import get_age_type
 from sqlalchemy import desc
 
 
