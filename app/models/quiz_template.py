@@ -32,22 +32,33 @@ class QuizTemplate(db.Model):
                            default=datetime.datetime.utcnow)
 
     def template_belongs_to_current_user(self):
-        if current_user.is_authenticated:
-            return current_user.id == self.user_id
-        return False
+        return current_user.is_authenticated and current_user.id == self.user_id
 
     def update_time(self):
         self.updated_at = datetime.datetime.utcnow()
 
-    def get_age(self):
-        old_time = (self.created_at).replace(tzinfo=datetime.timezone.utc)
+    def get_age_type(self, type):
+        old_time = datetime.datetime.utcnow()
+        if type == 'created':
+            old_time = (self.created_at).replace(tzinfo=datetime.timezone.utc)
+        elif type == 'updated':
+            old_time = (self.updated_at).replace(tzinfo=datetime.timezone.utc)
         most_recent = datetime.datetime.now(datetime.timezone.utc)
         return get_age_for_two_dates(old_time, most_recent)
 
+    def get_age(self):
+        return self.get_age_type('created')
+
     def get_age_updated_at(self):
-        old_time = (self.updated_at).replace(tzinfo=datetime.timezone.utc)
-        most_recent = datetime.datetime.now(datetime.timezone.utc)
-        return get_age_for_two_dates(old_time, most_recent)
+        return self.get_age_type('updated')
+
+    def to_dict_base(self):
+        return {
+            'id': self.id,
+            'title': self.title,
+            'description': self.description,
+            'is_private': self.is_private,
+        }
 
     def to_dict(self):
         return {
@@ -73,10 +84,10 @@ class QuizTemplate(db.Model):
             'id': self.id,
             'title': self.title,
             'is_private': self.is_private,
+            'description': self.description,
             'quiz_card_relation': sorted([card.to_dict() for card in self.quiz_card_relation], key=lambda i: i['id']),
             'user_id': self.user_id,
             'username': self.user_relation.username,
-            'description': self.description,
             'date_age': self.get_age(),
         }
 
@@ -119,9 +130,8 @@ class QuizTemplate(db.Model):
         }
 
     @staticmethod
-    # get all by order id
+    # get all decks for curren user
     def get_all_quiz_decks_simple_for_user(order='none'):
-
         if current_user.is_authenticated:
             user_decks_all = None
             if order == 'recent':
