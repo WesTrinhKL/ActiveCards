@@ -42,7 +42,7 @@ class UserActiveRecallAnswer(db.Model):
             'id': self.id,
             'user_active_answer': self.user_active_answer,
             'user_relation': self.user_relation.to_dict_basic_user_info(),
-            'quiz_card_relation': self.quiz_card_relation.to_dict_basic_info(),
+            'quiz_card_relation': self.quiz_card_id(),
 
         }
 

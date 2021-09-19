@@ -80,8 +80,3 @@ class QuizCard(db.Model):
             'quiz_template_id': self.quiz_template_relation.id,
             'active_recall_utility_answer': [active_recall.to_dict() for active_recall in self.active_recall_relation][0],
         }
-
-    def to_dict_basic_info(self):
-        return {
-            'id': self.id,
-        }
