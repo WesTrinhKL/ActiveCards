@@ -1,7 +1,7 @@
 from .db import db
 from flask_login import current_user
 import datetime
-from app.models.utils import get_age_for_two_dates
+from app.models.utils import get_age_type
 
 
 class UserActiveRecallAnswer(db.Model):
@@ -33,9 +33,10 @@ class UserActiveRecallAnswer(db.Model):
                            default=datetime.datetime.utcnow)
 
     def get_age(self):
-        old_time = (self.created_at).replace(tzinfo=datetime.timezone.utc)
-        most_recent = datetime.datetime.now(datetime.timezone.utc)
-        return get_age_for_two_dates(old_time, most_recent)
+        return get_age_type(self, 'created')
+
+    def get_age_updated_at(self):
+        return get_age_type(self, 'updated')
 
     def to_dict(self):
         return {
@@ -60,8 +61,5 @@ class UserActiveRecallAnswer(db.Model):
             if userId == current_user.id:
                 user_answer_instance = UserActiveRecallAnswer.query.filter_by(
                     user_id=userId, quiz_card_id=quiz_card_id).all()
-                if user_answer_instance:
-                    return [user_answer.to_dict_basic() for user_answer in user_answer_instance]
-                else:
-                    return []
+                return [user_answer.to_dict_basic() for user_answer in user_answer_instance] if user_answer_instance else []
         return ["Unavailable. Please try a different directory"]
