@@ -61,7 +61,7 @@ def get_single_quiz(id):
 # get a single card from the quiz
 def get_single_card(id):
     quizCard = QuizCard.query.get(id)
-    if quizCard.card_is_public() or quizCard.user_owns_card():
+    if quizCard and (quizCard.card_is_public() or quizCard.user_owns_card)():
         return {'quiz_card_single': quizCard.to_dict()}
     return authorization_errors_to_error_messages("Can't be found!")
 

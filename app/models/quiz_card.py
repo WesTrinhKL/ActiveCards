@@ -2,7 +2,7 @@ from .db import db
 from flask_login import current_user
 from app.models.user_active_recall_answer import UserActiveRecallAnswer
 import datetime
-from app.models.utils import get_age_for_two_dates
+from app.models.utils import get_age_type
 
 
 class QuizCard(db.Model):
@@ -23,7 +23,6 @@ class QuizCard(db.Model):
     quiz_template_relation = db.relationship(
         'QuizTemplate', back_populates='quiz_card_relation')
 
-    # children (one card has many of these)
     active_recall_relation = db.relationship(
         'ActiveRecallUtility', back_populates='quiz_card_relation', cascade="all, delete-orphan")
     user_active_recall_answer_relation = db.relationship(
@@ -38,22 +37,16 @@ class QuizCard(db.Model):
         return not self.quiz_template_relation.is_private
 
     def user_owns_card(self):
-        if current_user.is_authenticated:
-            return current_user.id == self.user_id
-        return False
+        return current_user.is_authenticated and current_user.id == self.user_id
 
     def update_time(self):
         self.updated_at = datetime.datetime.utcnow()
 
     def get_age(self):
-        old_time = (self.created_at).replace(tzinfo=datetime.timezone.utc)
-        most_recent = datetime.datetime.now(datetime.timezone.utc)
-        return get_age_for_two_dates(old_time, most_recent)
+        return get_age_type(self, 'created')
 
     def get_age_updated_at(self):
-        old_time = (self.updated_at).replace(tzinfo=datetime.timezone.utc)
-        most_recent = datetime.datetime.now(datetime.timezone.utc)
-        return get_age_for_two_dates(old_time, most_recent)
+        return get_age_type(self, 'updated')
 
     def to_dict_after_created(self):
         return {
@@ -74,7 +67,6 @@ class QuizCard(db.Model):
             'active_recall_utility_answer': [active_recall.to_dict() for active_recall in self.active_recall_relation][0],
             # we can get the current user answer from the static method, or filter child from own model
             'current_user_answers': UserActiveRecallAnswer.get_current_user_active_recall_answers(current_user.id, self.id),
-            # 'all_users_answer':
             'date_age': self.get_age(),
             # 'date_updated_at': self.get_age_updated_at(),
         }
@@ -87,9 +79,4 @@ class QuizCard(db.Model):
             'question': self.question,
             'quiz_template_id': self.quiz_template_relation.id,
             'active_recall_utility_answer': [active_recall.to_dict() for active_recall in self.active_recall_relation][0],
-        }
-
-    def to_dict_basic_info(self):
-        return {
-            'id': self.id,
         }
