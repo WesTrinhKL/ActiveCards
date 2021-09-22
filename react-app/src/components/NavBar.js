@@ -27,7 +27,6 @@ const NavBar = () => {
 
   const goToHome = () =>{
     window.location.href = '/'
-
   }
 
   const user = useSelector(state => state.session.user);
