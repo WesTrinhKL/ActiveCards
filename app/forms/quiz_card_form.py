@@ -1,8 +1,7 @@
 from flask_wtf import FlaskForm
 from wtforms import IntegerField, StringField, Field
 from wtforms.validators import DataRequired, ValidationError, Length
-from app.models import QuizTemplate
-from form_utils import user_id_belongs_to_user
+from app.forms.form_utils import user_id_belongs_to_user, quiz_template_belongs_to_user
 
 
 def check_card_number_is_valid(form, field):
@@ -10,14 +9,6 @@ def check_card_number_is_valid(form, field):
     # user_id = form.data['user_id']
     # NOTE change later
     return True
-
-
-def quiz_template_belongs_to_user(form, field):
-    # form is the whole form data api, field is itself.
-    quiz_template_id = field.data
-    quiz_template = QuizTemplate.query.get(quiz_template_id)
-    if not quiz_template.template_belongs_to_current_user():
-        raise ValidationError("Unauthorized, please try your own deck.")
 
 
 class ListField(Field):
@@ -28,9 +19,9 @@ class ListField(Field):
 
 class QuizCardForm(FlaskForm):
     title = StringField(validators=[DataRequired(
-        message="A title is required"), Length(max=255, message="Answer cannot be more than 255 characters")])
+        message="A title is required"), Length(max=255, message="Title cannot be more than 255 characters")])
     question = StringField(validators=[DataRequired(
-        message="A question is required"), Length(max=1000, message="Answer cannot be more than 1000 characters")])
+        message="A question is required"), Length(max=1000, message="Question cannot be more than 1000 characters")])
 
     user_id = IntegerField(
         validators=[DataRequired(), user_id_belongs_to_user])

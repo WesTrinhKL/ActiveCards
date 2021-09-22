@@ -1,7 +1,7 @@
 from flask_wtf import FlaskForm
 from wtforms import IntegerField, StringField, Field
 from wtforms.validators import DataRequired, ValidationError, Length
-from form_utils import directory_belongs_to_user_and_exists, user_id_belongs_to_user
+from app.forms.form_utils import directory_belongs_to_user_and_exists, user_id_belongs_to_user
 
 
 class ListField(Field):
@@ -11,8 +11,10 @@ class ListField(Field):
 
 
 class QuizTemplateForm(FlaskForm):
-    title = StringField(validators=[DataRequired(), Length(max=255)])
-    description = StringField(validators=[Length(max=1000)])
+    title = StringField(validators=[DataRequired(
+        message="A title is required"), Length(message="Title cannot be more than 255 characters", max=255)])
+    description = StringField(validators=[Length(
+        message="Description cannot be more than 1000 characters", max=1000)])
 
     user_id = IntegerField(
         validators=[DataRequired(), user_id_belongs_to_user])
