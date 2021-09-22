@@ -22,6 +22,7 @@ const NavBar = () => {
     if (data) {
       setErrors(data);
     }
+    history.push('/workspace')
   }
 
   const goToHome = () =>{
