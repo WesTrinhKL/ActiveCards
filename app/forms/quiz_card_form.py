@@ -2,8 +2,7 @@ from flask_wtf import FlaskForm
 from wtforms import IntegerField, StringField, Field
 from wtforms.validators import DataRequired, ValidationError, Length
 from app.models import QuizTemplate
-from flask_login import current_user
-from app.forms.quiz_template_form import user_id_belongs_to_user
+from form_utils import user_id_belongs_to_user
 
 
 def check_card_number_is_valid(form, field):
@@ -33,7 +32,6 @@ class QuizCardForm(FlaskForm):
     question = StringField(validators=[DataRequired(
         message="A question is required"), Length(max=1000, message="Answer cannot be more than 1000 characters")])
 
-    # ensure user_id input belongs to user
     user_id = IntegerField(
         validators=[DataRequired(), user_id_belongs_to_user])
 
@@ -41,9 +39,8 @@ class QuizCardForm(FlaskForm):
     quiz_template_id = IntegerField(
         validators=[DataRequired(), quiz_template_belongs_to_user])
 
-    # ensure card_number is valid, call static
     card_number = IntegerField(
         validators=[DataRequired(), check_card_number_is_valid])
 
     correct_answer = StringField(validators=[DataRequired(
-        message="Active Recall Extension's answer field cannot be empty"), Length(max=1000)])
+        message="Active Recall Extension's answer field cannot be empty"), Length(max=1000, message="Active Recall Extension's answer cannot be more than 1000 characters")])
