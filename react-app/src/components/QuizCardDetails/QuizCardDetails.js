@@ -151,19 +151,20 @@ const QuizCardDetails = ({singleCardData, editMode=false, quizMetadata, addMode=
         // window.location.reload();
       }
       else if(data && data.errors){
+        console.log("error hit", data)
         setErrors(data.errors);
       }
       else{
         setErrors(['something went wrong, please try again.'])
       }
     }).catch(async (res) =>{
-      console.log("error hit")
       const data = res
+
       if(data && data.errors) setErrors(data.errors);
     })
   }
 
-
+  console.log("errors", errors)
 
   return (
     <>
