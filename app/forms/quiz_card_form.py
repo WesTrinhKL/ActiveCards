@@ -1,9 +1,7 @@
 from flask_wtf import FlaskForm
 from wtforms import IntegerField, StringField, Field
 from wtforms.validators import DataRequired, ValidationError, Length
-from app.models import QuizTemplate
-from flask_login import current_user
-from app.forms.quiz_template_form import user_id_belongs_to_user
+from app.forms.form_utils import user_id_belongs_to_user, quiz_template_belongs_to_user
 
 
 def check_card_number_is_valid(form, field):
@@ -13,14 +11,6 @@ def check_card_number_is_valid(form, field):
     return True
 
 
-def quiz_template_belongs_to_user(form, field):
-    # field is itself. form is the whole
-    quiz_template_id = field.data
-    quiz_template = QuizTemplate.query.get(quiz_template_id)
-    if not quiz_template.template_belongs_to_current_user():
-        raise ValidationError("Unauthorized, please try your own deck.")
-
-
 class ListField(Field):
     # generate your own datafield
     def process_formdata(self, valuelist):
@@ -28,10 +18,11 @@ class ListField(Field):
 
 
 class QuizCardForm(FlaskForm):
-    title = StringField(validators=[DataRequired(), Length(max=255)])
-    question = StringField(validators=[DataRequired(), Length(max=1000)])
+    title = StringField(validators=[DataRequired(
+        message="A title is required"), Length(max=255, message="Title cannot be more than 255 characters")])
+    question = StringField(validators=[DataRequired(
+        message="A question is required"), Length(max=1000, message="Question cannot be more than 1000 characters")])
 
-    # ensure user_id input belongs to user
     user_id = IntegerField(
         validators=[DataRequired(), user_id_belongs_to_user])
 
@@ -39,9 +30,8 @@ class QuizCardForm(FlaskForm):
     quiz_template_id = IntegerField(
         validators=[DataRequired(), quiz_template_belongs_to_user])
 
-    # ensure card_number is valid, call static
     card_number = IntegerField(
         validators=[DataRequired(), check_card_number_is_valid])
 
     correct_answer = StringField(validators=[DataRequired(
-        message="Active Recall Extension's answer field cannot be empty"), Length(max=1000)])
+        message="Active Recall Extension's answer field cannot be empty"), Length(max=1000, message="Active Recall Extension's answer cannot be more than 1000 characters")])

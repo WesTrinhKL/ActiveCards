@@ -214,4 +214,5 @@ def create_answer_for_user():
             db.session.commit()
             return create_answer_for_active_recall.to_dict()
         return authorization_errors_to_error_messages("Sorry, this is not accessible")
+    print("form errors", form.errors)
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401
