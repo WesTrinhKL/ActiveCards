@@ -9,10 +9,9 @@ ActiveCards is a flashcards based app that allows you to practice learning conce
 | Table of Contents |
 | ----------------- |
 | 1. [Features](#features) |
-| 2. [Technical Implementation Details](#technical-implementation-details) |
-| 3. [Future Features](#future-features) |
-| 4. [Contact](#contact) |
-| 5. [Getting Started](#getting-started) |
+| 2. [Future Features](#future-features) |
+| 3. [Contact](#contact) |
+| 4. [Getting Started](#getting-started) |
 
 
 ## Technologies
@@ -40,14 +39,6 @@ ActiveCards is a flashcards based app that allows you to practice learning conce
 
 ### Edit, Create, Delete Deck / Cards
 ![Edit, Create, Delete](./readme-assets/gifs/activecards_crudcards.gif)
-
-## Installation
-
-
-## Technical Implementation Details
-
-### Answers
-
 
 
 ## Future Features
