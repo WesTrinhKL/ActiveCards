@@ -19,6 +19,7 @@ function App() {
   const dispatch = useDispatch();
 
   useEffect(() => {
+    // this call to the auth route in backend will fetch our user data, if logged in, will add to store (set user)
     (async() => {
       await dispatch(authenticate());
       setLoaded(true);
